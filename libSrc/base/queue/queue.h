@@ -1,35 +1,21 @@
 #ifndef _PEACE_BASE_QUEUE_QUEUE_H_
 #define _PEACE_BASE_QUEUE_QUEUE_H_
 
-#include "base/commonInternal.h"
+#include "types.h"
 
-namespace peace {
-namespace base {
-
-typedef struct
+namespace peace 
 {
-	sem_t m_Semaphore;
-	pthread_mutex_t m_Lock;
-	BufferInfo *m_Push;
-	BufferInfo *m_Pop;
-	BufferInfo *m_pInfo;
-	unsigned char *m_pData;
-	unsigned char *m_pCurr;
-	int m_nInfoSize;
-	int m_nDataSize;
-}BlockInfo;
+namespace base 
+{
 
+int QueueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize);
+int QueuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize);
 
+template<typename T>
+int QueuePopInternal(BlockInfo *pBlockInfo, const T& pFunc, void* arg);
 
-
-
-
-
-
-
-
-
-
+template<typename T>
+int QueuePop(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut);
 
 
 } //namespace base

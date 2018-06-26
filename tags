@@ -1,0 +1,225 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+AR	libSrc/makefile	/^AR = $(PLATFORM)ar$/;"	m
+AS	libSrc/makefile	/^AS = $(PLATFORM)as$/;"	m
+BlockInfo	install/include/types.h	/^}BlockInfo;$/;"	t	typeref:struct:__anon1
+BlockInfo	libSrc/types.h	/^}BlockInfo;$/;"	t	typeref:struct:__anon2
+BufferInfo	install/include/types.h	/^}BufferInfo;$/;"	t	typeref:struct:_BufferInfo
+BufferInfo	libSrc/types.h	/^}BufferInfo;$/;"	t	typeref:struct:_BufferInfo
+CC	libSrc/makefile	/^CC = $(PLATFORM)gcc$/;"	m
+CC	test/makefile	/^CC = $(PLATFORM)gcc$/;"	m
+CCSRC	libSrc/makefile	/^CCSRC = $(shell find $(DIR) -name "*.cc")$/;"	m
+CFLAGS	libSrc/makefile	/^CFLAGS = $(CXXFLAGS) -std=gnu99 $(MACRO)$/;"	m
+CFLAGS	test/makefile	/^CFLAGS = $(CXXFLAGS) -std=gnu99 $(MACRO)$/;"	m
+CSRC	libSrc/makefile	/^CSRC = $(shell find $(DIR) -name "*.c")$/;"	m
+CSRC	test/makefile	/^CSRC := $(shell find $(DIR) -name "*.c")$/;"	m
+CXXFLAGS	libSrc/makefile	/^CXXFLAGS = -Werror -Wall -g -Wunused -Wsign-compare -Wunreachable-code DDEBUG_SYS_INFO -fPIC $/;"	m
+CXXFLAGS	test/makefile	/^CXXFLAGS = -Werror -Wall -g -Wunused -Wsign-compare -Wunreachable-code -DDEBUG_SYS_INFO $/;"	m
+CXXSRC	libSrc/makefile	/^CXXSRC = $(shell find $(DIR) -name "*.cpp")$/;"	m
+CXXSRC	test/makefile	/^CXXSRC = $(shell find $(DIR) -name "*.cpp")$/;"	m
+DIR	libSrc/makefile	/^DIR = .\/$/;"	m
+DIR	test/makefile	/^DIR = .\/$/;"	m
+EXE	test/makefile	/^EXE=".\/test"$/;"	m
+INC	libSrc/makefile	/^INC = -I.\/$/;"	m
+INCLUDES	test/makefile	/^INCLUDES = -I..\/install\/include$/;"	m
+LDFLAGS	libSrc/makefile	/^LDFLAGS	= $/;"	m
+LDFLAGS	test/makefile	/^LDFLAGS	=$/;"	m
+LIBS	libSrc/makefile	/^LIBS = -lz -lpthread$/;"	m
+LIBS	test/makefile	/^LIBS = ..\/install\/bin\/libpeace.so$/;"	m
+LOGD	install/include/types.h	54;"	d
+LOGD	libSrc/types.h	54;"	d
+MACRO	libSrc/makefile	/^MACRO = $/;"	m
+OBJS	libSrc/makefile	/^OBJS := $(CSRC:%.c=%.o) $(CXXSRC:%.cc=%.o) $(SSRC:%.S=%.o) $(sSRC:%.s=%.o) $(CCSRC:%.cpp=%.o)$/;"	m
+OBJS	test/makefile	/^OBJS := $(CSRC:%.c=%.o) $(CXXSRC:%.cpp=%.o)$/;"	m
+QuequeInit	libSrc/base/queue/queue.cpp	/^int QuequeInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
+QueueInit	libSrc/base/queue/queue.h	/^int QueueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
+QueuePop	libSrc/base/queue/queue.cpp	/^int QueuePop(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)
+QueuePop	libSrc/base/queue/queue.h	/^int QueuePop(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)
+QueuePopInternal	libSrc/base/queue/queue.cpp	/^int QueuePopInternal(BlockInfo *pBlockInfo, const T& pFunc, void* arg)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg)
+QueuePopInternal	libSrc/base/queue/queue.h	/^int QueuePopInternal(BlockInfo *pBlockInfo, const T& pFunc, void* arg);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg)
+QueuePush	libSrc/base/queue/queue.cpp	/^int QueuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
+QueuePush	libSrc/base/queue/queue.h	/^int QueuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
+SSRC	libSrc/makefile	/^SSRC = $(shell find $(DIR) -name "*.S")$/;"	m
+SaveFile	libSrc/base/file/simpleSaveFile.h	/^class SaveFile$/;"	c	namespace:peace::base
+SaveFileFpMap	libSrc/base/file/simpleSaveFile.h	/^typedef std::map<const char*, void*> SaveFileFpMap;$/;"	t	namespace:peace::base
+TARGET_LIB	libSrc/makefile	/^TARGET_LIB = .\/libpeace.a$/;"	m
+TARGET_SO	libSrc/makefile	/^TARGET_SO = .\/libpeace.so$/;"	m
+XX	libSrc/makefile	/^XX = $(PLATFORM)g++$/;"	m
+XX	test/makefile	/^XX = $(PLATFORM)g++$/;"	m
+_BufferInfo	install/include/types.h	/^typedef struct _BufferInfo $/;"	s
+_BufferInfo	libSrc/types.h	/^typedef struct _BufferInfo $/;"	s
+_BufferInfo::nFlag	install/include/types.h	/^        int nFlag;$/;"	m	struct:_BufferInfo	access:public
+_BufferInfo::nFlag	libSrc/types.h	/^        int nFlag;$/;"	m	struct:_BufferInfo	access:public
+_BufferInfo::nSize	install/include/types.h	/^        int nSize;$/;"	m	struct:_BufferInfo	access:public
+_BufferInfo::nSize	libSrc/types.h	/^        int nSize;$/;"	m	struct:_BufferInfo	access:public
+_BufferInfo::pData	install/include/types.h	/^        unsigned char *pData;$/;"	m	struct:_BufferInfo	access:public
+_BufferInfo::pData	libSrc/types.h	/^        unsigned char *pData;$/;"	m	struct:_BufferInfo	access:public
+_BufferInfo::pNext	install/include/types.h	/^        struct _BufferInfo *pNext;$/;"	m	struct:_BufferInfo	typeref:struct:_BufferInfo::_BufferInfo	access:public
+_BufferInfo::pNext	libSrc/types.h	/^        struct _BufferInfo *pNext;$/;"	m	struct:_BufferInfo	typeref:struct:_BufferInfo::_BufferInfo	access:public
+_PEACE_BASE_BASE_H_	libSrc/base/base.h	2;"	d
+_PEACE_BASE_FILE_FILE_H_	libSrc/base/file/file.h	2;"	d
+_PEACE_BASE_FILE_SIMPLE_SAVE_FILE_H_	libSrc/base/file/simpleSaveFile.h	2;"	d
+_PEACE_BASE_QUEUE_QUEUE_H_	libSrc/base/queue/queue.h	2;"	d
+_PEACE_BASE_THREAD_THREAD_H_	libSrc/base/thread/thread.h	2;"	d
+_PEACE_INTERNAL_H_	libSrc/peaceInternal.h	2;"	d
+_PEACE_PEACE_INTERFACE_H_	install/include/peaceInterface.h	2;"	d
+_PEACE_PEACE_INTERFACE_H_	libSrc/peaceInterface.h	2;"	d
+_PEACE_TYPES_H_	install/include/types.h	2;"	d
+_PEACE_TYPES_H_	libSrc/types.h	2;"	d
+__PEACE_PEACE_H_	libSrc/peace.h	2;"	d
+__anon1::m_Lock	install/include/types.h	/^        pthread_mutex_t m_Lock;$/;"	m	struct:__anon1	access:public
+__anon1::m_Pop	install/include/types.h	/^        BufferInfo *m_Pop;$/;"	m	struct:__anon1	access:public
+__anon1::m_Push	install/include/types.h	/^        BufferInfo *m_Push;$/;"	m	struct:__anon1	access:public
+__anon1::m_Semaphore	install/include/types.h	/^        sem_t m_Semaphore;$/;"	m	struct:__anon1	access:public
+__anon1::m_nDataSize	install/include/types.h	/^        int m_nDataSize;$/;"	m	struct:__anon1	access:public
+__anon1::m_nInfoSize	install/include/types.h	/^        int m_nInfoSize;$/;"	m	struct:__anon1	access:public
+__anon1::m_pCurr	install/include/types.h	/^        unsigned char *m_pCurr;$/;"	m	struct:__anon1	access:public
+__anon1::m_pData	install/include/types.h	/^        unsigned char *m_pData;$/;"	m	struct:__anon1	access:public
+__anon1::m_pInfo	install/include/types.h	/^        BufferInfo *m_pInfo;$/;"	m	struct:__anon1	access:public
+__anon2::m_Lock	libSrc/types.h	/^        pthread_mutex_t m_Lock;$/;"	m	struct:__anon2	access:public
+__anon2::m_Pop	libSrc/types.h	/^        BufferInfo *m_Pop;$/;"	m	struct:__anon2	access:public
+__anon2::m_Push	libSrc/types.h	/^        BufferInfo *m_Push;$/;"	m	struct:__anon2	access:public
+__anon2::m_Semaphore	libSrc/types.h	/^        sem_t m_Semaphore;$/;"	m	struct:__anon2	access:public
+__anon2::m_nDataSize	libSrc/types.h	/^        int m_nDataSize;$/;"	m	struct:__anon2	access:public
+__anon2::m_nInfoSize	libSrc/types.h	/^        int m_nInfoSize;$/;"	m	struct:__anon2	access:public
+__anon2::m_pCurr	libSrc/types.h	/^        unsigned char *m_pCurr;$/;"	m	struct:__anon2	access:public
+__anon2::m_pData	libSrc/types.h	/^        unsigned char *m_pData;$/;"	m	struct:__anon2	access:public
+__anon2::m_pInfo	libSrc/types.h	/^        BufferInfo *m_pInfo;$/;"	m	struct:__anon2	access:public
+_fp	libSrc/base/file/simpleSaveFile.h	/^	FILE * _fp;$/;"	m	class:peace::base::SaveFile	access:private
+a	libSrc/base/file/file.cpp	/^int a = 2;$/;"	m	namespace:peace::base	file:
+b	libSrc/base/file/file.cpp	/^int b = 3;$/;"	m	namespace:peace	file:
+base	libSrc/base/base.h	/^namespace base $/;"	n	namespace:peace
+base	libSrc/base/file/file.cpp	/^namespace base $/;"	n	namespace:peace	file:
+base	libSrc/base/file/file.h	/^namespace base $/;"	n	namespace:peace
+base	libSrc/base/file/simpleSaveFile.cpp	/^namespace base $/;"	n	namespace:peace	file:
+base	libSrc/base/file/simpleSaveFile.h	/^namespace base $/;"	n	namespace:peace
+base	libSrc/base/queue/queue.cpp	/^namespace base $/;"	n	namespace:peace	file:
+base	libSrc/base/queue/queue.h	/^namespace base $/;"	n	namespace:peace
+base	libSrc/base/thread/thread.cpp	/^namespace base$/;"	n	namespace:peace	file:
+base	libSrc/base/thread/thread.h	/^namespace base $/;"	n	namespace:peace
+close	libSrc/base/file/simpleSaveFile.cpp	/^void SaveFile::close()$/;"	f	class:peace::base::SaveFile	signature:()
+close	libSrc/base/file/simpleSaveFile.h	/^	void close();$/;"	p	class:peace::base::SaveFile	access:public	signature:()
+fileSimpleClose	install/include/peaceInterface.h	/^void fileSimpleClose(const char *fileAbsName);$/;"	p	signature:(const char *fileAbsName)
+fileSimpleClose	libSrc/base/file/file.cpp	/^void fileSimpleClose(const char *fileAbsName)$/;"	f	namespace:peace::base	signature:(const char *fileAbsName)
+fileSimpleClose	libSrc/base/file/file.h	/^void fileSimpleClose(const char *fileAbsName);$/;"	p	namespace:peace::base	signature:(const char *fileAbsName)
+fileSimpleClose	libSrc/peaceInterface.cpp	/^void fileSimpleClose(const char *fileAbsName)$/;"	f	signature:(const char *fileAbsName)
+fileSimpleClose	libSrc/peaceInterface.h	/^void fileSimpleClose(const char *fileAbsName);$/;"	p	signature:(const char *fileAbsName)
+fileSimpleWrite	install/include/peaceInterface.h	/^void fileSimpleWrite(const unsigned char *data, const int size, const char *fileAbsName);$/;"	p	signature:(const unsigned char *data, const int size, const char *fileAbsName)
+fileSimpleWrite	libSrc/base/file/file.cpp	/^void fileSimpleWrite(const unsigned char *data, const int size, const char *fileAbsName)$/;"	f	namespace:peace::base	signature:(const unsigned char *data, const int size, const char *fileAbsName)
+fileSimpleWrite	libSrc/base/file/file.h	/^void fileSimpleWrite(const unsigned char *data, const int size, const char *fileAbsName);$/;"	p	namespace:peace::base	signature:(const unsigned char *data, const int size, const char *fileAbsName)
+fileSimpleWrite	libSrc/peaceInterface.cpp	/^void fileSimpleWrite(const unsigned char *data, const int size, const char *fileAbsName)$/;"	f	signature:(const unsigned char *data, const int size, const char *fileAbsName)
+fileSimpleWrite	libSrc/peaceInterface.h	/^void fileSimpleWrite(const unsigned char *data, const int size, const char *fileAbsName);$/;"	p	signature:(const unsigned char *data, const int size, const char *fileAbsName)
+getObj	libSrc/base/file/simpleSaveFile.cpp	/^SaveFile* SaveFile::getObj(const char *fileName)$/;"	f	class:peace::base::SaveFile	signature:(const char *fileName)
+getObj	libSrc/base/file/simpleSaveFile.h	/^	static SaveFile* getObj(const char *fileName); $/;"	p	class:peace::base::SaveFile	access:public	signature:(const char *fileName)
+m_Lock	install/include/types.h	/^        pthread_mutex_t m_Lock;$/;"	m	struct:__anon1	access:public
+m_Lock	libSrc/types.h	/^        pthread_mutex_t m_Lock;$/;"	m	struct:__anon2	access:public
+m_Pop	install/include/types.h	/^        BufferInfo *m_Pop;$/;"	m	struct:__anon1	access:public
+m_Pop	libSrc/types.h	/^        BufferInfo *m_Pop;$/;"	m	struct:__anon2	access:public
+m_Push	install/include/types.h	/^        BufferInfo *m_Push;$/;"	m	struct:__anon1	access:public
+m_Push	libSrc/types.h	/^        BufferInfo *m_Push;$/;"	m	struct:__anon2	access:public
+m_Semaphore	install/include/types.h	/^        sem_t m_Semaphore;$/;"	m	struct:__anon1	access:public
+m_Semaphore	libSrc/types.h	/^        sem_t m_Semaphore;$/;"	m	struct:__anon2	access:public
+m_nDataSize	install/include/types.h	/^        int m_nDataSize;$/;"	m	struct:__anon1	access:public
+m_nDataSize	libSrc/types.h	/^        int m_nDataSize;$/;"	m	struct:__anon2	access:public
+m_nInfoSize	install/include/types.h	/^        int m_nInfoSize;$/;"	m	struct:__anon1	access:public
+m_nInfoSize	libSrc/types.h	/^        int m_nInfoSize;$/;"	m	struct:__anon2	access:public
+m_pCurr	install/include/types.h	/^        unsigned char *m_pCurr;$/;"	m	struct:__anon1	access:public
+m_pCurr	libSrc/types.h	/^        unsigned char *m_pCurr;$/;"	m	struct:__anon2	access:public
+m_pData	install/include/types.h	/^        unsigned char *m_pData;$/;"	m	struct:__anon1	access:public
+m_pData	libSrc/types.h	/^        unsigned char *m_pData;$/;"	m	struct:__anon2	access:public
+m_pInfo	install/include/types.h	/^        BufferInfo *m_pInfo;$/;"	m	struct:__anon1	access:public
+m_pInfo	libSrc/types.h	/^        BufferInfo *m_pInfo;$/;"	m	struct:__anon2	access:public
+main	test/test.cpp	/^int main()$/;"	f	signature:()
+mapFp	libSrc/base/file/simpleSaveFile.cpp	/^SaveFileFpMap mapFp;$/;"	m	namespace:peace::base	file:
+nFlag	install/include/types.h	/^        int nFlag;$/;"	m	struct:_BufferInfo	access:public
+nFlag	libSrc/types.h	/^        int nFlag;$/;"	m	struct:_BufferInfo	access:public
+nSize	install/include/types.h	/^        int nSize;$/;"	m	struct:_BufferInfo	access:public
+nSize	libSrc/types.h	/^        int nSize;$/;"	m	struct:_BufferInfo	access:public
+open	libSrc/base/file/simpleSaveFile.cpp	/^void *SaveFile::open(const char *fileName)$/;"	f	class:peace::base::SaveFile	signature:(const char *fileName)
+open	libSrc/base/file/simpleSaveFile.h	/^	void * open(const char *fileName);$/;"	p	class:peace::base::SaveFile	access:public	signature:(const char *fileName)
+pData	install/include/types.h	/^        unsigned char *pData;$/;"	m	struct:_BufferInfo	access:public
+pData	libSrc/types.h	/^        unsigned char *pData;$/;"	m	struct:_BufferInfo	access:public
+pNext	install/include/types.h	/^        struct _BufferInfo *pNext;$/;"	m	struct:_BufferInfo	typeref:struct:_BufferInfo::_BufferInfo	access:public
+pNext	libSrc/types.h	/^        struct _BufferInfo *pNext;$/;"	m	struct:_BufferInfo	typeref:struct:_BufferInfo::_BufferInfo	access:public
+peace	libSrc/base/base.h	/^namespace peace $/;"	n
+peace	libSrc/base/file/file.cpp	/^namespace peace $/;"	n	file:
+peace	libSrc/base/file/file.h	/^namespace peace $/;"	n
+peace	libSrc/base/file/simpleSaveFile.cpp	/^namespace peace $/;"	n	file:
+peace	libSrc/base/file/simpleSaveFile.h	/^namespace peace $/;"	n
+peace	libSrc/base/queue/queue.cpp	/^namespace peace $/;"	n	file:
+peace	libSrc/base/queue/queue.h	/^namespace peace $/;"	n
+peace	libSrc/base/thread/thread.cpp	/^namespace peace $/;"	n	file:
+peace	libSrc/base/thread/thread.h	/^namespace peace $/;"	n
+peace::b	libSrc/base/file/file.cpp	/^int b = 3;$/;"	m	namespace:peace	file:
+peace::base	libSrc/base/base.h	/^namespace base $/;"	n	namespace:peace
+peace::base	libSrc/base/file/file.cpp	/^namespace base $/;"	n	namespace:peace	file:
+peace::base	libSrc/base/file/file.h	/^namespace base $/;"	n	namespace:peace
+peace::base	libSrc/base/file/simpleSaveFile.cpp	/^namespace base $/;"	n	namespace:peace	file:
+peace::base	libSrc/base/file/simpleSaveFile.h	/^namespace base $/;"	n	namespace:peace
+peace::base	libSrc/base/queue/queue.cpp	/^namespace base $/;"	n	namespace:peace	file:
+peace::base	libSrc/base/queue/queue.h	/^namespace base $/;"	n	namespace:peace
+peace::base	libSrc/base/thread/thread.cpp	/^namespace base$/;"	n	namespace:peace	file:
+peace::base	libSrc/base/thread/thread.h	/^namespace base $/;"	n	namespace:peace
+peace::base::QuequeInit	libSrc/base/queue/queue.cpp	/^int QuequeInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
+peace::base::QueueInit	libSrc/base/queue/queue.h	/^int QueueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
+peace::base::QueuePop	libSrc/base/queue/queue.cpp	/^int QueuePop(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)
+peace::base::QueuePop	libSrc/base/queue/queue.h	/^int QueuePop(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)
+peace::base::QueuePopInternal	libSrc/base/queue/queue.cpp	/^int QueuePopInternal(BlockInfo *pBlockInfo, const T& pFunc, void* arg)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg)
+peace::base::QueuePopInternal	libSrc/base/queue/queue.h	/^int QueuePopInternal(BlockInfo *pBlockInfo, const T& pFunc, void* arg);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg)
+peace::base::QueuePush	libSrc/base/queue/queue.cpp	/^int QueuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
+peace::base::QueuePush	libSrc/base/queue/queue.h	/^int QueuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
+peace::base::SaveFile	libSrc/base/file/simpleSaveFile.h	/^class SaveFile$/;"	c	namespace:peace::base
+peace::base::SaveFile::_fp	libSrc/base/file/simpleSaveFile.h	/^	FILE * _fp;$/;"	m	class:peace::base::SaveFile	access:private
+peace::base::SaveFile::close	libSrc/base/file/simpleSaveFile.cpp	/^void SaveFile::close()$/;"	f	class:peace::base::SaveFile	signature:()
+peace::base::SaveFile::close	libSrc/base/file/simpleSaveFile.h	/^	void close();$/;"	p	class:peace::base::SaveFile	access:public	signature:()
+peace::base::SaveFile::getObj	libSrc/base/file/simpleSaveFile.cpp	/^SaveFile* SaveFile::getObj(const char *fileName)$/;"	f	class:peace::base::SaveFile	signature:(const char *fileName)
+peace::base::SaveFile::getObj	libSrc/base/file/simpleSaveFile.h	/^	static SaveFile* getObj(const char *fileName); $/;"	p	class:peace::base::SaveFile	access:public	signature:(const char *fileName)
+peace::base::SaveFile::open	libSrc/base/file/simpleSaveFile.cpp	/^void *SaveFile::open(const char *fileName)$/;"	f	class:peace::base::SaveFile	signature:(const char *fileName)
+peace::base::SaveFile::open	libSrc/base/file/simpleSaveFile.h	/^	void * open(const char *fileName);$/;"	p	class:peace::base::SaveFile	access:public	signature:(const char *fileName)
+peace::base::SaveFile::wr	libSrc/base/file/simpleSaveFile.cpp	/^void SaveFile::wr(const void *data, const int dataSize)$/;"	f	class:peace::base::SaveFile	signature:(const void *data, const int dataSize)
+peace::base::SaveFile::wr	libSrc/base/file/simpleSaveFile.h	/^	void wr(const void *data, const int dataSize);$/;"	p	class:peace::base::SaveFile	access:public	signature:(const void *data, const int dataSize)
+peace::base::SaveFile::~SaveFile	libSrc/base/file/simpleSaveFile.cpp	/^SaveFile::~SaveFile()$/;"	f	class:peace::base::SaveFile	signature:()
+peace::base::SaveFile::~SaveFile	libSrc/base/file/simpleSaveFile.h	/^	~SaveFile();$/;"	p	class:peace::base::SaveFile	access:public	signature:()
+peace::base::SaveFileFpMap	libSrc/base/file/simpleSaveFile.h	/^typedef std::map<const char*, void*> SaveFileFpMap;$/;"	t	namespace:peace::base
+peace::base::a	libSrc/base/file/file.cpp	/^int a = 2;$/;"	m	namespace:peace::base	file:
+peace::base::fileSimpleClose	libSrc/base/file/file.cpp	/^void fileSimpleClose(const char *fileAbsName)$/;"	f	namespace:peace::base	signature:(const char *fileAbsName)
+peace::base::fileSimpleClose	libSrc/base/file/file.h	/^void fileSimpleClose(const char *fileAbsName);$/;"	p	namespace:peace::base	signature:(const char *fileAbsName)
+peace::base::fileSimpleWrite	libSrc/base/file/file.cpp	/^void fileSimpleWrite(const unsigned char *data, const int size, const char *fileAbsName)$/;"	f	namespace:peace::base	signature:(const unsigned char *data, const int size, const char *fileAbsName)
+peace::base::fileSimpleWrite	libSrc/base/file/file.h	/^void fileSimpleWrite(const unsigned char *data, const int size, const char *fileAbsName);$/;"	p	namespace:peace::base	signature:(const unsigned char *data, const int size, const char *fileAbsName)
+peace::base::mapFp	libSrc/base/file/simpleSaveFile.cpp	/^SaveFileFpMap mapFp;$/;"	m	namespace:peace::base	file:
+peace::base::threadClose	libSrc/base/thread/thread.cpp	/^void threadClose(pthread_t &pid)$/;"	f	namespace:peace::base	signature:(pthread_t &pid)
+peace::base::threadClose	libSrc/base/thread/thread.h	/^void threadClose(pthread_t &pid);$/;"	p	namespace:peace::base	signature:(pthread_t &pid)
+peace::base::threadCreate	libSrc/base/thread/thread.cpp	/^int threadCreate(pthread_t &pid, void*(*thread_callback)(void*), void *arg, const size_t stack_size)$/;"	f	namespace:peace::base	signature:(pthread_t &pid, void*(*thread_callback)(void*), void *arg, const size_t stack_size)
+peace::base::threadCreate	libSrc/base/thread/thread.h	/^int threadCreate(pthread_t &pid, void*(*thread_callback)(void*), void *arg, const size_t stack_size);$/;"	p	namespace:peace::base	signature:(pthread_t &pid, void*(*thread_callback)(void*), void *arg, const size_t stack_size)
+queueInit	install/include/peaceInterface.h	/^int queueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize);$/;"	p	signature:(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
+queueInit	libSrc/peaceInterface.cpp	/^int queueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)$/;"	f	signature:(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
+queueInit	libSrc/peaceInterface.h	/^int queueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize);$/;"	p	signature:(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
+queuePop	install/include/peaceInterface.h	/^int queuePop(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout);$/;"	p	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout)
+queuePop	libSrc/peaceInterface.cpp	/^int queuePop(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout)$/;"	f	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout)
+queuePop	libSrc/peaceInterface.h	/^int queuePop(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout);$/;"	p	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout)
+queuePopInternal	install/include/peaceInterface.h	/^int queuePopInternal(BlockInfo *pBlockInfo, const T& pFunc, void* arg);$/;"	p	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg)
+queuePopInternal	libSrc/peaceInterface.cpp	/^int queuePopInternal(BlockInfo *pBlockInfo, const T& pFunc, void* arg)$/;"	f	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg)
+queuePopInternal	libSrc/peaceInterface.h	/^int queuePopInternal(BlockInfo *pBlockInfo, const T& pFunc, void* arg);$/;"	p	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg)
+queuePush	install/include/peaceInterface.h	/^int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize);$/;"	p	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
+queuePush	libSrc/peaceInterface.cpp	/^int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)$/;"	f	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
+queuePush	libSrc/peaceInterface.h	/^int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize);$/;"	p	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
+sSRC	libSrc/makefile	/^sSRC = $(shell find $(DIR) -name "*.s")$/;"	m
+soFLAGS	libSrc/makefile	/^soFLAGS = -fPIC $/;"	m
+threadClose	install/include/peaceInterface.h	/^void threadClose(pthread_t &pid);$/;"	p	signature:(pthread_t &pid)
+threadClose	libSrc/base/thread/thread.cpp	/^void threadClose(pthread_t &pid)$/;"	f	namespace:peace::base	signature:(pthread_t &pid)
+threadClose	libSrc/base/thread/thread.h	/^void threadClose(pthread_t &pid);$/;"	p	namespace:peace::base	signature:(pthread_t &pid)
+threadClose	libSrc/peaceInterface.cpp	/^void threadClose(pthread_t &pid)$/;"	f	signature:(pthread_t &pid)
+threadClose	libSrc/peaceInterface.h	/^void threadClose(pthread_t &pid);$/;"	p	signature:(pthread_t &pid)
+threadCreate	install/include/peaceInterface.h	/^int threadCreate(pthread_t &pid, void*(*threadCallback)(void*), void *arg, const size_t stackSize);$/;"	p	signature:(pthread_t &pid, void*(*threadCallback)(void*), void *arg, const size_t stackSize)
+threadCreate	libSrc/base/thread/thread.cpp	/^int threadCreate(pthread_t &pid, void*(*thread_callback)(void*), void *arg, const size_t stack_size)$/;"	f	namespace:peace::base	signature:(pthread_t &pid, void*(*thread_callback)(void*), void *arg, const size_t stack_size)
+threadCreate	libSrc/base/thread/thread.h	/^int threadCreate(pthread_t &pid, void*(*thread_callback)(void*), void *arg, const size_t stack_size);$/;"	p	namespace:peace::base	signature:(pthread_t &pid, void*(*thread_callback)(void*), void *arg, const size_t stack_size)
+threadCreate	libSrc/peaceInterface.cpp	/^int threadCreate(pthread_t &pid, void*(*threadCallback)(void*), void *arg, const size_t stackSize)$/;"	f	signature:(pthread_t &pid, void*(*threadCallback)(void*), void *arg, const size_t stackSize)
+threadCreate	libSrc/peaceInterface.h	/^int threadCreate(pthread_t &pid, void*(*threadCallback)(void*), void *arg, const size_t stackSize);$/;"	p	signature:(pthread_t &pid, void*(*threadCallback)(void*), void *arg, const size_t stackSize)
+wr	libSrc/base/file/simpleSaveFile.cpp	/^void SaveFile::wr(const void *data, const int dataSize)$/;"	f	class:peace::base::SaveFile	signature:(const void *data, const int dataSize)
+wr	libSrc/base/file/simpleSaveFile.h	/^	void wr(const void *data, const int dataSize);$/;"	p	class:peace::base::SaveFile	access:public	signature:(const void *data, const int dataSize)
+~SaveFile	libSrc/base/file/simpleSaveFile.cpp	/^SaveFile::~SaveFile()$/;"	f	class:peace::base::SaveFile	signature:()
+~SaveFile	libSrc/base/file/simpleSaveFile.h	/^	~SaveFile();$/;"	p	class:peace::base::SaveFile	access:public	signature:()

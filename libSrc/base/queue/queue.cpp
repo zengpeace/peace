@@ -1,28 +1,30 @@
 #include "queue.h"
 
-namespace peace {
-namespace base {
+namespace peace 
+{
+namespace base 
+{
 
-int queueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
+int QuequeInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
 {
 	int nInfoSize = blockNum;
 	int nDataSize = blockTotalSize;
 	if(!pBlockInfo || blockNum <= 0 || blockTotalSize <= 0)
 	{
-		LOGD("%s:para error ! %p, %d, %d\n", __FUNCTION__, pBlockInfo, blockNum, blockTotalSize);
-		return -1;				
+		LOGD("%s:para error ! %p,%d,%d\n", __FUNCTION__, pBlockInfo, nInfoSize, nDataSize);
+		return -1;
 	}
 
 	if (sem_init(&(pBlockInfo->m_Semaphore), 0, 0) != 0)
 	{
 		LOGD("sem_init failure {%s(%d)}\n", __FILE__, __LINE__);
-		return -1;
+		return -2;
 	}
 
 	if (pthread_mutex_init(&pBlockInfo->m_Lock, NULL) != 0)
 	{
 		LOGD("pthread_mutex_init failure {%s(%d)}\n", __FILE__, __LINE__);
-		return -2;
+		return -3;
 	}
 
 	if ((pBlockInfo->m_pInfo = (BufferInfo*)malloc(nInfoSize * sizeof(BufferInfo) + nDataSize)) == NULL)
@@ -54,11 +56,10 @@ int queueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSiz
 	return 0;
 }
 
-int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
+int QueuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
 {
 	int ret = 0;
 	BufferInfo *Pop;
-
 	pthread_mutex_lock(&(pBlockInfo->m_Lock));
 
 	if (iSize + iFrontSize > pBlockInfo->m_nDataSize)
@@ -81,7 +82,6 @@ int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize
 	}
 
 	Pop = pBlockInfo->m_Pop;
-
 	while (Pop->nFlag)
 	{
 		if (Pop->pData >= pBlockInfo->m_pCurr)
@@ -111,22 +111,18 @@ int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize
 	pBlockInfo->m_Push->nSize = iSize + iFrontSize;
 	pBlockInfo->m_Push->nFlag = 1;
 	pBlockInfo->m_Push = pBlockInfo->m_Push->pNext;
-
 	pBlockInfo->m_pCurr += (iSize + iFrontSize);
-
 	sem_post(&(pBlockInfo->m_Semaphore));
-
 	pthread_mutex_unlock(&(pBlockInfo->m_Lock));
-
 	return ret;
 }
 
-template <typename T>
-int queuePopInternal(BlockInfo *pBlockInfo, const T& pFunc, void* arg)
+template<typename T>
+int QueuePopInternal(BlockInfo *pBlockInfo, const T& pFunc, void* arg)
 {
 	if (pBlockInfo == NULL || pBlockInfo->m_Pop == NULL)
 	{
-		LOGD("%s: para error ! pBlockInfo=%p\n", __FUNCTION__, pBlockInfo);
+		printf("%s: para error ! pBlockInfo=%p\n", __FUNCTION__, pBlockInfo);
 		return -1;
 	}
 
@@ -142,7 +138,8 @@ int queuePopInternal(BlockInfo *pBlockInfo, const T& pFunc, void* arg)
 	return 0;
 }
 
-int queuePop(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)
+template<typename T>
+int QueuePop(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)
 {
 	struct timespec ts;
 	struct timeval  tv;
@@ -153,23 +150,14 @@ int queuePop(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditio
 		ts.tv_nsec = tv.tv_usec * 1000;
 		sem_timedwait(&(pBlockInfo->m_Semaphore), &ts);
 
-		queuePop(pBlockInfo, pFunc, arg);
+		quequePopInternal(pBlockInfo, pFunc, arg);
 	}
 
 	return 0;
 }
 
-} //namespace base
-} //namespace peace
+} //namespace base 
+} //namespace peace 
 
 
-
-
-
-
-
-
-
-} //namespace base
-} //namespace peace
 
