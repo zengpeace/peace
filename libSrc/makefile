@@ -1,3 +1,4 @@
+TARGET_BIN = ./peace 
 TARGET_SO = ./libpeace.so
 TARGET_LIB = ./libpeace.a
 ##PLATFORM = arm-arago-linux-gnueabi-
@@ -9,7 +10,7 @@ AS = $(PLATFORM)as
 
 
 MACRO = 
-CXXFLAGS = -Werror -Wall -g -Wunused -Wsign-compare -Wunreachable-code DDEBUG_SYS_INFO -fPIC 
+CXXFLAGS = -Werror -Wall -g -Wunused -Wsign-compare -Wunreachable-code -DDEBUG_SYS_INFO -fPIC 
 CFLAGS = $(CXXFLAGS) -std=gnu99 $(MACRO)
 LDFLAGS	= 
 			
@@ -38,6 +39,10 @@ $(TARGET_SO): $(OBJS)
 lib:$(TARGET_LIB)
 $(TARGET_LIB): $(OBJS)
 	$(AR) cr $@ $(OBJS)
+
+bin:$(TARGET_BIN)
+$(TARGET_BIN): $(OBJS)
+	$(XX) $(CXXFLAGS) $(LDFLAGS) $(INC) -o $(TARGET_BIN) $(OBJS) $(LIBS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INC) -c $(@D)/$(<F) -o $(@D)/$(@F)

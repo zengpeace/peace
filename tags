@@ -17,7 +17,7 @@ CFLAGS	libSrc/makefile	/^CFLAGS = $(CXXFLAGS) -std=gnu99 $(MACRO)$/;"	m
 CFLAGS	test/makefile	/^CFLAGS = $(CXXFLAGS) -std=gnu99 $(MACRO)$/;"	m
 CSRC	libSrc/makefile	/^CSRC = $(shell find $(DIR) -name "*.c")$/;"	m
 CSRC	test/makefile	/^CSRC := $(shell find $(DIR) -name "*.c")$/;"	m
-CXXFLAGS	libSrc/makefile	/^CXXFLAGS = -Werror -Wall -g -Wunused -Wsign-compare -Wunreachable-code DDEBUG_SYS_INFO -fPIC $/;"	m
+CXXFLAGS	libSrc/makefile	/^CXXFLAGS = -Werror -Wall -g -Wunused -Wsign-compare -Wunreachable-code -DDEBUG_SYS_INFO -fPIC $/;"	m
 CXXFLAGS	test/makefile	/^CXXFLAGS = -Werror -Wall -g -Wunused -Wsign-compare -Wunreachable-code -DDEBUG_SYS_INFO $/;"	m
 CXXSRC	libSrc/makefile	/^CXXSRC = $(shell find $(DIR) -name "*.cpp")$/;"	m
 CXXSRC	test/makefile	/^CXXSRC = $(shell find $(DIR) -name "*.cpp")$/;"	m
@@ -46,6 +46,7 @@ QueuePush	libSrc/base/queue/queue.h	/^int QueuePush(BlockInfo *pBlockInfo, const
 SSRC	libSrc/makefile	/^SSRC = $(shell find $(DIR) -name "*.S")$/;"	m
 SaveFile	libSrc/base/file/simpleSaveFile.h	/^class SaveFile$/;"	c	namespace:peace::base
 SaveFileFpMap	libSrc/base/file/simpleSaveFile.h	/^typedef std::map<const char*, void*> SaveFileFpMap;$/;"	t	namespace:peace::base
+TARGET_BIN	libSrc/makefile	/^TARGET_BIN = .\/peace $/;"	m
 TARGET_LIB	libSrc/makefile	/^TARGET_LIB = .\/libpeace.a$/;"	m
 TARGET_SO	libSrc/makefile	/^TARGET_SO = .\/libpeace.so$/;"	m
 XX	libSrc/makefile	/^XX = $(PLATFORM)g++$/;"	m
@@ -65,12 +66,11 @@ _PEACE_BASE_FILE_FILE_H_	libSrc/base/file/file.h	2;"	d
 _PEACE_BASE_FILE_SIMPLE_SAVE_FILE_H_	libSrc/base/file/simpleSaveFile.h	2;"	d
 _PEACE_BASE_QUEUE_QUEUE_H_	libSrc/base/queue/queue.h	2;"	d
 _PEACE_BASE_THREAD_THREAD_H_	libSrc/base/thread/thread.h	2;"	d
-_PEACE_INTERNAL_H_	libSrc/peaceInternal.h	2;"	d
+_PEACE_PEACE_H_	libSrc/peace.h	2;"	d
 _PEACE_PEACE_INTERFACE_H_	install/include/peaceInterface.h	2;"	d
 _PEACE_PEACE_INTERFACE_H_	libSrc/peaceInterface.h	2;"	d
 _PEACE_TYPES_H_	install/include/types.h	2;"	d
 _PEACE_TYPES_H_	libSrc/types.h	2;"	d
-__PEACE_PEACE_H_	libSrc/peace.h	2;"	d
 __anon1::m_Lock	install/include/types.h	/^        pthread_mutex_t m_Lock;$/;"	m	struct:__anon1	access:public
 __anon1::m_Pop	install/include/types.h	/^        BufferInfo *m_Pop;$/;"	m	struct:__anon1	access:public
 __anon1::m_Push	install/include/types.h	/^        BufferInfo *m_Push;$/;"	m	struct:__anon1	access:public
@@ -133,6 +133,7 @@ m_pData	install/include/types.h	/^        unsigned char *m_pData;$/;"	m	struct:_
 m_pData	libSrc/types.h	/^        unsigned char *m_pData;$/;"	m	struct:__anon2	access:public
 m_pInfo	install/include/types.h	/^        BufferInfo *m_pInfo;$/;"	m	struct:__anon1	access:public
 m_pInfo	libSrc/types.h	/^        BufferInfo *m_pInfo;$/;"	m	struct:__anon2	access:public
+main	libSrc/main.cpp	/^int main()$/;"	f	signature:()
 main	test/test.cpp	/^int main()$/;"	f	signature:()
 mapFp	libSrc/base/file/simpleSaveFile.cpp	/^SaveFileFpMap mapFp;$/;"	m	namespace:peace::base	file:
 nFlag	install/include/types.h	/^        int nFlag;$/;"	m	struct:_BufferInfo	access:public

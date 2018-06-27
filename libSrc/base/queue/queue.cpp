@@ -46,11 +46,14 @@ int QuequeInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSi
 	for (int i = 0; i < pBlockInfo->m_nInfoSize; i++)
 	{
 		if (i == (pBlockInfo->m_nInfoSize - 1))
+		{
 			pTempBufInfo->pNext = pBlockInfo->m_pInfo;
+		}
 		else
+		{
 			pTempBufInfo->pNext = pTempBufInfo + 1;
-
-			pTempBufInfo++;
+		}
+		pTempBufInfo++;
 	}
 
 	return 0;

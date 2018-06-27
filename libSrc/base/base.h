@@ -1,9 +1,9 @@
 #ifndef _PEACE_BASE_BASE_H_
 #define _PEACE_BASE_BASE_H_ 
 
-#include "queue/queue.h"
-#include "thread/thread.h"
-#include "file/file.h"
+#include "base/queue/queue.h"
+#include "base/thread/thread.h"
+#include "base/file/file.h"
 
 namespace peace 
 {
