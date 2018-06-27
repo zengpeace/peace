@@ -2,10 +2,18 @@
 
 namespace peace 
 {
-namespace base 
+void queuet()
 {
 
-int QuequeInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
+}
+namespace base 
+{
+void queuet2()
+{
+
+}
+
+int QueueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
 {
 	int nInfoSize = blockNum;
 	int nDataSize = blockTotalSize;

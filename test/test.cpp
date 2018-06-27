@@ -12,6 +12,8 @@ int main()
 		fileSimpleWrite(buf2, 98, "test2.txt");
 	}
 
+	fileSimpleClose("test1.txt");
+	fileSimpleClose("test2.txt");
 	return 0;
 }
 

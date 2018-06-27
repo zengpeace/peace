@@ -5,8 +5,6 @@
 //queue
 int queueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
 {
-	LOGD("b = %d\n", peace::b);
-	LOGD("a = %d\n", peace::base::a);
 	return peace::base::QueueInit(pBlockInfo, blockNum, blockTotalSize);
 }
 

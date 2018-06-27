@@ -7,12 +7,11 @@
 
 namespace peace 
 {
-extern int b;
 namespace base 
 {
-	extern int a;
-}
-}
+
+} //namespace base 
+} //namespace peace 
 
 #endif
 

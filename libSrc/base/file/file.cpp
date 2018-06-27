@@ -3,11 +3,8 @@
 
 namespace peace 
 {
-int b = 3;
 namespace base 
 {
-
-int a = 2;
 
 void fileSimpleWrite(const unsigned char *data, const int size, const char *fileAbsName)
 {
@@ -27,7 +24,7 @@ void fileSimpleWrite(const unsigned char *data, const int size, const char *file
 		}
 
 		void *tmp = s->open(fileAbsName);
-		if(tmp)
+		if(!tmp)
 		{
 			LOGD("open fail !\n");
 			return;

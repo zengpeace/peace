@@ -62,7 +62,7 @@ $(TARGET_BIN): $(OBJS)
 
 install:
 	mv $(TARGET_SO) ../install/bin 
-	##cp $(TARGET_LIB) ../install/lib 
+	##mv $(TARGET_LIB) ../install/lib 
 	cp ./peaceInterface.h ../install/include
 	cp ./types.h ../install/include
 
