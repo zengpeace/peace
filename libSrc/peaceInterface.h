@@ -30,6 +30,14 @@ void fileSimpleWrite(const unsigned char *data, const int size, const char *file
 void fileSimpleClose(const char *fileAbsName);
 /*************************************************/
 
+//chain
+RecvData *chainCreate(const int len);
+void chainInsertHead(RecvData **dst, RecvData *src);
+void chainInsertTail(RecvData **dst, RecvData *src);
+void chainInsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast);
+RecvData *chainGetHead(RecvData **dst);
+void chainRelease(RecvData **ppHead);
+
 
 /**************** net ****************************/ 
 

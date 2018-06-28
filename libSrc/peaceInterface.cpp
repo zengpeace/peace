@@ -25,6 +25,7 @@ int queuePop(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditio
 	return peace::base::QueuePop(pBlockInfo, pFunc, arg, loopConditionFunc, argTimeout, timeout);
 }
 
+
 //thread
 int threadCreate(pthread_t &pid, void*(*threadCallback)(void*), void *arg, const size_t stackSize)
 {
@@ -35,6 +36,7 @@ void threadClose(pthread_t &pid)
 {
 	return peace::base::threadClose(pid);
 }
+
 
 //file 
 void fileSimpleWrite(const unsigned char *data, const int size, const char *fileAbsName)
@@ -47,8 +49,53 @@ void fileSimpleClose(const char *fileAbsName)
 	return peace::base::fileSimpleClose(fileAbsName);
 }
 
+
+//chain
+RecvData *chainCreate(const int len)
+{
+	return peace::base::CreateChain(len);
+}
+
+void chainInsertHead(RecvData **dst, RecvData *src)
+{
+	return peace::base::InsertHead(dst, src);
+}
+
+void chainInsertTail(RecvData **dst, RecvData *src)
+{
+	return peace::base::InsertTail(dst, src);
+}
+
+void chainInsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast)
+{
+	return peace::base::InsertTailEx(dst, src, dstLast);
+}
+
+RecvData *chainGetHead(RecvData **dst)
+{
+	return peace::base::GetHeadChain(dst);
+}
+
+void chainRelease(RecvData **ppHead)
+{
+	return peace::base::ReleaseChain(ppHead);
+}
+
+
 /**************************************************/ 
 
 
 
+/************************ net *********************/ 
 
+
+
+
+
+
+
+
+
+
+
+/***************************************************/

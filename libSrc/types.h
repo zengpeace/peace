@@ -29,6 +29,16 @@
 #include <map>
 
 
+#define UDP_BUF_SIZE 1400
+
+typedef struct _recvData
+{
+	int count;
+	unsigned char buf[UDP_BUF_SIZE];
+	struct sockaddr_in addr;
+	struct _recvData *pNext;
+}RecvData;
+
 typedef struct _BufferInfo 
 {
         unsigned char *pData;
@@ -51,9 +61,10 @@ typedef struct
 }BlockInfo;
 
 
+typedef int (*NetBusinessDealFuncType)(const unsigned char *data, const int dataSize);
+
+
+
 #define LOGD printf
-
-
-
 #endif
 

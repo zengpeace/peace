@@ -4,6 +4,7 @@
 #include "base/queue/queue.h"
 #include "base/thread/thread.h"
 #include "base/file/file.h"
+#include "base/chain/chain.h"
 
 namespace peace 
 {
