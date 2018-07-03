@@ -1,8 +1,4 @@
-#ifndef _PEACE_NET_UDP_UDP_SERVER_H_
-#define _PEACE_NET_UDP_UDP_SERVER_H_ 
-
 #include "net/udp/udpServer.h"
-
 
 namespace peace 
 {
@@ -11,37 +7,29 @@ namespace net
 
 UdpServer::UdpServer()
 {
-	_lockSemNotFinishInit = -1;
-	_sock = -1;
-	_recvDataUdp = NULL;
-	_recvDataBuf = NULL;
-	_recvDataBufLast = NULL;
+
 }
 
 UdpServer::~UdpServer()
 {
-
+	
 }
 
-int UdpServer::start(const char *ip, const int port)
+int UdpServer::selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)
 {
-	if(_businessDealFunc == NULL)
+	int sock = bindSocket(eUdpServer, ip, nPort, sendBufSize, recvBufSize);
+	if(sock <= 0)
 	{
-		LOGD("businessDealFunc do not register correct !\n");
+		LOGD("%s: fail ! ip=%s, nPort=%d, ret=%d\n", __FUNCTION__, ip, nPort, sock);
 		return -1;
 	}
 
-	return 0;		
-}
-
-void UdpServer::stop()
-{
-
+	savePeerAddr(ip, nPort);
+	return sock;
 }
 
 } //namespace net 
 } //namespace peace 
 
 
-#endif
 

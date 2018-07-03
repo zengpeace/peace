@@ -12,6 +12,7 @@ namespace base
 	void InsertTail(RecvData **dst, RecvData *src);
 	void InsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast);
 	RecvData *GetHeadChain(RecvData **dst);
+	void RecoveryChain(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain);
 	void ReleaseChain(RecvData **ppHead);
 
 } //namespace base 

@@ -13,19 +13,11 @@ class UdpServer : public Udp
 public:
 	UdpServer();
 	~UdpServer();	
-	virtual int start(const char *ip, const int port);	
-	virtual void stop();	
+
+	virtual int selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize);
 
 private:
-	int _lockSemNotFinishInit;
-	pthread_mutex_t _LockChain;
-	pthread_mutex_t _LockSend;
-	pthread_mutex_t _LockData;
-	int _sock;
-	RecvData *_recvDataUdp;
-	RecvData *_recvDataBuf;
-	RecvData *_recvDataBufLast;
-	sem_t  _taskSem;
+
 };
 
 

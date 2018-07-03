@@ -25,6 +25,21 @@ int threadCreate(pthread_t &pid, void*(*thread_callback)(void*), void *arg, cons
 	return pthread_create(&pid, set_attr, thread_callback, arg);
 }
 
+int threadCreateSmall(pthread_t &pid, void*(*thread_callback)(void*), void *arg)
+{
+	return threadCreate(pid, thread_callback, arg,  THREAD_STACK_SIZE_SMALL);
+}
+
+int threadCreateMiddle(pthread_t &pid, void*(*thread_callback)(void*), void *arg)
+{
+    return threadCreate(pid, thread_callback, arg, THREAD_STACK_SIZE_MIDDLE);
+}
+
+int threadCreateLarge(pthread_t &pid, void*(*thread_callback)(void*), void *arg)
+{
+    return threadCreate(pid, thread_callback, arg, THREAD_STACK_SIZE_LARGE);
+}
+
 void threadClose(pthread_t &pid)
 {
 	if(pid > 0)

@@ -2,6 +2,8 @@
 #define _PEACE_NET_BASE_NET_BASE_H_ 
 
 #include "types.h"
+#include "base/base.h"
+
 
 namespace peace 
 {
@@ -10,7 +12,7 @@ namespace net
 
 class NetBase
 {
- public:     
+public:     
 	typedef enum 
 	{
 		eNetTcpServer,
@@ -22,18 +24,26 @@ class NetBase
 	NetBase();
 	~NetBase();
 
-	static NetBase* create(const NetType type);
-	void registerBusinessDealFunc(const NetBusinessDealFuncType pFunc);
-	virtual int start(const char *ip, const int port) = 0;
-	virtual void stop() = 0;	
- 
+	static NetBase* create(const NetType type);	
+	void setChainSize(const int chainSize);	
+
+	virtual int init() = 0;
+	virtual void exit() = 0;
+	virtual int start(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize) = 0;
+	virtual void stop() = 0;	 
+
+	virtual int send(const char *data, const int dataSize, const struct sockaddr_in &peerAddr) = 0;
+	virtual int send(const char *data, const int dataSize, const int sock) = 0;
+	virtual int send(const char *data, const int dataSize) = 0;
+
+	void registerTcpBusinessDealFunc(const TcpBusinessDealFuncType pFunc);
+	void registerUdpBusinessDealFunc(const UdpBusinessDealFuncType pFunc);	
+
 public:
-	NetBusinessDealFuncType _businessDealFunc;
-
-
-private:
-
-
+	int _chainSize;
+	TcpBusinessDealFuncType _tcpBusinessDealFunc;
+	UdpBusinessDealFuncType _udpBusinessDealFunc;
+	NetType _myNetType;
 };
 
 

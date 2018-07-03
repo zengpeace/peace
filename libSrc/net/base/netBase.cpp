@@ -1,10 +1,8 @@
 #include "net/base/netBase.h"
-#include "net/tcp/tcp.h"
-#include "net/udp/udp.h"
 //#include "net/tcp/tcpServer.h"
 //#include "net/tcp/tcpClient.h"
 #include "net/udp/udpServer.h"
-//#include "net/udp/udpClient.h"
+#include "net/udp/udpClient.h"
 
 
 namespace peace 
@@ -12,25 +10,22 @@ namespace peace
 namespace net 
 {
 
-//class Udp;
-//class UdpServer;
-
 NetBase::NetBase()
 {
-	_businessDealFunc = NULL;
-
-
+	_myNetType = eNetTcpServer;
+	_chainSize = CHAIN_SIZE;
 }
 
 NetBase::~NetBase()
 {
-	_businessDealFunc = NULL;
 
 }
 
 NetBase* NetBase::create(const NetType type)
 {
 	UdpServer *us = NULL;
+	UdpClient *uc = NULL;
+	NetBase *b = NULL;
 	switch(type)
 	{
 		case eNetUdpServer:
@@ -39,30 +34,64 @@ NetBase* NetBase::create(const NetType type)
 			{
 				return NULL;
 			}
+			b = static_cast<NetBase*>(us);
+			break;
 
-			return static_cast<NetBase*>(us);
-			break;
 		case eNetUdpClient:
-			return NULL;
+			uc = new UdpClient();
+			if(!uc)
+			{
+				return NULL;
+			}
+			b = static_cast<NetBase*>(uc);
 			break;
+
 		case eNetTcpServer:
-			return NULL;
 			break;
+
 		case eNetTcpClient:
-			return NULL;
 			break;
+
 		default:
 			LOGD("unknow net type %u\n", (unsigned int)type);
-			return NULL;
 			break;
 	}
+	
+	if(b)
+	{
+		b->_myNetType = type;
+	}
+
+	return b;
 }
 
-void NetBase::registerBusinessDealFunc(const NetBusinessDealFuncType pFunc)
+
+void NetBase::setChainSize(const int chainSize)
 {
-	_businessDealFunc = pFunc;
+    _chainSize = chainSize;
 }
 
+void NetBase::registerTcpBusinessDealFunc(const TcpBusinessDealFuncType pFunc)
+{
+	if(_myNetType != eNetTcpServer && _myNetType != eNetTcpClient)
+	{
+		LOGD("%s: type error ! _myType is %u\n", __FUNCTION__, (unsigned int)_myNetType);
+		return;
+	}
+
+	_tcpBusinessDealFunc = pFunc;
+}
+
+void NetBase::registerUdpBusinessDealFunc(const UdpBusinessDealFuncType pFunc)
+{
+	if(_myNetType != eNetUdpServer && _myNetType != eNetUdpClient)
+	{
+		LOGD("%s: type error ! _myType is %u\n", __FUNCTION__, (unsigned int)_myNetType);
+		return;
+	}
+		
+	_udpBusinessDealFunc = pFunc;
+}
 
 } //namespace net 
 } //namespace peace

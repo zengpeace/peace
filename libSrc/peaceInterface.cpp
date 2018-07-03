@@ -76,6 +76,11 @@ RecvData *chainGetHead(RecvData **dst)
 	return peace::base::GetHeadChain(dst);
 }
 
+void chainRecovery(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
+{
+	return peace::base::RecoveryChain(src, recvDataUdp, LockChain);
+}
+
 void chainRelease(RecvData **ppHead)
 {
 	return peace::base::ReleaseChain(ppHead);
@@ -87,15 +92,134 @@ void chainRelease(RecvData **ppHead)
 
 
 /************************ net *********************/ 
+void* netCreate(const char *type)
+{
+	if(!type)
+	{
+		return NULL;
+	}
 
+	peace::net::NetBase::NetType t;
+	if(strcmp(type, "udpServer") == 0)
+	{
+		t = peace::net::NetBase::eNetUdpServer;
+	}
+	else if(strcmp(type, "udpClient") == 0)
+	{
+		t = peace::net::NetBase::eNetUdpClient;
+	}
+	else 
+	{
+		return NULL;
+	}
 
+	peace::net::NetBase *s = peace::net::NetBase::create(t);
+	if(!s)
+	{
+		LOGD("new netBase fail ! t=%u\n", (unsigned int)t);
+		return NULL;
+	}
 
+	int ret;
+	ret = s->init();
+	if(ret < 0)
+	{
+		LOGD("netBase init fail ! %d, t = %u\n", ret, (unsigned int)t);
+		return NULL;
+	}
 
+	return (void*)s;
+}
 
+void* udpServerCreate()
+{
+	return netCreate("udpServer");
+}
 
+void* udpClientCreate()
+{
+	return netCreate("udpClient");
+}
 
+void netDestroy(void *base)
+{
+	peace::net::NetBase *b = (peace::net::NetBase*)base; 
+	if(b == NULL)
+	{
+		LOGD("%s fail !\n", __FUNCTION__);
+		return;
+	}
 
+	b->exit();
+	delete b;	
+}
 
+int netSetChainSize(void *base, const int size) //default value is CHAIN_SIZE
+{
+	peace::net::NetBase *b = (peace::net::NetBase*)base; 
+	if(b == NULL)
+	{
+		LOGD("%s fail !\n", __FUNCTION__);
+		return -1;
+	}
 
+	b->setChainSize(size);
+	return 0;
+}
+
+int registerTcpBusFunc(void *base, const TcpBusinessDealFuncType pFunc)
+{
+	peace::net::NetBase *b = (peace::net::NetBase*)base; 
+	if(b == NULL)
+	{
+		LOGD("%s fail !\n", __FUNCTION__);
+		return -1;
+	}
+
+	b->registerTcpBusinessDealFunc(pFunc);
+	return 0;
+}
+
+int registerUdpBusFunc(void *base, const UdpBusinessDealFuncType pFunc)
+{
+	peace::net::NetBase *b = (peace::net::NetBase*)base; 
+	if(b == NULL)
+	{
+		LOGD("%s fail !\n", __FUNCTION__);
+		return -1;
+	}
+
+	b->registerUdpBusinessDealFunc(pFunc);
+	return 0;
+}
+
+int netStart(void*base, const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)
+{
+	peace::net::NetBase *b = (peace::net::NetBase*)base;
+	if(b == NULL)
+	{
+		LOGD("%s fail ! base is NULL !\n", __FUNCTION__);
+		return -1;
+	}
+
+	return b->start(ip, port, sockSendBufSize, sockRecvBufSize);
+}
+
+int netStop(void *base)
+{
+	peace::net::NetBase *b = (peace::net::NetBase*)base;
+	if(b == NULL)
+	{
+		LOGD("%s fail ! base is NULL !\n", __FUNCTION__);
+		return -1;
+	}
+	
+	b->stop();
+	return 0;
+}
 
 /***************************************************/
+
+
+
+

@@ -85,6 +85,16 @@ RecvData *GetHeadChain(RecvData **dst)
 	return temp;
 }
 
+void RecoveryChain(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
+{
+	pthread_mutex_lock(&(LockChain));
+	if (recvDataUdp)
+	{
+		InsertHead(&recvDataUdp, src);
+	}
+	pthread_mutex_unlock(&(LockChain));
+}
+
 void ReleaseChain(RecvData **ppHead)
 {
 	if (!ppHead || !(*ppHead)) return;

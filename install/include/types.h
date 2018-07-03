@@ -20,7 +20,7 @@
 #include <signal.h>
 #include <netdb.h>
 #include <syslog.h>
-#include <sys/poll.h>
+#include <sys/epoll.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
 
@@ -28,6 +28,30 @@
 #include <string>
 #include <map>
 
+
+#define THREAD_STACK_SIZE_SMALL		(16 * 1024)
+#define THREAD_STACK_SIZE_MIDDLE	(1 * 1024 * 1024)
+#define THREAD_STACK_SIZE_LARGE		(16 * 1024 * 1024)
+
+#define UDP_BUF_SIZE 	1500
+#define CHAIN_SIZE 		(4 * 1024)
+
+#define  EPOLL_MAX_EVENT 1000
+
+typedef struct 
+{
+	struct epoll_event events[EPOLL_MAX_EVENT + 1];
+	int nevents;
+	int epfd;
+}Epollop;
+
+typedef struct _recvData
+{
+	int count;
+	unsigned char buf[UDP_BUF_SIZE];
+	struct sockaddr_in addr;
+	struct _recvData *pNext;
+}RecvData;
 
 typedef struct _BufferInfo 
 {
@@ -50,10 +74,26 @@ typedef struct
         int m_nDataSize;
 }BlockInfo;
 
+typedef enum 
+{
+	eUdpServer,
+	eUdpClient,
+}UdpUserType;
+
+typedef int (*UdpBusinessDealFuncType)(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr);
+typedef int (*TcpBusinessDealFuncType)(const unsigned char *data, const int dataSize, const int sock);
+
 
 #define LOGD printf
 
 
 
+static const int gUdpClientSelfPortRangeBegin = 40001;
+static const int gUdpClientSelfPortRangeEnd = 45000;
+
+static const int gSockBufSize = 256 * 1024;
+
 #endif
+
+
 
