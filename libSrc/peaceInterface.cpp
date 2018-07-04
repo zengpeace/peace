@@ -32,6 +32,21 @@ int threadCreate(pthread_t &pid, void*(*threadCallback)(void*), void *arg, const
 	return peace::base::threadCreate(pid, threadCallback, arg, stackSize);
 }
 
+int threadCreateSmall(pthread_t &pid, void*(*threadCallback)(void*), void *arg)
+{
+	return peace::base::threadCreateSmall(pid, threadCallback, arg);
+}
+
+int threadCreateMiddle(pthread_t &pid, void*(*threadCallback)(void*), void *arg)
+{
+	return peace::base::threadCreateMiddle(pid, threadCallback, arg);
+}
+
+int threadCreateLarge(pthread_t &pid, void*(*threadCallback)(void*), void *arg)
+{
+	return peace::base::threadCreateLarge(pid, threadCallback, arg);
+}
+
 void threadClose(pthread_t &pid)
 {
 	return peace::base::threadClose(pid);

@@ -23,6 +23,9 @@ int queuePop(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditio
 
 //thread
 int threadCreate(pthread_t &pid, void*(*threadCallback)(void*), void *arg, const size_t stackSize);
+int threadCreateSmall(pthread_t &pid, void*(*threadCallback)(void*), void *arg);
+int threadCreateMiddle(pthread_t &pid, void*(*threadCallback)(void*), void *arg);
+int threadCreateLarge(pthread_t &pid, void*(*threadCallback)(void*), void *arg);
 void threadClose(pthread_t &pid);
 
 //file 
