@@ -1,15 +1,17 @@
 #include "peaceInterface.h"
 
 
-int server(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
+int server(void *udp, const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
 {
-	
-
+	LOGD("into %s ! dataSize is %d\n", __FUNCTION__, dataSize);	
+	return netSend(udp, data, dataSize, peerAddr);
 } 
 
-int client(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
+int client(void *udp, const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
 {
-
+	LOGD("into %s ! dataSize is %d\n", __FUNCTION__, dataSize);	
+	//return netSend(udp, data, dataSize, peerAddr);
+	return 0;
 }
 
 int main()
@@ -34,8 +36,15 @@ int main()
 	registerUdpBusFunc(uc, client);
 	netStart(uc, "127.0.0.1", 9876);	
 
-	
+	unsigned char data[] = {1, 3, 5};
+	netSend(uc, data, sizeof(data)/sizeof(unsigned char));	
+
+	for(;;)
+	{
+		sleep(10);
+	}
 
 	return 0;
 }
+
 

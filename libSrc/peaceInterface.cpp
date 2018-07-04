@@ -218,6 +218,37 @@ int netStop(void *base)
 	return 0;
 }
 
+int netSend(void *base, const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
+{
+	peace::net::NetBase *b = (peace::net::NetBase*)base;
+	if(b == NULL)
+	{
+		LOGD("%s fail ! base is NULL !\n", __FUNCTION__);
+		return -1;
+	}
+		
+	return b->send(data, dataSize, peerAddr);
+}
+
+int netSend(void *base, const unsigned char *data, const int dataSize, const int sock)
+{
+	return 0;
+}
+
+int netSend(void *base, const unsigned char *data, const int dataSize)
+{
+	peace::net::NetBase *b = (peace::net::NetBase*)base;
+	if(b == NULL)
+	{
+		LOGD("%s fail ! base is NULL !\n", __FUNCTION__);
+		return -1;
+	}
+	
+	return b->send(data, dataSize);
+}
+
+
+
 /***************************************************/
 
 

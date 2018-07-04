@@ -20,9 +20,9 @@ public:
 	virtual int start(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize);	
 	virtual void stop();
 	
-	virtual int send(const char *data, const int dataSize, const struct sockaddr_in &peerAddr);	
-	virtual int send(const char *data, const int dataSize, const int sock);
-	virtual int send(const char *data, const int dataSize);
+	virtual int send(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr);	
+	virtual int send(const unsigned char *data, const int dataSize, const int sock);
+	virtual int send(const unsigned char *data, const int dataSize);
 	
 	static int bindSocket(const UdpUserType type, const char *ip, const int nPort, const int sendBufSize, const int recvBufSize);
 	virtual int selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize) = 0;
@@ -44,8 +44,6 @@ private:
 	RecvData *_recvDataBuf;
 	RecvData *_recvDataBufLast;
 	sem_t _taskSem;
-
-	pthread_mutex_t _LockSend;
 
 	bool _isRunning;	
 	pthread_t _bufServerPid;

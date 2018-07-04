@@ -164,7 +164,7 @@ void Udp::_bufServer()
 			recvDataTmp = recvDataTmp->pNext;
 			recvDataBak->pNext = NULL;
 
-			_udpBusinessDealFunc(recvDataBak->buf, recvDataBak->count, recvDataBak->addr);
+			_udpBusinessDealFunc((void*)this, recvDataBak->buf, recvDataBak->count, recvDataBak->addr);
 			base::RecoveryChain(recvDataBak, _recvDataUdp, _LockChain);
 		}
 	}
@@ -236,7 +236,7 @@ void Udp::_recvServer()
 
 					if (recvDataTmp == NULL)
 					{
-						LOGD("chain memory is not enough !{%s(%d)}\n", __FILE__, __LINE__);
+						//LOGD("chain memory is not enough !{%s(%d)}\n", __FILE__, __LINE__);
 						continue;
 					}
 
@@ -274,32 +274,34 @@ void Udp::_recvServer()
 
 
 
-int send(const char *data, const int dataSize, const struct sockaddr_in &peerAddr)
+int Udp::send(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
 {
 	pthread_mutex_lock(&_LockSend);
 
 	static socklen_t svrlen = sizeof(struct sockaddr_in);
-	int ret = sendto(sock, data, size, 0, (const struct sockaddr*)peerAddr, svrlen);
+	int ret = sendto(_sock, data, dataSize, 0, (const struct sockaddr*)&peerAddr, svrlen);
 
 	pthread_mutex_unlock(&_LockSend);
 
-	if (ret != size)
+	if (ret != dataSize)
 	{
-		udi_erro_log("In MainSend: sendto failed! ret = %d, size = %d, %s:%d\n", ret, size, inet_ntoa(paddr->sin_addr), ntohs(paddr->sin_port));
+		char ipString[16];
+		inet_ntop(AF_INET, (void*)&peerAddr, ipString, 16);
+		LOGD("In MainSend: sendto failed! ret = %d, size = %d, %s:%d\n", ret, dataSize, ipString, ntohs(peerAddr.sin_port));
 	}	
 
 	return 0;
 }
 
-int send(const char *data, const int dataSize, const int sock)
+int Udp::send(const unsigned char *data, const int dataSize, const int sock)
 {
 	LOGD("api use error ! this api is used for tcp, not udp !\n");
 	return -1;
 }
 
-int send(const char *data, const int dataSize)
+int Udp::send(const unsigned char *data, const int dataSize)
 {
-	if(_myNetType != eUdpClient)
+	if(_myNetType != eNetUdpClient)
 	{
 		LOGD("only udp client can use this api ! your id is %u\n", (unsigned int)_myNetType);
 		return -1;

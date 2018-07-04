@@ -50,9 +50,9 @@ int registerTcpBusFunc(void *base, const TcpBusinessDealFuncType pFunc);
 int registerUdpBusFunc(void *base, const UdpBusinessDealFuncType pFunc);
 int netStart(void*base, const char *ip, const int port = 0, const int sockSendBufSize = gSockBufSize/2, const int sockRecvBufSize = gSockBufSize/2);
 int netStop(void *base);
-int netSend(const char *data, const int dataSize, const struct sockaddr_in &peerAddr);
-int netSend(const char *data, const int dataSize, const int sock);
-int netSend(const char *data, const int dataSize);
+int netSend(void *base, const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr);
+int netSend(void *base, const unsigned char *data, const int dataSize, const int sock);
+int netSend(void *base, const unsigned char *data, const int dataSize);
 /*************************************************/ 
 
 /*
