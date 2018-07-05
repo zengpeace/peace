@@ -55,14 +55,6 @@ NetBase	libSrc/net/base/netBase.h	/^class NetBase$/;"	c	namespace:peace::net
 NetType	libSrc/net/base/netBase.h	/^	}NetType;$/;"	t	class:peace::net::NetBase	typeref:enum:peace::net::NetBase::__anon4	access:public
 OBJS	libSrc/makefile	/^OBJS := $(CSRC:%.c=%.o) $(CXXSRC:%.cc=%.o) $(SSRC:%.S=%.o) $(sSRC:%.s=%.o) $(CCSRC:%.cpp=%.o)$/;"	m
 OBJS	test/makefile	/^OBJS := $(CSRC:%.c=%.o) $(CXXSRC:%.cpp=%.o)$/;"	m
-QueueInit	libSrc/base/queue/queue.cpp	/^int QueueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
-QueueInit	libSrc/base/queue/queue.h	/^int QueueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
-QueuePop	libSrc/base/queue/queue.cpp	/^int QueuePop(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)
-QueuePop	libSrc/base/queue/queue.h	/^int QueuePop(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)
-QueuePopInternal	libSrc/base/queue/queue.cpp	/^int QueuePopInternal(BlockInfo *pBlockInfo, const T& pFunc, void* arg)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg)
-QueuePopInternal	libSrc/base/queue/queue.h	/^int QueuePopInternal(BlockInfo *pBlockInfo, const T& pFunc, void* arg);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg)
-QueuePush	libSrc/base/queue/queue.cpp	/^int QueuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
-QueuePush	libSrc/base/queue/queue.h	/^int QueuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
 RecoveryChain	libSrc/base/chain/chain.cpp	/^void RecoveryChain(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)$/;"	f	namespace:peace::base	signature:(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
 RecoveryChain	libSrc/base/chain/chain.h	/^	void RecoveryChain(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain);$/;"	p	namespace:peace::base	signature:(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
 RecvData	install/include/types.h	/^}RecvData;$/;"	t	typeref:struct:_recvData
@@ -81,8 +73,11 @@ THREAD_STACK_SIZE_MIDDLE	install/include/types.h	33;"	d
 THREAD_STACK_SIZE_MIDDLE	libSrc/types.h	33;"	d
 THREAD_STACK_SIZE_SMALL	install/include/types.h	32;"	d
 THREAD_STACK_SIZE_SMALL	libSrc/types.h	32;"	d
+Tcp	libSrc/net/tcp/tcp.h	/^class Tcp : public NetBase$/;"	c	namespace:peace::net	inherits:NetBase
 TcpBusinessDealFuncType	install/include/types.h	/^typedef int (*TcpBusinessDealFuncType)(void *tcp, const unsigned char *data, const int dataSize, const int sock);$/;"	t
 TcpBusinessDealFuncType	libSrc/types.h	/^typedef int (*TcpBusinessDealFuncType)(void *tcp, const unsigned char *data, const int dataSize, const int sock);$/;"	t
+TcpClient	libSrc/net/tcp/tcpClient.h	/^class TcpClient : public Tcp $/;"	c	namespace:peace::net	inherits:Tcp
+TcpServer	libSrc/net/tcp/tcpServer.h	/^class TcpServer : public Tcp $/;"	c	namespace:peace::net	inherits:Tcp
 UDP_BUF_SIZE	install/include/types.h	36;"	d
 UDP_BUF_SIZE	libSrc/types.h	36;"	d
 Udp	libSrc/net/udp/udp.cpp	/^Udp::Udp()$/;"	f	class:peace::net::Udp	signature:()
@@ -119,6 +114,9 @@ _PEACE_BASE_QUEUE_QUEUE_H_	libSrc/base/queue/queue.h	2;"	d
 _PEACE_BASE_THREAD_THREAD_H_	libSrc/base/thread/thread.h	2;"	d
 _PEACE_NET_BASE_NET_BASE_H_	libSrc/net/base/netBase.h	2;"	d
 _PEACE_NET_NET_H_	libSrc/net/net.h	2;"	d
+_PEACE_NET_TCP_TCP_CLIENT_H_	libSrc/net/tcp/tcpClient.h	2;"	d
+_PEACE_NET_TCP_TCP_H_	libSrc/net/tcp/tcp.h	2;"	d
+_PEACE_NET_TCP_TCP_SERVER_H_	libSrc/net/tcp/tcpServer.h	2;"	d
 _PEACE_NET_UDP_UDP_CLIENT_H_	libSrc/net/udp/udpClient.h	2;"	d
 _PEACE_NET_UDP_UDP_H_	libSrc/net/udp/udp.h	2;"	d
 _PEACE_NET_UDP_UDP_SERVER_H_	libSrc/net/udp/udpServer.h	2;"	d
@@ -151,12 +149,13 @@ __anon6::m_nInfoSize	libSrc/types.h	/^        int m_nInfoSize;$/;"	m	struct:__an
 __anon6::m_pCurr	libSrc/types.h	/^        unsigned char *m_pCurr;$/;"	m	struct:__anon6	access:public
 __anon6::m_pData	libSrc/types.h	/^        unsigned char *m_pData;$/;"	m	struct:__anon6	access:public
 __anon6::m_pInfo	libSrc/types.h	/^        BufferInfo *m_pInfo;$/;"	m	struct:__anon6	access:public
+_alreadyStart	libSrc/net/base/netBase.h	/^	bool _alreadyStart;$/;"	m	class:peace::net::NetBase	access:public
 _bufServer	libSrc/net/udp/udp.cpp	/^void Udp::_bufServer()$/;"	f	class:peace::net::Udp	signature:()
 _bufServer	libSrc/net/udp/udp.h	/^    void _bufServer();$/;"	p	class:peace::net::Udp	access:public	signature:()
 _bufServerPid	libSrc/net/udp/udp.h	/^	pthread_t _bufServerPid;$/;"	m	class:peace::net::Udp	access:private
 _chainSize	libSrc/net/base/netBase.h	/^	int _chainSize;$/;"	m	class:peace::net::NetBase	access:public
 _fp	libSrc/base/file/simpleSaveFile.h	/^	FILE * _fp;$/;"	m	class:peace::base::SaveFile	access:private
-_isRunning	libSrc/net/udp/udp.h	/^	bool _isRunning;	$/;"	m	class:peace::net::Udp	access:private
+_isRunning	libSrc/net/udp/udp.h	/^	bool _isRunning;$/;"	m	class:peace::net::Udp	access:public
 _lockSemFinishInit	libSrc/net/udp/udp.h	/^	bool _lockSemFinishInit;$/;"	m	class:peace::net::Udp	access:private
 _myNetType	libSrc/net/base/netBase.h	/^	NetType _myNetType;$/;"	m	class:peace::net::NetBase	access:public
 _myPort	libSrc/net/udp/udp.h	/^	int _myPort;$/;"	m	class:peace::net::Udp	access:private
@@ -177,10 +176,17 @@ _recvDataUdp	libSrc/net/udp/udp.h	/^	RecvData *_recvDataUdp;$/;"	m	class:peace::
 _recvServer	libSrc/net/udp/udp.cpp	/^void Udp::_recvServer()$/;"	f	class:peace::net::Udp	signature:()
 _recvServer	libSrc/net/udp/udp.h	/^    void _recvServer();$/;"	p	class:peace::net::Udp	access:public	signature:()
 _recvServerPid	libSrc/net/udp/udp.h	/^	pthread_t _recvServerPid;$/;"	m	class:peace::net::Udp	access:private
+_sendBlock	libSrc/net/base/netBase.h	/^	BlockInfo _sendBlock;$/;"	m	class:peace::net::NetBase	access:public
+_sendServer	libSrc/net/udp/udp.cpp	/^void Udp::_sendServer()$/;"	f	class:peace::net::Udp	signature:()
+_sendServer	libSrc/net/udp/udp.h	/^	void _sendServer();$/;"	p	class:peace::net::Udp	access:public	signature:()
+_sendServerDealFunc	libSrc/net/udp/udp.cpp	/^void Udp::_sendServerDealFunc(const unsigned char *data, const int dataSize)$/;"	f	class:peace::net::Udp	signature:(const unsigned char *data, const int dataSize)
+_sendServerDealFunc	libSrc/net/udp/udp.h	/^	void _sendServerDealFunc(const unsigned char *data, const int dataSize);		$/;"	p	class:peace::net::Udp	access:public	signature:(const unsigned char *data, const int dataSize)
+_sendServerTid	libSrc/net/udp/udp.h	/^	pthread_t _sendServerTid;$/;"	m	class:peace::net::Udp	access:private
 _sock	libSrc/net/udp/udp.h	/^	int _sock;$/;"	m	class:peace::net::Udp	access:private
 _taskSem	libSrc/net/udp/udp.h	/^	sem_t _taskSem;$/;"	m	class:peace::net::Udp	access:private
 _tcpBusinessDealFunc	libSrc/net/base/netBase.h	/^	TcpBusinessDealFuncType _tcpBusinessDealFunc;$/;"	m	class:peace::net::NetBase	access:public
 _udpBusinessDealFunc	libSrc/net/base/netBase.h	/^	UdpBusinessDealFuncType _udpBusinessDealFunc;$/;"	m	class:peace::net::NetBase	access:public
+_useSendThread	libSrc/net/base/netBase.h	/^	bool _useSendThread;$/;"	m	class:peace::net::NetBase	access:public
 addr	install/include/types.h	/^	struct sockaddr_in addr;$/;"	m	struct:_recvData	typeref:struct:_recvData::sockaddr_in	access:public
 addr	libSrc/types.h	/^	struct sockaddr_in addr;$/;"	m	struct:_recvData	typeref:struct:_recvData::sockaddr_in	access:public
 base	libSrc/base/base.h	/^namespace base $/;"	n	namespace:peace
@@ -242,8 +248,8 @@ epfd	libSrc/types.h	/^	int epfd;$/;"	m	struct:__anon5	access:public
 events	install/include/types.h	/^	struct epoll_event events[EPOLL_MAX_EVENT + 1];$/;"	m	struct:__anon1	typeref:struct:__anon1::epoll_event	access:public
 events	libSrc/types.h	/^	struct epoll_event events[EPOLL_MAX_EVENT + 1];$/;"	m	struct:__anon5	typeref:struct:__anon5::epoll_event	access:public
 exit	libSrc/net/base/netBase.h	/^	virtual void exit() = 0;$/;"	p	class:peace::net::NetBase	access:public	signature:()
+exit	libSrc/net/tcp/tcp.h	/^	virtual void exit();$/;"	p	class:peace::net::Tcp	access:public	signature:()
 exit	libSrc/net/udp/udp.cpp	/^void Udp::exit()$/;"	f	class:peace::net::Udp	signature:()
-exit	libSrc/net/udp/udp.h	/^	virtual void exit();$/;"	p	class:peace::net::Udp	access:public	signature:()
 fileSimpleClose	install/include/peaceInterface.h	/^void fileSimpleClose(const char *fileAbsName);$/;"	p	signature:(const char *fileAbsName)
 fileSimpleClose	libSrc/base/file/file.cpp	/^void fileSimpleClose(const char *fileAbsName)$/;"	f	namespace:peace::base	signature:(const char *fileAbsName)
 fileSimpleClose	libSrc/base/file/file.h	/^void fileSimpleClose(const char *fileAbsName);$/;"	p	namespace:peace::base	signature:(const char *fileAbsName)
@@ -254,6 +260,8 @@ fileSimpleWrite	libSrc/base/file/file.cpp	/^void fileSimpleWrite(const unsigned 
 fileSimpleWrite	libSrc/base/file/file.h	/^void fileSimpleWrite(const unsigned char *data, const int size, const char *fileAbsName);$/;"	p	namespace:peace::base	signature:(const unsigned char *data, const int size, const char *fileAbsName)
 fileSimpleWrite	libSrc/peaceInterface.cpp	/^void fileSimpleWrite(const unsigned char *data, const int size, const char *fileAbsName)$/;"	f	signature:(const unsigned char *data, const int size, const char *fileAbsName)
 fileSimpleWrite	libSrc/peaceInterface.h	/^void fileSimpleWrite(const unsigned char *data, const int size, const char *fileAbsName);$/;"	p	signature:(const unsigned char *data, const int size, const char *fileAbsName)
+gNetSendQueueBufSize	install/include/types.h	/^static const int gNetSendQueueBufSize = 2 * 1024 * 1024;$/;"	v
+gNetSendQueueBufSize	libSrc/types.h	/^static const int gNetSendQueueBufSize = 2 * 1024 * 1024;$/;"	v
 gSockBufSize	install/include/types.h	/^static const int gSockBufSize = 256 * 1024;$/;"	v
 gSockBufSize	libSrc/types.h	/^static const int gSockBufSize = 256 * 1024;$/;"	v
 gUdpClientSelfPortRangeBegin	install/include/types.h	/^static const int gUdpClientSelfPortRangeBegin = 40001;$/;"	v
@@ -263,8 +271,10 @@ gUdpClientSelfPortRangeEnd	libSrc/types.h	/^static const int gUdpClientSelfPortR
 getObj	libSrc/base/file/simpleSaveFile.cpp	/^SaveFile* SaveFile::getObj(const char *fileName)$/;"	f	class:peace::base::SaveFile	signature:(const char *fileName)
 getObj	libSrc/base/file/simpleSaveFile.h	/^	static SaveFile* getObj(const char *fileName); $/;"	p	class:peace::base::SaveFile	access:public	signature:(const char *fileName)
 init	libSrc/net/base/netBase.h	/^	virtual int init() = 0;$/;"	p	class:peace::net::NetBase	access:public	signature:()
+init	libSrc/net/tcp/tcp.h	/^	virtual int init();$/;"	p	class:peace::net::Tcp	access:public	signature:()
 init	libSrc/net/udp/udp.cpp	/^int Udp::init()$/;"	f	class:peace::net::Udp	signature:()
-init	libSrc/net/udp/udp.h	/^	virtual int init();$/;"	p	class:peace::net::Udp	access:public	signature:()
+isStart	libSrc/net/udp/udp.cpp	/^bool Udp::isStart(void *arg)$/;"	f	class:peace::net::Udp	signature:(void *arg)
+isStart	libSrc/net/udp/udp.h	/^	static bool isStart(void* arg);$/;"	p	class:peace::net::Udp	access:public	signature:(void* arg)
 m_Lock	install/include/types.h	/^        pthread_mutex_t m_Lock;$/;"	m	struct:__anon2	access:public
 m_Lock	libSrc/types.h	/^        pthread_mutex_t m_Lock;$/;"	m	struct:__anon6	access:public
 m_Pop	install/include/types.h	/^        BufferInfo *m_Pop;$/;"	m	struct:__anon2	access:public
@@ -291,6 +301,12 @@ nSize	install/include/types.h	/^        int nSize;$/;"	m	struct:_BufferInfo	acce
 nSize	libSrc/types.h	/^        int nSize;$/;"	m	struct:_BufferInfo	access:public
 net	libSrc/net/base/netBase.cpp	/^namespace net $/;"	n	namespace:peace	file:
 net	libSrc/net/base/netBase.h	/^namespace net $/;"	n	namespace:peace
+net	libSrc/net/tcp/tcp.cpp	/^namespace net $/;"	n	namespace:peace	file:
+net	libSrc/net/tcp/tcp.h	/^namespace net $/;"	n	namespace:peace
+net	libSrc/net/tcp/tcpClient.cpp	/^namespace net $/;"	n	namespace:peace	file:
+net	libSrc/net/tcp/tcpClient.h	/^namespace net $/;"	n	namespace:peace
+net	libSrc/net/tcp/tcpServer.cpp	/^namespace net $/;"	n	namespace:peace	file:
+net	libSrc/net/tcp/tcpServer.h	/^namespace net $/;"	n	namespace:peace
 net	libSrc/net/udp/udp.cpp	/^namespace net $/;"	n	namespace:peace	file:
 net	libSrc/net/udp/udp.h	/^namespace net $/;"	n	namespace:peace
 net	libSrc/net/udp/udpClient.cpp	/^namespace net $/;"	n	namespace:peace	file:
@@ -303,6 +319,12 @@ netCreate	libSrc/peaceInterface.h	/^void* netCreate(const char *type);$/;"	p	sig
 netDestroy	install/include/peaceInterface.h	/^void netDestroy(void *base);$/;"	p	signature:(void *base)
 netDestroy	libSrc/peaceInterface.cpp	/^void netDestroy(void *base)$/;"	f	signature:(void *base)
 netDestroy	libSrc/peaceInterface.h	/^void netDestroy(void *base);$/;"	p	signature:(void *base)
+netRegisterTcpBusFunc	install/include/peaceInterface.h	/^int netRegisterTcpBusFunc(void *base, const TcpBusinessDealFuncType pFunc);$/;"	p	signature:(void *base, const TcpBusinessDealFuncType pFunc)
+netRegisterTcpBusFunc	libSrc/peaceInterface.cpp	/^int netRegisterTcpBusFunc(void *base, const TcpBusinessDealFuncType pFunc)$/;"	f	signature:(void *base, const TcpBusinessDealFuncType pFunc)
+netRegisterTcpBusFunc	libSrc/peaceInterface.h	/^int netRegisterTcpBusFunc(void *base, const TcpBusinessDealFuncType pFunc);$/;"	p	signature:(void *base, const TcpBusinessDealFuncType pFunc)
+netRegisterUdpBusFunc	install/include/peaceInterface.h	/^int netRegisterUdpBusFunc(void *base, const UdpBusinessDealFuncType pFunc);$/;"	p	signature:(void *base, const UdpBusinessDealFuncType pFunc)
+netRegisterUdpBusFunc	libSrc/peaceInterface.cpp	/^int netRegisterUdpBusFunc(void *base, const UdpBusinessDealFuncType pFunc)$/;"	f	signature:(void *base, const UdpBusinessDealFuncType pFunc)
+netRegisterUdpBusFunc	libSrc/peaceInterface.h	/^int netRegisterUdpBusFunc(void *base, const UdpBusinessDealFuncType pFunc);$/;"	p	signature:(void *base, const UdpBusinessDealFuncType pFunc)
 netSend	install/include/peaceInterface.h	/^int netSend(void *base, const unsigned char *data, const int dataSize);$/;"	p	signature:(void *base, const unsigned char *data, const int dataSize)
 netSend	install/include/peaceInterface.h	/^int netSend(void *base, const unsigned char *data, const int dataSize, const int sock);$/;"	p	signature:(void *base, const unsigned char *data, const int dataSize, const int sock)
 netSend	install/include/peaceInterface.h	/^int netSend(void *base, const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr);$/;"	p	signature:(void *base, const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
@@ -315,6 +337,9 @@ netSend	libSrc/peaceInterface.h	/^int netSend(void *base, const unsigned char *d
 netSetChainSize	install/include/peaceInterface.h	/^int netSetChainSize(void *base, const int size); \/\/default value is CHAIN_SIZE$/;"	p	signature:(void *base, const int size)
 netSetChainSize	libSrc/peaceInterface.cpp	/^int netSetChainSize(void *base, const int size) \/\/default value is CHAIN_SIZE$/;"	f	signature:(void *base, const int size)
 netSetChainSize	libSrc/peaceInterface.h	/^int netSetChainSize(void *base, const int size); \/\/default value is CHAIN_SIZE$/;"	p	signature:(void *base, const int size)
+netSetUseSendThread	install/include/peaceInterface.h	/^void netSetUseSendThread(void *base);$/;"	p	signature:(void *base)
+netSetUseSendThread	libSrc/peaceInterface.cpp	/^void netSetUseSendThread(void *base)$/;"	f	signature:(void *base)
+netSetUseSendThread	libSrc/peaceInterface.h	/^void netSetUseSendThread(void *base);$/;"	p	signature:(void *base)
 netStart	install/include/peaceInterface.h	/^int netStart(void*base, const char *ip, const int port = 0, const int sockSendBufSize = gSockBufSize\/2, const int sockRecvBufSize = gSockBufSize\/2);$/;"	p	signature:(void*base, const char *ip, const int port = 0, const int sockSendBufSize = gSockBufSize/2, const int sockRecvBufSize = gSockBufSize/2)
 netStart	libSrc/peaceInterface.cpp	/^int netStart(void*base, const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)$/;"	f	signature:(void*base, const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)
 netStart	libSrc/peaceInterface.h	/^int netStart(void*base, const char *ip, const int port = 0, const int sockSendBufSize = gSockBufSize\/2, const int sockRecvBufSize = gSockBufSize\/2);$/;"	p	signature:(void*base, const char *ip, const int port = 0, const int sockSendBufSize = gSockBufSize/2, const int sockRecvBufSize = gSockBufSize/2)
@@ -325,6 +350,15 @@ nevents	install/include/types.h	/^	int nevents;$/;"	m	struct:__anon1	access:publ
 nevents	libSrc/types.h	/^	int nevents;$/;"	m	struct:__anon5	access:public
 open	libSrc/base/file/simpleSaveFile.cpp	/^void *SaveFile::open(const char *fileName)$/;"	f	class:peace::base::SaveFile	signature:(const char *fileName)
 open	libSrc/base/file/simpleSaveFile.h	/^	void * open(const char *fileName);$/;"	p	class:peace::base::SaveFile	access:public	signature:(const char *fileName)
+override	libSrc/net/udp/udp.h	/^	virtual int init() override;$/;"	m	class:peace::net::Udp	access:public
+override	libSrc/net/udp/udp.h	/^	virtual int send(const unsigned char *data, const int dataSize) override;$/;"	m	class:peace::net::Udp	access:public
+override	libSrc/net/udp/udp.h	/^	virtual int send(const unsigned char *data, const int dataSize, const int sock) override;$/;"	m	class:peace::net::Udp	access:public
+override	libSrc/net/udp/udp.h	/^	virtual int send(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr) override;	$/;"	m	class:peace::net::Udp	access:public
+override	libSrc/net/udp/udp.h	/^	virtual int start(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize) override;	$/;"	m	class:peace::net::Udp	access:public
+override	libSrc/net/udp/udp.h	/^	virtual void exit() override;$/;"	m	class:peace::net::Udp	access:public
+override	libSrc/net/udp/udp.h	/^	virtual void stop() override;$/;"	m	class:peace::net::Udp	access:public
+override	libSrc/net/udp/udpClient.h	/^	virtual int selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize) override;$/;"	m	class:peace::net::UdpClient	access:public
+override	libSrc/net/udp/udpServer.h	/^	virtual int selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize) override;$/;"	m	class:peace::net::UdpServer	access:public
 pData	install/include/types.h	/^        unsigned char *pData;$/;"	m	struct:_BufferInfo	access:public
 pData	libSrc/types.h	/^        unsigned char *pData;$/;"	m	struct:_BufferInfo	access:public
 pNext	install/include/types.h	/^	struct _recvData *pNext;$/;"	m	struct:_recvData	typeref:struct:_recvData::_recvData	access:public
@@ -345,6 +379,12 @@ peace	libSrc/base/thread/thread.h	/^namespace peace $/;"	n
 peace	libSrc/net/base/netBase.cpp	/^namespace peace $/;"	n	file:
 peace	libSrc/net/base/netBase.h	/^namespace peace $/;"	n
 peace	libSrc/net/net.h	/^namespace peace $/;"	n
+peace	libSrc/net/tcp/tcp.cpp	/^namespace peace $/;"	n	file:
+peace	libSrc/net/tcp/tcp.h	/^namespace peace $/;"	n
+peace	libSrc/net/tcp/tcpClient.cpp	/^namespace peace $/;"	n	file:
+peace	libSrc/net/tcp/tcpClient.h	/^namespace peace $/;"	n
+peace	libSrc/net/tcp/tcpServer.cpp	/^namespace peace $/;"	n	file:
+peace	libSrc/net/tcp/tcpServer.h	/^namespace peace $/;"	n
 peace	libSrc/net/udp/udp.cpp	/^namespace peace $/;"	n	file:
 peace	libSrc/net/udp/udp.h	/^namespace peace $/;"	n
 peace	libSrc/net/udp/udpClient.cpp	/^namespace peace $/;"	n	file:
@@ -373,14 +413,6 @@ peace::base::InsertTail	libSrc/base/chain/chain.cpp	/^void InsertTail(RecvData *
 peace::base::InsertTail	libSrc/base/chain/chain.h	/^	void InsertTail(RecvData **dst, RecvData *src);$/;"	p	namespace:peace::base	signature:(RecvData **dst, RecvData *src)
 peace::base::InsertTailEx	libSrc/base/chain/chain.cpp	/^void InsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast)$/;"	f	namespace:peace::base	signature:(RecvData **dst, RecvData *src, RecvData **dstLast)
 peace::base::InsertTailEx	libSrc/base/chain/chain.h	/^	void InsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast);$/;"	p	namespace:peace::base	signature:(RecvData **dst, RecvData *src, RecvData **dstLast)
-peace::base::QueueInit	libSrc/base/queue/queue.cpp	/^int QueueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
-peace::base::QueueInit	libSrc/base/queue/queue.h	/^int QueueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
-peace::base::QueuePop	libSrc/base/queue/queue.cpp	/^int QueuePop(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)
-peace::base::QueuePop	libSrc/base/queue/queue.h	/^int QueuePop(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)
-peace::base::QueuePopInternal	libSrc/base/queue/queue.cpp	/^int QueuePopInternal(BlockInfo *pBlockInfo, const T& pFunc, void* arg)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg)
-peace::base::QueuePopInternal	libSrc/base/queue/queue.h	/^int QueuePopInternal(BlockInfo *pBlockInfo, const T& pFunc, void* arg);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg)
-peace::base::QueuePush	libSrc/base/queue/queue.cpp	/^int QueuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
-peace::base::QueuePush	libSrc/base/queue/queue.h	/^int QueuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
 peace::base::RecoveryChain	libSrc/base/chain/chain.cpp	/^void RecoveryChain(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)$/;"	f	namespace:peace::base	signature:(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
 peace::base::RecoveryChain	libSrc/base/chain/chain.h	/^	void RecoveryChain(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain);$/;"	p	namespace:peace::base	signature:(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
 peace::base::ReleaseChain	libSrc/base/chain/chain.cpp	/^void ReleaseChain(RecvData **ppHead)$/;"	f	namespace:peace::base	signature:(RecvData **ppHead)
@@ -403,8 +435,16 @@ peace::base::fileSimpleClose	libSrc/base/file/file.h	/^void fileSimpleClose(cons
 peace::base::fileSimpleWrite	libSrc/base/file/file.cpp	/^void fileSimpleWrite(const unsigned char *data, const int size, const char *fileAbsName)$/;"	f	namespace:peace::base	signature:(const unsigned char *data, const int size, const char *fileAbsName)
 peace::base::fileSimpleWrite	libSrc/base/file/file.h	/^void fileSimpleWrite(const unsigned char *data, const int size, const char *fileAbsName);$/;"	p	namespace:peace::base	signature:(const unsigned char *data, const int size, const char *fileAbsName)
 peace::base::mapFp	libSrc/base/file/simpleSaveFile.cpp	/^SaveFileFpMap mapFp;$/;"	m	namespace:peace::base	file:
-peace::base::queuet2	libSrc/base/queue/queue.cpp	/^void queuet2()$/;"	f	namespace:peace::base	signature:()
-peace::base::queuet2	libSrc/base/queue/queue.h	/^void queuet2();$/;"	p	namespace:peace::base	signature:()
+peace::base::queueDestroy	libSrc/base/queue/queue.cpp	/^void queueDestroy(BlockInfo *pBlockInfo)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo)
+peace::base::queueDestroy	libSrc/base/queue/queue.h	/^void queueDestroy(BlockInfo *pBlockInfo);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo)
+peace::base::queueInit	libSrc/base/queue/queue.cpp	/^int queueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
+peace::base::queueInit	libSrc/base/queue/queue.h	/^int queueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
+peace::base::queuePop	libSrc/base/queue/queue.cpp	/^int queuePop(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg, bool(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg, bool(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)
+peace::base::queuePop	libSrc/base/queue/queue.h	/^int queuePop(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg, bool(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg, bool(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)
+peace::base::queuePopInternal	libSrc/base/queue/queue.cpp	/^int queuePopInternal(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg)
+peace::base::queuePopInternal	libSrc/base/queue/queue.h	/^int queuePopInternal(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg)
+peace::base::queuePush	libSrc/base/queue/queue.cpp	/^int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
+peace::base::queuePush	libSrc/base/queue/queue.h	/^int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
 peace::base::threadClose	libSrc/base/thread/thread.cpp	/^void threadClose(pthread_t &pid)$/;"	f	namespace:peace::base	signature:(pthread_t &pid)
 peace::base::threadClose	libSrc/base/thread/thread.h	/^void threadClose(pthread_t &pid);$/;"	p	namespace:peace::base	signature:(pthread_t &pid)
 peace::base::threadCreate	libSrc/base/thread/thread.cpp	/^int threadCreate(pthread_t &pid, void*(*thread_callback)(void*), void *arg, const size_t stack_size)$/;"	f	namespace:peace::base	signature:(pthread_t &pid, void*(*thread_callback)(void*), void *arg, const size_t stack_size)
@@ -417,6 +457,12 @@ peace::base::threadCreateSmall	libSrc/base/thread/thread.cpp	/^int threadCreateS
 peace::base::threadCreateSmall	libSrc/base/thread/thread.h	/^int threadCreateSmall(pthread_t &pid, void*(*thread_callback)(void*), void *arg);$/;"	p	namespace:peace::base	signature:(pthread_t &pid, void*(*thread_callback)(void*), void *arg)
 peace::net	libSrc/net/base/netBase.cpp	/^namespace net $/;"	n	namespace:peace	file:
 peace::net	libSrc/net/base/netBase.h	/^namespace net $/;"	n	namespace:peace
+peace::net	libSrc/net/tcp/tcp.cpp	/^namespace net $/;"	n	namespace:peace	file:
+peace::net	libSrc/net/tcp/tcp.h	/^namespace net $/;"	n	namespace:peace
+peace::net	libSrc/net/tcp/tcpClient.cpp	/^namespace net $/;"	n	namespace:peace	file:
+peace::net	libSrc/net/tcp/tcpClient.h	/^namespace net $/;"	n	namespace:peace
+peace::net	libSrc/net/tcp/tcpServer.cpp	/^namespace net $/;"	n	namespace:peace	file:
+peace::net	libSrc/net/tcp/tcpServer.h	/^namespace net $/;"	n	namespace:peace
 peace::net	libSrc/net/udp/udp.cpp	/^namespace net $/;"	n	namespace:peace	file:
 peace::net	libSrc/net/udp/udp.h	/^namespace net $/;"	n	namespace:peace
 peace::net	libSrc/net/udp/udpClient.cpp	/^namespace net $/;"	n	namespace:peace	file:
@@ -427,10 +473,13 @@ peace::net::NetBase	libSrc/net/base/netBase.h	/^class NetBase$/;"	c	namespace:pe
 peace::net::NetBase::NetBase	libSrc/net/base/netBase.cpp	/^NetBase::NetBase()$/;"	f	class:peace::net::NetBase	signature:()
 peace::net::NetBase::NetBase	libSrc/net/base/netBase.h	/^	NetBase();$/;"	p	class:peace::net::NetBase	access:public	signature:()
 peace::net::NetBase::NetType	libSrc/net/base/netBase.h	/^	}NetType;$/;"	t	class:peace::net::NetBase	typeref:enum:peace::net::NetBase::__anon4	access:public
+peace::net::NetBase::_alreadyStart	libSrc/net/base/netBase.h	/^	bool _alreadyStart;$/;"	m	class:peace::net::NetBase	access:public
 peace::net::NetBase::_chainSize	libSrc/net/base/netBase.h	/^	int _chainSize;$/;"	m	class:peace::net::NetBase	access:public
 peace::net::NetBase::_myNetType	libSrc/net/base/netBase.h	/^	NetType _myNetType;$/;"	m	class:peace::net::NetBase	access:public
+peace::net::NetBase::_sendBlock	libSrc/net/base/netBase.h	/^	BlockInfo _sendBlock;$/;"	m	class:peace::net::NetBase	access:public
 peace::net::NetBase::_tcpBusinessDealFunc	libSrc/net/base/netBase.h	/^	TcpBusinessDealFuncType _tcpBusinessDealFunc;$/;"	m	class:peace::net::NetBase	access:public
 peace::net::NetBase::_udpBusinessDealFunc	libSrc/net/base/netBase.h	/^	UdpBusinessDealFuncType _udpBusinessDealFunc;$/;"	m	class:peace::net::NetBase	access:public
+peace::net::NetBase::_useSendThread	libSrc/net/base/netBase.h	/^	bool _useSendThread;$/;"	m	class:peace::net::NetBase	access:public
 peace::net::NetBase::create	libSrc/net/base/netBase.cpp	/^NetBase* NetBase::create(const NetType type)$/;"	f	class:peace::net::NetBase	signature:(const NetType type)
 peace::net::NetBase::create	libSrc/net/base/netBase.h	/^	static NetBase* create(const NetType type);	$/;"	p	class:peace::net::NetBase	access:public	signature:(const NetType type)
 peace::net::NetBase::eNetTcpClient	libSrc/net/base/netBase.h	/^		eNetTcpClient,$/;"	e	enum:peace::net::NetBase::__anon4
@@ -448,10 +497,21 @@ peace::net::NetBase::send	libSrc/net/base/netBase.h	/^	virtual int send(const un
 peace::net::NetBase::send	libSrc/net/base/netBase.h	/^	virtual int send(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr) = 0;$/;"	p	class:peace::net::NetBase	access:public	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
 peace::net::NetBase::setChainSize	libSrc/net/base/netBase.cpp	/^void NetBase::setChainSize(const int chainSize)$/;"	f	class:peace::net::NetBase	signature:(const int chainSize)
 peace::net::NetBase::setChainSize	libSrc/net/base/netBase.h	/^	void setChainSize(const int chainSize);	$/;"	p	class:peace::net::NetBase	access:public	signature:(const int chainSize)
+peace::net::NetBase::setUseSendThread	libSrc/net/base/netBase.cpp	/^void NetBase::setUseSendThread()$/;"	f	class:peace::net::NetBase	signature:()
+peace::net::NetBase::setUseSendThread	libSrc/net/base/netBase.h	/^	void setUseSendThread();$/;"	p	class:peace::net::NetBase	access:public	signature:()
 peace::net::NetBase::start	libSrc/net/base/netBase.h	/^	virtual int start(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize) = 0;$/;"	p	class:peace::net::NetBase	access:public	signature:(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)
 peace::net::NetBase::stop	libSrc/net/base/netBase.h	/^	virtual void stop() = 0;	 $/;"	p	class:peace::net::NetBase	access:public	signature:()
 peace::net::NetBase::~NetBase	libSrc/net/base/netBase.cpp	/^NetBase::~NetBase()$/;"	f	class:peace::net::NetBase	signature:()
-peace::net::NetBase::~NetBase	libSrc/net/base/netBase.h	/^	~NetBase();$/;"	p	class:peace::net::NetBase	access:public	signature:()
+peace::net::NetBase::~NetBase	libSrc/net/base/netBase.h	/^	virtual ~NetBase();$/;"	p	class:peace::net::NetBase	access:public	signature:()
+peace::net::Tcp	libSrc/net/tcp/tcp.h	/^class Tcp : public NetBase$/;"	c	namespace:peace::net	inherits:NetBase
+peace::net::Tcp::exit	libSrc/net/tcp/tcp.h	/^	virtual void exit();$/;"	p	class:peace::net::Tcp	access:public	signature:()
+peace::net::Tcp::init	libSrc/net/tcp/tcp.h	/^	virtual int init();$/;"	p	class:peace::net::Tcp	access:public	signature:()
+peace::net::Tcp::send	libSrc/net/tcp/tcp.h	/^	virtual int send(const unsigned char *data, const int dataSize);$/;"	p	class:peace::net::Tcp	access:public	signature:(const unsigned char *data, const int dataSize)
+peace::net::Tcp::send	libSrc/net/tcp/tcp.h	/^	virtual int send(const unsigned char *data, const int dataSize, const int sock);$/;"	p	class:peace::net::Tcp	access:public	signature:(const unsigned char *data, const int dataSize, const int sock)
+peace::net::Tcp::start	libSrc/net/tcp/tcp.h	/^	virtual int start(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize);$/;"	p	class:peace::net::Tcp	access:public	signature:(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)
+peace::net::Tcp::stop	libSrc/net/tcp/tcp.h	/^	virtual void stop();         $/;"	p	class:peace::net::Tcp	access:public	signature:()
+peace::net::TcpClient	libSrc/net/tcp/tcpClient.h	/^class TcpClient : public Tcp $/;"	c	namespace:peace::net	inherits:Tcp
+peace::net::TcpServer	libSrc/net/tcp/tcpServer.h	/^class TcpServer : public Tcp $/;"	c	namespace:peace::net	inherits:Tcp
 peace::net::Udp	libSrc/net/udp/udp.h	/^class Udp : public NetBase  $/;"	c	namespace:peace::net	inherits:NetBase
 peace::net::Udp::Udp	libSrc/net/udp/udp.cpp	/^Udp::Udp()$/;"	f	class:peace::net::Udp	signature:()
 peace::net::Udp::Udp	libSrc/net/udp/udp.h	/^	Udp();$/;"	p	class:peace::net::Udp	access:public	signature:()
@@ -461,7 +521,7 @@ peace::net::Udp::_LockSend	libSrc/net/udp/udp.h	/^	pthread_mutex_t _LockSend;$/;
 peace::net::Udp::_bufServer	libSrc/net/udp/udp.cpp	/^void Udp::_bufServer()$/;"	f	class:peace::net::Udp	signature:()
 peace::net::Udp::_bufServer	libSrc/net/udp/udp.h	/^    void _bufServer();$/;"	p	class:peace::net::Udp	access:public	signature:()
 peace::net::Udp::_bufServerPid	libSrc/net/udp/udp.h	/^	pthread_t _bufServerPid;$/;"	m	class:peace::net::Udp	access:private
-peace::net::Udp::_isRunning	libSrc/net/udp/udp.h	/^	bool _isRunning;	$/;"	m	class:peace::net::Udp	access:private
+peace::net::Udp::_isRunning	libSrc/net/udp/udp.h	/^	bool _isRunning;$/;"	m	class:peace::net::Udp	access:public
 peace::net::Udp::_lockSemFinishInit	libSrc/net/udp/udp.h	/^	bool _lockSemFinishInit;$/;"	m	class:peace::net::Udp	access:private
 peace::net::Udp::_myPort	libSrc/net/udp/udp.h	/^	int _myPort;$/;"	m	class:peace::net::Udp	access:private
 peace::net::Udp::_orgPeerAddr	libSrc/net/udp/udp.h	/^	struct sockaddr_in _orgPeerAddr;$/;"	m	class:peace::net::Udp	typeref:struct:peace::net::Udp::sockaddr_in	access:private
@@ -471,6 +531,11 @@ peace::net::Udp::_recvDataUdp	libSrc/net/udp/udp.h	/^	RecvData *_recvDataUdp;$/;
 peace::net::Udp::_recvServer	libSrc/net/udp/udp.cpp	/^void Udp::_recvServer()$/;"	f	class:peace::net::Udp	signature:()
 peace::net::Udp::_recvServer	libSrc/net/udp/udp.h	/^    void _recvServer();$/;"	p	class:peace::net::Udp	access:public	signature:()
 peace::net::Udp::_recvServerPid	libSrc/net/udp/udp.h	/^	pthread_t _recvServerPid;$/;"	m	class:peace::net::Udp	access:private
+peace::net::Udp::_sendServer	libSrc/net/udp/udp.cpp	/^void Udp::_sendServer()$/;"	f	class:peace::net::Udp	signature:()
+peace::net::Udp::_sendServer	libSrc/net/udp/udp.h	/^	void _sendServer();$/;"	p	class:peace::net::Udp	access:public	signature:()
+peace::net::Udp::_sendServerDealFunc	libSrc/net/udp/udp.cpp	/^void Udp::_sendServerDealFunc(const unsigned char *data, const int dataSize)$/;"	f	class:peace::net::Udp	signature:(const unsigned char *data, const int dataSize)
+peace::net::Udp::_sendServerDealFunc	libSrc/net/udp/udp.h	/^	void _sendServerDealFunc(const unsigned char *data, const int dataSize);		$/;"	p	class:peace::net::Udp	access:public	signature:(const unsigned char *data, const int dataSize)
+peace::net::Udp::_sendServerTid	libSrc/net/udp/udp.h	/^	pthread_t _sendServerTid;$/;"	m	class:peace::net::Udp	access:private
 peace::net::Udp::_sock	libSrc/net/udp/udp.h	/^	int _sock;$/;"	m	class:peace::net::Udp	access:private
 peace::net::Udp::_taskSem	libSrc/net/udp/udp.h	/^	sem_t _taskSem;$/;"	m	class:peace::net::Udp	access:private
 peace::net::Udp::bindSocket	libSrc/net/udp/udp.cpp	/^int Udp::bindSocket(const UdpUserType type, const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)$/;"	f	class:peace::net::Udp	signature:(const UdpUserType type, const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)
@@ -478,9 +543,18 @@ peace::net::Udp::bindSocket	libSrc/net/udp/udp.h	/^	static int bindSocket(const 
 peace::net::Udp::bufServer	libSrc/net/udp/udp.cpp	/^void* Udp::bufServer(void* arg)$/;"	f	class:peace::net::Udp	signature:(void* arg)
 peace::net::Udp::bufServer	libSrc/net/udp/udp.h	/^	static void* bufServer(void* arg);$/;"	p	class:peace::net::Udp	access:public	signature:(void* arg)
 peace::net::Udp::exit	libSrc/net/udp/udp.cpp	/^void Udp::exit()$/;"	f	class:peace::net::Udp	signature:()
-peace::net::Udp::exit	libSrc/net/udp/udp.h	/^	virtual void exit();$/;"	p	class:peace::net::Udp	access:public	signature:()
 peace::net::Udp::init	libSrc/net/udp/udp.cpp	/^int Udp::init()$/;"	f	class:peace::net::Udp	signature:()
-peace::net::Udp::init	libSrc/net/udp/udp.h	/^	virtual int init();$/;"	p	class:peace::net::Udp	access:public	signature:()
+peace::net::Udp::isStart	libSrc/net/udp/udp.cpp	/^bool Udp::isStart(void *arg)$/;"	f	class:peace::net::Udp	signature:(void *arg)
+peace::net::Udp::isStart	libSrc/net/udp/udp.h	/^	static bool isStart(void* arg);$/;"	p	class:peace::net::Udp	access:public	signature:(void* arg)
+peace::net::Udp::override	libSrc/net/udp/udp.h	/^	virtual int init() override;$/;"	m	class:peace::net::Udp	access:public
+peace::net::Udp::override	libSrc/net/udp/udp.h	/^	virtual int send(const unsigned char *data, const int dataSize) override;$/;"	m	class:peace::net::Udp	access:public
+peace::net::Udp::override	libSrc/net/udp/udp.h	/^	virtual int send(const unsigned char *data, const int dataSize, const int sock) override;$/;"	m	class:peace::net::Udp	access:public
+peace::net::Udp::override	libSrc/net/udp/udp.h	/^	virtual int send(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr) override;	$/;"	m	class:peace::net::Udp	access:public
+peace::net::Udp::override	libSrc/net/udp/udp.h	/^	virtual int start(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize) override;	$/;"	m	class:peace::net::Udp	access:public
+peace::net::Udp::override	libSrc/net/udp/udp.h	/^	virtual void exit() override;$/;"	m	class:peace::net::Udp	access:public
+peace::net::Udp::override	libSrc/net/udp/udp.h	/^	virtual void stop() override;$/;"	m	class:peace::net::Udp	access:public
+peace::net::Udp::realSend	libSrc/net/udp/udp.cpp	/^int Udp::realSend(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)$/;"	f	class:peace::net::Udp	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
+peace::net::Udp::realSend	libSrc/net/udp/udp.h	/^	int realSend(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr); $/;"	p	class:peace::net::Udp	access:public	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
 peace::net::Udp::recvServer	libSrc/net/udp/udp.cpp	/^void* Udp::recvServer(void *arg)$/;"	f	class:peace::net::Udp	signature:(void *arg)
 peace::net::Udp::recvServer	libSrc/net/udp/udp.h	/^    static void* recvServer(void* arg);$/;"	p	class:peace::net::Udp	access:public	signature:(void* arg)
 peace::net::Udp::savePeerAddr	libSrc/net/udp/udp.cpp	/^void Udp::savePeerAddr(const char *ip, const int port)$/;"	f	class:peace::net::Udp	signature:(const char *ip, const int port)
@@ -489,53 +563,52 @@ peace::net::Udp::selfBind	libSrc/net/udp/udp.h	/^	virtual int selfBind(const cha
 peace::net::Udp::send	libSrc/net/udp/udp.cpp	/^int Udp::send(const unsigned char *data, const int dataSize)$/;"	f	class:peace::net::Udp	signature:(const unsigned char *data, const int dataSize)
 peace::net::Udp::send	libSrc/net/udp/udp.cpp	/^int Udp::send(const unsigned char *data, const int dataSize, const int sock)$/;"	f	class:peace::net::Udp	signature:(const unsigned char *data, const int dataSize, const int sock)
 peace::net::Udp::send	libSrc/net/udp/udp.cpp	/^int Udp::send(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)$/;"	f	class:peace::net::Udp	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
-peace::net::Udp::send	libSrc/net/udp/udp.h	/^	virtual int send(const unsigned char *data, const int dataSize);$/;"	p	class:peace::net::Udp	access:public	signature:(const unsigned char *data, const int dataSize)
-peace::net::Udp::send	libSrc/net/udp/udp.h	/^	virtual int send(const unsigned char *data, const int dataSize, const int sock);$/;"	p	class:peace::net::Udp	access:public	signature:(const unsigned char *data, const int dataSize, const int sock)
-peace::net::Udp::send	libSrc/net/udp/udp.h	/^	virtual int send(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr);	$/;"	p	class:peace::net::Udp	access:public	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
+peace::net::Udp::sendServer	libSrc/net/udp/udp.cpp	/^void* Udp::sendServer(void* arg)$/;"	f	class:peace::net::Udp	signature:(void* arg)
+peace::net::Udp::sendServer	libSrc/net/udp/udp.h	/^	static void* sendServer(void*arg);$/;"	p	class:peace::net::Udp	access:public	signature:(void*arg)
+peace::net::Udp::sendServerDealFunc	libSrc/net/udp/udp.cpp	/^void Udp::sendServerDealFunc(const unsigned char* data, const int dataSize, void* arg)$/;"	f	class:peace::net::Udp	signature:(const unsigned char* data, const int dataSize, void* arg)
+peace::net::Udp::sendServerDealFunc	libSrc/net/udp/udp.h	/^	static void sendServerDealFunc(const unsigned char* data, const int dataSize, void* arg);$/;"	p	class:peace::net::Udp	access:public	signature:(const unsigned char* data, const int dataSize, void* arg)
 peace::net::Udp::start	libSrc/net/udp/udp.cpp	/^int Udp::start(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)$/;"	f	class:peace::net::Udp	signature:(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)
-peace::net::Udp::start	libSrc/net/udp/udp.h	/^	virtual int start(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize);	$/;"	p	class:peace::net::Udp	access:public	signature:(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)
 peace::net::Udp::stop	libSrc/net/udp/udp.cpp	/^void Udp::stop()$/;"	f	class:peace::net::Udp	signature:()
-peace::net::Udp::stop	libSrc/net/udp/udp.h	/^	virtual void stop();$/;"	p	class:peace::net::Udp	access:public	signature:()
 peace::net::Udp::~Udp	libSrc/net/udp/udp.cpp	/^Udp::~Udp()$/;"	f	class:peace::net::Udp	signature:()
-peace::net::Udp::~Udp	libSrc/net/udp/udp.h	/^	~Udp();	$/;"	p	class:peace::net::Udp	access:public	signature:()
+peace::net::Udp::~Udp	libSrc/net/udp/udp.h	/^	virtual ~Udp();	$/;"	p	class:peace::net::Udp	access:public	signature:()
 peace::net::UdpClient	libSrc/net/udp/udpClient.h	/^class UdpClient : public Udp $/;"	c	namespace:peace::net	inherits:Udp
+peace::net::UdpClient::override	libSrc/net/udp/udpClient.h	/^	virtual int selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize) override;$/;"	m	class:peace::net::UdpClient	access:public
 peace::net::UdpClient::selfBind	libSrc/net/udp/udpClient.cpp	/^int UdpClient::selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)$/;"	f	class:peace::net::UdpClient	signature:(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)
-peace::net::UdpClient::selfBind	libSrc/net/udp/udpClient.h	/^	virtual int selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize);$/;"	p	class:peace::net::UdpClient	access:public	signature:(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)
 peace::net::UdpServer	libSrc/net/udp/udpServer.h	/^class UdpServer : public Udp   $/;"	c	namespace:peace::net	inherits:Udp
 peace::net::UdpServer::UdpServer	libSrc/net/udp/udpServer.cpp	/^UdpServer::UdpServer()$/;"	f	class:peace::net::UdpServer	signature:()
 peace::net::UdpServer::UdpServer	libSrc/net/udp/udpServer.h	/^	UdpServer();$/;"	p	class:peace::net::UdpServer	access:public	signature:()
+peace::net::UdpServer::override	libSrc/net/udp/udpServer.h	/^	virtual int selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize) override;$/;"	m	class:peace::net::UdpServer	access:public
 peace::net::UdpServer::selfBind	libSrc/net/udp/udpServer.cpp	/^int UdpServer::selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)$/;"	f	class:peace::net::UdpServer	signature:(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)
-peace::net::UdpServer::selfBind	libSrc/net/udp/udpServer.h	/^	virtual int selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize);$/;"	p	class:peace::net::UdpServer	access:public	signature:(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)
 peace::net::UdpServer::~UdpServer	libSrc/net/udp/udpServer.cpp	/^UdpServer::~UdpServer()$/;"	f	class:peace::net::UdpServer	signature:()
 peace::net::UdpServer::~UdpServer	libSrc/net/udp/udpServer.h	/^	~UdpServer();	$/;"	p	class:peace::net::UdpServer	access:public	signature:()
-peace::queuet	libSrc/base/queue/queue.cpp	/^void queuet()$/;"	f	namespace:peace	signature:()
-peace::queuet	libSrc/base/queue/queue.h	/^void queuet();$/;"	p	namespace:peace	signature:()
+queueDestroy	libSrc/base/queue/queue.cpp	/^void queueDestroy(BlockInfo *pBlockInfo)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo)
+queueDestroy	libSrc/base/queue/queue.h	/^void queueDestroy(BlockInfo *pBlockInfo);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo)
 queueInit	install/include/peaceInterface.h	/^int queueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize);$/;"	p	signature:(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
+queueInit	libSrc/base/queue/queue.cpp	/^int queueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
+queueInit	libSrc/base/queue/queue.h	/^int queueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
 queueInit	libSrc/peaceInterface.cpp	/^int queueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)$/;"	f	signature:(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
 queueInit	libSrc/peaceInterface.h	/^int queueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize);$/;"	p	signature:(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
-queuePop	install/include/peaceInterface.h	/^int queuePop(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout);$/;"	p	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout)
-queuePop	libSrc/peaceInterface.cpp	/^int queuePop(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout)$/;"	f	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout)
-queuePop	libSrc/peaceInterface.h	/^int queuePop(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout);$/;"	p	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout)
-queuePopInternal	install/include/peaceInterface.h	/^int queuePopInternal(BlockInfo *pBlockInfo, const T& pFunc, void* arg);$/;"	p	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg)
-queuePopInternal	libSrc/peaceInterface.cpp	/^int queuePopInternal(BlockInfo *pBlockInfo, const T& pFunc, void* arg)$/;"	f	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg)
-queuePopInternal	libSrc/peaceInterface.h	/^int queuePopInternal(BlockInfo *pBlockInfo, const T& pFunc, void* arg);$/;"	p	signature:(BlockInfo *pBlockInfo, const T& pFunc, void* arg)
+queuePop	install/include/peaceInterface.h	/^int queuePop(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg, bool(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout);$/;"	p	signature:(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg, bool(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout)
+queuePop	libSrc/base/queue/queue.cpp	/^int queuePop(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg, bool(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg, bool(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)
+queuePop	libSrc/base/queue/queue.h	/^int queuePop(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg, bool(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg, bool(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)
+queuePop	libSrc/peaceInterface.cpp	/^int queuePop(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg, bool(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout)$/;"	f	signature:(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg, bool(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout)
+queuePop	libSrc/peaceInterface.h	/^int queuePop(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg, bool(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout);$/;"	p	signature:(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg, bool(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout)
+queuePopInternal	install/include/peaceInterface.h	/^int queuePopInternal(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg);$/;"	p	signature:(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg)
+queuePopInternal	libSrc/base/queue/queue.cpp	/^int queuePopInternal(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg)
+queuePopInternal	libSrc/base/queue/queue.h	/^int queuePopInternal(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg)
+queuePopInternal	libSrc/peaceInterface.cpp	/^int queuePopInternal(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg)$/;"	f	signature:(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg)
+queuePopInternal	libSrc/peaceInterface.h	/^int queuePopInternal(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg);$/;"	p	signature:(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg)
 queuePush	install/include/peaceInterface.h	/^int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize);$/;"	p	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
+queuePush	libSrc/base/queue/queue.cpp	/^int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
+queuePush	libSrc/base/queue/queue.h	/^int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
 queuePush	libSrc/peaceInterface.cpp	/^int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)$/;"	f	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
 queuePush	libSrc/peaceInterface.h	/^int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize);$/;"	p	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
-queuet	libSrc/base/queue/queue.cpp	/^void queuet()$/;"	f	namespace:peace	signature:()
-queuet	libSrc/base/queue/queue.h	/^void queuet();$/;"	p	namespace:peace	signature:()
-queuet2	libSrc/base/queue/queue.cpp	/^void queuet2()$/;"	f	namespace:peace::base	signature:()
-queuet2	libSrc/base/queue/queue.h	/^void queuet2();$/;"	p	namespace:peace::base	signature:()
+realSend	libSrc/net/udp/udp.cpp	/^int Udp::realSend(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)$/;"	f	class:peace::net::Udp	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
+realSend	libSrc/net/udp/udp.h	/^	int realSend(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr); $/;"	p	class:peace::net::Udp	access:public	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
 recvServer	libSrc/net/udp/udp.cpp	/^void* Udp::recvServer(void *arg)$/;"	f	class:peace::net::Udp	signature:(void *arg)
 recvServer	libSrc/net/udp/udp.h	/^    static void* recvServer(void* arg);$/;"	p	class:peace::net::Udp	access:public	signature:(void* arg)
-registerTcpBusFunc	install/include/peaceInterface.h	/^int registerTcpBusFunc(void *base, const TcpBusinessDealFuncType pFunc);$/;"	p	signature:(void *base, const TcpBusinessDealFuncType pFunc)
-registerTcpBusFunc	libSrc/peaceInterface.cpp	/^int registerTcpBusFunc(void *base, const TcpBusinessDealFuncType pFunc)$/;"	f	signature:(void *base, const TcpBusinessDealFuncType pFunc)
-registerTcpBusFunc	libSrc/peaceInterface.h	/^int registerTcpBusFunc(void *base, const TcpBusinessDealFuncType pFunc);$/;"	p	signature:(void *base, const TcpBusinessDealFuncType pFunc)
 registerTcpBusinessDealFunc	libSrc/net/base/netBase.cpp	/^void NetBase::registerTcpBusinessDealFunc(const TcpBusinessDealFuncType pFunc)$/;"	f	class:peace::net::NetBase	signature:(const TcpBusinessDealFuncType pFunc)
 registerTcpBusinessDealFunc	libSrc/net/base/netBase.h	/^	void registerTcpBusinessDealFunc(const TcpBusinessDealFuncType pFunc);$/;"	p	class:peace::net::NetBase	access:public	signature:(const TcpBusinessDealFuncType pFunc)
-registerUdpBusFunc	install/include/peaceInterface.h	/^int registerUdpBusFunc(void *base, const UdpBusinessDealFuncType pFunc);$/;"	p	signature:(void *base, const UdpBusinessDealFuncType pFunc)
-registerUdpBusFunc	libSrc/peaceInterface.cpp	/^int registerUdpBusFunc(void *base, const UdpBusinessDealFuncType pFunc)$/;"	f	signature:(void *base, const UdpBusinessDealFuncType pFunc)
-registerUdpBusFunc	libSrc/peaceInterface.h	/^int registerUdpBusFunc(void *base, const UdpBusinessDealFuncType pFunc);$/;"	p	signature:(void *base, const UdpBusinessDealFuncType pFunc)
 registerUdpBusinessDealFunc	libSrc/net/base/netBase.cpp	/^void NetBase::registerUdpBusinessDealFunc(const UdpBusinessDealFuncType pFunc)$/;"	f	class:peace::net::NetBase	signature:(const UdpBusinessDealFuncType pFunc)
 registerUdpBusinessDealFunc	libSrc/net/base/netBase.h	/^	void registerUdpBusinessDealFunc(const UdpBusinessDealFuncType pFunc);	$/;"	p	class:peace::net::NetBase	access:public	signature:(const UdpBusinessDealFuncType pFunc)
 sSRC	libSrc/makefile	/^sSRC = $(shell find $(DIR) -name "*.s")$/;"	m
@@ -543,28 +616,31 @@ savePeerAddr	libSrc/net/udp/udp.cpp	/^void Udp::savePeerAddr(const char *ip, con
 savePeerAddr	libSrc/net/udp/udp.h	/^	void savePeerAddr(const char *ip, const int port);$/;"	p	class:peace::net::Udp	access:public	signature:(const char *ip, const int port)
 selfBind	libSrc/net/udp/udp.h	/^	virtual int selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize) = 0;$/;"	p	class:peace::net::Udp	access:public	signature:(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)
 selfBind	libSrc/net/udp/udpClient.cpp	/^int UdpClient::selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)$/;"	f	class:peace::net::UdpClient	signature:(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)
-selfBind	libSrc/net/udp/udpClient.h	/^	virtual int selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize);$/;"	p	class:peace::net::UdpClient	access:public	signature:(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)
 selfBind	libSrc/net/udp/udpServer.cpp	/^int UdpServer::selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)$/;"	f	class:peace::net::UdpServer	signature:(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)
-selfBind	libSrc/net/udp/udpServer.h	/^	virtual int selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize);$/;"	p	class:peace::net::UdpServer	access:public	signature:(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)
 send	libSrc/net/base/netBase.h	/^	virtual int send(const unsigned char *data, const int dataSize) = 0;$/;"	p	class:peace::net::NetBase	access:public	signature:(const unsigned char *data, const int dataSize)
 send	libSrc/net/base/netBase.h	/^	virtual int send(const unsigned char *data, const int dataSize, const int sock) = 0;$/;"	p	class:peace::net::NetBase	access:public	signature:(const unsigned char *data, const int dataSize, const int sock)
 send	libSrc/net/base/netBase.h	/^	virtual int send(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr) = 0;$/;"	p	class:peace::net::NetBase	access:public	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
+send	libSrc/net/tcp/tcp.h	/^	virtual int send(const unsigned char *data, const int dataSize);$/;"	p	class:peace::net::Tcp	access:public	signature:(const unsigned char *data, const int dataSize)
+send	libSrc/net/tcp/tcp.h	/^	virtual int send(const unsigned char *data, const int dataSize, const int sock);$/;"	p	class:peace::net::Tcp	access:public	signature:(const unsigned char *data, const int dataSize, const int sock)
 send	libSrc/net/udp/udp.cpp	/^int Udp::send(const unsigned char *data, const int dataSize)$/;"	f	class:peace::net::Udp	signature:(const unsigned char *data, const int dataSize)
 send	libSrc/net/udp/udp.cpp	/^int Udp::send(const unsigned char *data, const int dataSize, const int sock)$/;"	f	class:peace::net::Udp	signature:(const unsigned char *data, const int dataSize, const int sock)
 send	libSrc/net/udp/udp.cpp	/^int Udp::send(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)$/;"	f	class:peace::net::Udp	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
-send	libSrc/net/udp/udp.h	/^	virtual int send(const unsigned char *data, const int dataSize);$/;"	p	class:peace::net::Udp	access:public	signature:(const unsigned char *data, const int dataSize)
-send	libSrc/net/udp/udp.h	/^	virtual int send(const unsigned char *data, const int dataSize, const int sock);$/;"	p	class:peace::net::Udp	access:public	signature:(const unsigned char *data, const int dataSize, const int sock)
-send	libSrc/net/udp/udp.h	/^	virtual int send(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr);	$/;"	p	class:peace::net::Udp	access:public	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
+sendServer	libSrc/net/udp/udp.cpp	/^void* Udp::sendServer(void* arg)$/;"	f	class:peace::net::Udp	signature:(void* arg)
+sendServer	libSrc/net/udp/udp.h	/^	static void* sendServer(void*arg);$/;"	p	class:peace::net::Udp	access:public	signature:(void*arg)
+sendServerDealFunc	libSrc/net/udp/udp.cpp	/^void Udp::sendServerDealFunc(const unsigned char* data, const int dataSize, void* arg)$/;"	f	class:peace::net::Udp	signature:(const unsigned char* data, const int dataSize, void* arg)
+sendServerDealFunc	libSrc/net/udp/udp.h	/^	static void sendServerDealFunc(const unsigned char* data, const int dataSize, void* arg);$/;"	p	class:peace::net::Udp	access:public	signature:(const unsigned char* data, const int dataSize, void* arg)
 server	test/test.cpp	/^int server(void *udp, const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)$/;"	f	signature:(void *udp, const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
 setChainSize	libSrc/net/base/netBase.cpp	/^void NetBase::setChainSize(const int chainSize)$/;"	f	class:peace::net::NetBase	signature:(const int chainSize)
 setChainSize	libSrc/net/base/netBase.h	/^	void setChainSize(const int chainSize);	$/;"	p	class:peace::net::NetBase	access:public	signature:(const int chainSize)
+setUseSendThread	libSrc/net/base/netBase.cpp	/^void NetBase::setUseSendThread()$/;"	f	class:peace::net::NetBase	signature:()
+setUseSendThread	libSrc/net/base/netBase.h	/^	void setUseSendThread();$/;"	p	class:peace::net::NetBase	access:public	signature:()
 soFLAGS	libSrc/makefile	/^soFLAGS = -fPIC $/;"	m
 start	libSrc/net/base/netBase.h	/^	virtual int start(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize) = 0;$/;"	p	class:peace::net::NetBase	access:public	signature:(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)
+start	libSrc/net/tcp/tcp.h	/^	virtual int start(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize);$/;"	p	class:peace::net::Tcp	access:public	signature:(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)
 start	libSrc/net/udp/udp.cpp	/^int Udp::start(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)$/;"	f	class:peace::net::Udp	signature:(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)
-start	libSrc/net/udp/udp.h	/^	virtual int start(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize);	$/;"	p	class:peace::net::Udp	access:public	signature:(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)
 stop	libSrc/net/base/netBase.h	/^	virtual void stop() = 0;	 $/;"	p	class:peace::net::NetBase	access:public	signature:()
+stop	libSrc/net/tcp/tcp.h	/^	virtual void stop();         $/;"	p	class:peace::net::Tcp	access:public	signature:()
 stop	libSrc/net/udp/udp.cpp	/^void Udp::stop()$/;"	f	class:peace::net::Udp	signature:()
-stop	libSrc/net/udp/udp.h	/^	virtual void stop();$/;"	p	class:peace::net::Udp	access:public	signature:()
 threadClose	install/include/peaceInterface.h	/^void threadClose(pthread_t &pid);$/;"	p	signature:(pthread_t &pid)
 threadClose	libSrc/base/thread/thread.cpp	/^void threadClose(pthread_t &pid)$/;"	f	namespace:peace::base	signature:(pthread_t &pid)
 threadClose	libSrc/base/thread/thread.h	/^void threadClose(pthread_t &pid);$/;"	p	namespace:peace::base	signature:(pthread_t &pid)
@@ -599,10 +675,10 @@ udpServerCreate	libSrc/peaceInterface.h	/^void* udpServerCreate();$/;"	p	signatu
 wr	libSrc/base/file/simpleSaveFile.cpp	/^void SaveFile::wr(const void *data, const int dataSize)$/;"	f	class:peace::base::SaveFile	signature:(const void *data, const int dataSize)
 wr	libSrc/base/file/simpleSaveFile.h	/^	void wr(const void *data, const int dataSize);$/;"	p	class:peace::base::SaveFile	access:public	signature:(const void *data, const int dataSize)
 ~NetBase	libSrc/net/base/netBase.cpp	/^NetBase::~NetBase()$/;"	f	class:peace::net::NetBase	signature:()
-~NetBase	libSrc/net/base/netBase.h	/^	~NetBase();$/;"	p	class:peace::net::NetBase	access:public	signature:()
+~NetBase	libSrc/net/base/netBase.h	/^	virtual ~NetBase();$/;"	p	class:peace::net::NetBase	access:public	signature:()
 ~SaveFile	libSrc/base/file/simpleSaveFile.cpp	/^SaveFile::~SaveFile()$/;"	f	class:peace::base::SaveFile	signature:()
 ~SaveFile	libSrc/base/file/simpleSaveFile.h	/^	~SaveFile();$/;"	p	class:peace::base::SaveFile	access:public	signature:()
 ~Udp	libSrc/net/udp/udp.cpp	/^Udp::~Udp()$/;"	f	class:peace::net::Udp	signature:()
-~Udp	libSrc/net/udp/udp.h	/^	~Udp();	$/;"	p	class:peace::net::Udp	access:public	signature:()
+~Udp	libSrc/net/udp/udp.h	/^	virtual ~Udp();	$/;"	p	class:peace::net::Udp	access:public	signature:()
 ~UdpServer	libSrc/net/udp/udpServer.cpp	/^UdpServer::~UdpServer()$/;"	f	class:peace::net::UdpServer	signature:()
 ~UdpServer	libSrc/net/udp/udpServer.h	/^	~UdpServer();	$/;"	p	class:peace::net::UdpServer	access:public	signature:()

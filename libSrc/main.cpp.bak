@@ -1,0 +1,8 @@
+#include "peaceInterface.h"
+
+int main()
+{
+	
+	return 0;
+}
+
