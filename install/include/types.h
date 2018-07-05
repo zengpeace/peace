@@ -93,6 +93,8 @@ static const int gUdpClientSelfPortRangeEnd = 45000;
 
 static const int gSockBufSize = 256 * 1024;
 
+static const int gNetSendQueueBufSize = 2 * 1024 * 1024;
+
 #endif
 
 

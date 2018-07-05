@@ -13,14 +13,12 @@ int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize
 	return peace::base::queuePush(pBlockInfo, pData, iSize, pFrontData, iFrontSize);
 }
 
-template<typename T>
-int queuePopInternal(BlockInfo *pBlockInfo, T pFunc, void* arg)
+int queuePopInternal(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg)
 {
 	return peace::base::queuePopInternal(pBlockInfo, pFunc, arg);
 }
 
-template<typename T>
-int queuePop(BlockInfo *pBlockInfo, T pFunc, void* arg, bool(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout)
+int queuePop(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg, bool(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout)
 {
 	return peace::base::queuePop(pBlockInfo, pFunc, arg, loopConditionFunc, argTimeout, timeout);
 }

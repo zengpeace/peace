@@ -17,9 +17,9 @@ extern "C"
 int queueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize);
 int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize);
 template<typename T>
-int queuePopInternal(BlockInfo *pBlockInfo, const T& pFunc, void* arg);
+int queuePopInternal(BlockInfo *pBlockInfo, T pFunc, void* arg);
 template<typename T>
-int queuePop(BlockInfo *pBlockInfo, const T& pFunc, void* arg, int(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout);
+int queuePop(BlockInfo *pBlockInfo, T pFunc, void* arg, bool(*loopConditionFunc)(void *arg), void* argTimeout, const int timeout);
 
 //thread
 int threadCreate(pthread_t &pid, void*(*threadCallback)(void*), void *arg, const size_t stackSize);
@@ -49,8 +49,9 @@ void* udpServerCreate();
 void* udpClientCreate();
 void netDestroy(void *base);
 int netSetChainSize(void *base, const int size); //default value is CHAIN_SIZE
-int registerTcpBusFunc(void *base, const TcpBusinessDealFuncType pFunc);
-int registerUdpBusFunc(void *base, const UdpBusinessDealFuncType pFunc);
+void netSetUseSendThread(void *base);
+int netRegisterTcpBusFunc(void *base, const TcpBusinessDealFuncType pFunc);
+int netRegisterUdpBusFunc(void *base, const UdpBusinessDealFuncType pFunc);
 int netStart(void*base, const char *ip, const int port = 0, const int sockSendBufSize = gSockBufSize/2, const int sockRecvBufSize = gSockBufSize/2);
 int netStop(void *base);
 int netSend(void *base, const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr);

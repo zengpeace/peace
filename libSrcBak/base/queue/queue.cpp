@@ -120,8 +120,7 @@ int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize
 	return ret;
 }
 
-template<typename T>
-int queuePopInternal(BlockInfo *pBlockInfo, T pFunc, void* arg)
+int queuePopInternal(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg)
 {
 	if (pBlockInfo == NULL || pBlockInfo->m_Pop == NULL)
 	{
@@ -141,8 +140,7 @@ int queuePopInternal(BlockInfo *pBlockInfo, T pFunc, void* arg)
 	return 0;
 }
 
-template<typename T>
-int queuePop(BlockInfo *pBlockInfo, T pFunc, void* arg, bool(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)
+int queuePop(BlockInfo *pBlockInfo, void(*pFunc)(const unsigned char*, const int, void*), void* arg, bool(*loopConditionFunc)(void *arg), void* argTimeout, const int timeOut)
 {
 	struct timespec ts;
 	struct timeval  tv;

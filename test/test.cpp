@@ -29,11 +29,13 @@ int main()
 
 	
 	void* us = netCreate("udpServer");
-	registerUdpBusFunc(us, server);	
+	netRegisterUdpBusFunc(us, server);
+	netSetUseSendThread(us);	
  	netStart(us, "0.0.0.0", 9876);
 
 	void* uc = netCreate("udpClient");
-	registerUdpBusFunc(uc, client);
+	netRegisterUdpBusFunc(uc, client);
+	netSetUseSendThread(uc);
 	netStart(uc, "127.0.0.1", 9876);	
 
 	unsigned char data[] = {1, 3, 5};

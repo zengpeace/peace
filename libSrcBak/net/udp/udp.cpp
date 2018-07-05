@@ -170,8 +170,7 @@ void* Udp::sendServer(void* arg)
 
 void Udp::_sendServer()
 {
-	base::queuePop<void(*)(const unsigned char*, const int, void*)>(&_sendBlock, &Udp::sendServerDealFunc, (void*)this, Udp::isStart, (void*)NULL, 3);
-	//base::queuePop(&_sendBlock, &Udp::sendServerDealFunc, (void*)this, Udp::isStart, (void*)NULL, 3);
+	base::queuePop(&_sendBlock, Udp::sendServerDealFunc, (void*)this, Udp::isStart, (void*)NULL, 2);
 }
 
 void Udp::sendServerDealFunc(const unsigned char* data, const int dataSize, void* arg)
