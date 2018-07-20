@@ -24,7 +24,7 @@ public:
 	NetBase();
 	virtual ~NetBase();
 
-	static NetBase* create(const NetType type);	
+	static NetBase* create(const NetType type, void* arg);	
 	void setChainSize(const int chainSize);	
 	void setUseSendThread();
 
@@ -48,6 +48,8 @@ public:
 	TcpBusinessDealFuncType _tcpBusinessDealFunc;
 	UdpBusinessDealFuncType _udpBusinessDealFunc;
 	NetType _myNetType;
+
+	void *_businessDealFuncArg;
 };
 
 

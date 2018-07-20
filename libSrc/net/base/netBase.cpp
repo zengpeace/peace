@@ -23,7 +23,7 @@ NetBase::~NetBase()
 
 }
 
-NetBase* NetBase::create(const NetType type)
+NetBase* NetBase::create(const NetType type, void* arg)
 {
 	UdpServer *us = NULL;
 	UdpClient *uc = NULL;
@@ -72,6 +72,7 @@ NetBase* NetBase::create(const NetType type)
 	if(b)
 	{
 		b->_myNetType = type;
+		b->_businessDealFuncArg = arg;
 	}
 
 	return b;

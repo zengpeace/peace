@@ -110,12 +110,18 @@ void chainRelease(RecvData **ppHead)
 }
 
 
+//time
+unsigned int getCurMs()
+{
+	return peace::base::getCurMs();
+}
+
 /**************************************************/ 
 
 
 
 /************************ net *********************/ 
-void* netCreate(const char *type)
+void* netCreate(const char *type, void *arg)
 {
 	if(!type)
 	{
@@ -136,7 +142,7 @@ void* netCreate(const char *type)
 		return NULL;
 	}
 
-	peace::net::NetBase *s = peace::net::NetBase::create(t);
+	peace::net::NetBase *s = peace::net::NetBase::create(t, arg);
 	if(!s)
 	{
 		LOGD("new netBase fail ! t=%u\n", (unsigned int)t);

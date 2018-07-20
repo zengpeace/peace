@@ -1,5 +1,5 @@
-#ifndef _READ_SPLIT_BASE_H_
-#define _READ_SPLIT_BASE_H_
+#ifndef _PEACE_BASE_FILE_READ_SPLIT_READ_SPLIT_BASE_H_
+#define _PEACE_BASE_FILE_READ_SPLIT_READ_SPLIT_BASE_H_
 
 #include "types.h"
 

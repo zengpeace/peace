@@ -40,6 +40,10 @@ void chainInsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast);
 RecvData *chainGetHead(RecvData **dst);
 void chainRecovery(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain);
 void chainRelease(RecvData **ppHead);
+
+
+//time
+unsigned int getCurMs();
 /*************************************************/
 
 

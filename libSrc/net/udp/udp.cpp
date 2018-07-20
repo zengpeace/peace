@@ -230,7 +230,7 @@ void Udp::_bufServer()
 			recvDataTmp = recvDataTmp->pNext;
 			recvDataBak->pNext = NULL;
 
-			_udpBusinessDealFunc((void*)this, recvDataBak->buf, recvDataBak->count, recvDataBak->addr);
+			_udpBusinessDealFunc((void*)this, recvDataBak->buf, recvDataBak->count, recvDataBak->addr, _businessDealFuncArg);
 			base::RecoveryChain(recvDataBak, _recvDataUdp, _LockChain);
 		}
 	}
