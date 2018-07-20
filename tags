@@ -55,6 +55,9 @@ NetBase	libSrc/net/base/netBase.h	/^class NetBase$/;"	c	namespace:peace::net
 NetType	libSrc/net/base/netBase.h	/^	}NetType;$/;"	t	class:peace::net::NetBase	typeref:enum:peace::net::NetBase::__anon4	access:public
 OBJS	libSrc/makefile	/^OBJS := $(CSRC:%.c=%.o) $(CXXSRC:%.cc=%.o) $(SSRC:%.S=%.o) $(sSRC:%.s=%.o) $(CCSRC:%.cpp=%.o)$/;"	m
 OBJS	test/makefile	/^OBJS := $(CSRC:%.c=%.o) $(CXXSRC:%.cpp=%.o)$/;"	m
+ReadSplitAAC	libSrc/base/file/readSplit/readSplitAAC.h	/^class ReadSplitAAC : public ReadSplitBase $/;"	c	namespace:peace::base	inherits:ReadSplitBase
+ReadSplitBase	libSrc/base/file/readSplit/readSplitBase.h	/^class ReadSplitBase $/;"	c	namespace:peace::base
+ReadSplitH264	libSrc/base/file/readSplit/readSplitH264.h	/^class ReadSplitH264 : public ReadSplitBase$/;"	c	namespace:peace::base	inherits:ReadSplitBase
 RecoveryChain	libSrc/base/chain/chain.cpp	/^void RecoveryChain(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)$/;"	f	namespace:peace::base	signature:(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
 RecoveryChain	libSrc/base/chain/chain.h	/^	void RecoveryChain(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain);$/;"	p	namespace:peace::base	signature:(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
 RecvData	install/include/types.h	/^}RecvData;$/;"	t	typeref:struct:_recvData
@@ -125,6 +128,9 @@ _PEACE_PEACE_INTERFACE_H_	install/include/peaceInterface.h	2;"	d
 _PEACE_PEACE_INTERFACE_H_	libSrc/peaceInterface.h	2;"	d
 _PEACE_TYPES_H_	install/include/types.h	2;"	d
 _PEACE_TYPES_H_	libSrc/types.h	2;"	d
+_READ_SPLIT_AAC_H_	libSrc/base/file/readSplit/readSplitAAC.h	2;"	d
+_READ_SPLIT_BASE_H_	libSrc/base/file/readSplit/readSplitBase.h	2;"	d
+_READ_SPLIT_H264_	libSrc/base/file/readSplit/readSplitH264.h	2;"	d
 __anon1::epfd	install/include/types.h	/^	int epfd;$/;"	m	struct:__anon1	access:public
 __anon1::events	install/include/types.h	/^	struct epoll_event events[EPOLL_MAX_EVENT + 1];$/;"	m	struct:__anon1	typeref:struct:__anon1::epoll_event	access:public
 __anon1::nevents	install/include/types.h	/^	int nevents;$/;"	m	struct:__anon1	access:public
@@ -194,6 +200,12 @@ base	libSrc/base/chain/chain.cpp	/^namespace base $/;"	n	namespace:peace	file:
 base	libSrc/base/chain/chain.h	/^namespace base $/;"	n	namespace:peace
 base	libSrc/base/file/file.cpp	/^namespace base $/;"	n	namespace:peace	file:
 base	libSrc/base/file/file.h	/^namespace base $/;"	n	namespace:peace
+base	libSrc/base/file/readSplit/readSplitAAC.cpp	/^namespace base$/;"	n	namespace:peace	file:
+base	libSrc/base/file/readSplit/readSplitAAC.h	/^namespace base $/;"	n	namespace:peace
+base	libSrc/base/file/readSplit/readSplitBase.cpp	/^namespace base $/;"	n	namespace:peace	file:
+base	libSrc/base/file/readSplit/readSplitBase.h	/^namespace base $/;"	n	namespace:peace
+base	libSrc/base/file/readSplit/readSplitH264.cpp	/^namespace base $/;"	n	namespace:peace	file:
+base	libSrc/base/file/readSplit/readSplitH264.h	/^namespace base$/;"	n	namespace:peace
 base	libSrc/base/file/simpleSaveFile.cpp	/^namespace base $/;"	n	namespace:peace	file:
 base	libSrc/base/file/simpleSaveFile.h	/^namespace base $/;"	n	namespace:peace
 base	libSrc/base/queue/queue.cpp	/^namespace base $/;"	n	namespace:peace	file:
@@ -233,8 +245,12 @@ close	libSrc/base/file/simpleSaveFile.cpp	/^void SaveFile::close()$/;"	f	class:p
 close	libSrc/base/file/simpleSaveFile.h	/^	void close();$/;"	p	class:peace::base::SaveFile	access:public	signature:()
 count	install/include/types.h	/^	int count;$/;"	m	struct:_recvData	access:public
 count	libSrc/types.h	/^	int count;$/;"	m	struct:_recvData	access:public
+create	libSrc/base/file/readSplit/readSplitBase.cpp	/^ReadSplitBase* ReadSplitBase::create(const std::string &fileType)$/;"	f	class:peace::base::ReadSplitBase	signature:(const std::string &fileType)
+create	libSrc/base/file/readSplit/readSplitBase.h	/^	static ReadSplitBase* create(const std::string &fileType);$/;"	p	class:peace::base::ReadSplitBase	access:public	signature:(const std::string &fileType)
 create	libSrc/net/base/netBase.cpp	/^NetBase* NetBase::create(const NetType type)$/;"	f	class:peace::net::NetBase	signature:(const NetType type)
 create	libSrc/net/base/netBase.h	/^	static NetBase* create(const NetType type);	$/;"	p	class:peace::net::NetBase	access:public	signature:(const NetType type)
+deal	libSrc/base/file/readSplit/readSplitBase.cpp	/^void ReadSplitBase::deal(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize) const$/;"	f	class:peace::base::ReadSplitBase	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize) const
+deal	libSrc/base/file/readSplit/readSplitBase.h	/^	void deal(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize) const;	$/;"	p	class:peace::base::ReadSplitBase	access:public	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize) const
 eNetTcpClient	libSrc/net/base/netBase.h	/^		eNetTcpClient,$/;"	e	enum:peace::net::NetBase::__anon4
 eNetTcpServer	libSrc/net/base/netBase.h	/^		eNetTcpServer,$/;"	e	enum:peace::net::NetBase::__anon4
 eNetUdpClient	libSrc/net/base/netBase.h	/^		eNetUdpClient,$/;"	e	enum:peace::net::NetBase::__anon4
@@ -250,6 +266,10 @@ events	libSrc/types.h	/^	struct epoll_event events[EPOLL_MAX_EVENT + 1];$/;"	m	s
 exit	libSrc/net/base/netBase.h	/^	virtual void exit() = 0;$/;"	p	class:peace::net::NetBase	access:public	signature:()
 exit	libSrc/net/tcp/tcp.h	/^	virtual void exit();$/;"	p	class:peace::net::Tcp	access:public	signature:()
 exit	libSrc/net/udp/udp.cpp	/^void Udp::exit()$/;"	f	class:peace::net::Udp	signature:()
+fileReadSplitAAC	libSrc/base/file/file.cpp	/^void fileReadSplitAAC(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)	$/;"	f	namespace:peace::base	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)
+fileReadSplitAAC	libSrc/base/file/file.h	/^void fileReadSplitAAC(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize);	$/;"	p	namespace:peace::base	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)
+fileReadSplitH264	libSrc/base/file/file.cpp	/^void fileReadSplitH264(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)	$/;"	f	namespace:peace::base	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)
+fileReadSplitH264	libSrc/base/file/file.h	/^void fileReadSplitH264(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize);	$/;"	p	namespace:peace::base	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)
 fileSimpleClose	install/include/peaceInterface.h	/^void fileSimpleClose(const char *fileAbsName);$/;"	p	signature:(const char *fileAbsName)
 fileSimpleClose	libSrc/base/file/file.cpp	/^void fileSimpleClose(const char *fileAbsName)$/;"	f	namespace:peace::base	signature:(const char *fileAbsName)
 fileSimpleClose	libSrc/base/file/file.h	/^void fileSimpleClose(const char *fileAbsName);$/;"	p	namespace:peace::base	signature:(const char *fileAbsName)
@@ -370,6 +390,12 @@ peace	libSrc/base/chain/chain.cpp	/^namespace peace $/;"	n	file:
 peace	libSrc/base/chain/chain.h	/^namespace peace $/;"	n
 peace	libSrc/base/file/file.cpp	/^namespace peace $/;"	n	file:
 peace	libSrc/base/file/file.h	/^namespace peace $/;"	n
+peace	libSrc/base/file/readSplit/readSplitAAC.cpp	/^namespace peace $/;"	n	file:
+peace	libSrc/base/file/readSplit/readSplitAAC.h	/^namespace peace $/;"	n
+peace	libSrc/base/file/readSplit/readSplitBase.cpp	/^namespace peace $/;"	n	file:
+peace	libSrc/base/file/readSplit/readSplitBase.h	/^namespace peace$/;"	n
+peace	libSrc/base/file/readSplit/readSplitH264.cpp	/^namespace peace $/;"	n	file:
+peace	libSrc/base/file/readSplit/readSplitH264.h	/^namespace peace$/;"	n
 peace	libSrc/base/file/simpleSaveFile.cpp	/^namespace peace $/;"	n	file:
 peace	libSrc/base/file/simpleSaveFile.h	/^namespace peace $/;"	n
 peace	libSrc/base/queue/queue.cpp	/^namespace peace $/;"	n	file:
@@ -396,6 +422,12 @@ peace::base	libSrc/base/chain/chain.cpp	/^namespace base $/;"	n	namespace:peace	
 peace::base	libSrc/base/chain/chain.h	/^namespace base $/;"	n	namespace:peace
 peace::base	libSrc/base/file/file.cpp	/^namespace base $/;"	n	namespace:peace	file:
 peace::base	libSrc/base/file/file.h	/^namespace base $/;"	n	namespace:peace
+peace::base	libSrc/base/file/readSplit/readSplitAAC.cpp	/^namespace base$/;"	n	namespace:peace	file:
+peace::base	libSrc/base/file/readSplit/readSplitAAC.h	/^namespace base $/;"	n	namespace:peace
+peace::base	libSrc/base/file/readSplit/readSplitBase.cpp	/^namespace base $/;"	n	namespace:peace	file:
+peace::base	libSrc/base/file/readSplit/readSplitBase.h	/^namespace base $/;"	n	namespace:peace
+peace::base	libSrc/base/file/readSplit/readSplitH264.cpp	/^namespace base $/;"	n	namespace:peace	file:
+peace::base	libSrc/base/file/readSplit/readSplitH264.h	/^namespace base$/;"	n	namespace:peace
 peace::base	libSrc/base/file/simpleSaveFile.cpp	/^namespace base $/;"	n	namespace:peace	file:
 peace::base	libSrc/base/file/simpleSaveFile.h	/^namespace base $/;"	n	namespace:peace
 peace::base	libSrc/base/queue/queue.cpp	/^namespace base $/;"	n	namespace:peace	file:
@@ -413,6 +445,18 @@ peace::base::InsertTail	libSrc/base/chain/chain.cpp	/^void InsertTail(RecvData *
 peace::base::InsertTail	libSrc/base/chain/chain.h	/^	void InsertTail(RecvData **dst, RecvData *src);$/;"	p	namespace:peace::base	signature:(RecvData **dst, RecvData *src)
 peace::base::InsertTailEx	libSrc/base/chain/chain.cpp	/^void InsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast)$/;"	f	namespace:peace::base	signature:(RecvData **dst, RecvData *src, RecvData **dstLast)
 peace::base::InsertTailEx	libSrc/base/chain/chain.h	/^	void InsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast);$/;"	p	namespace:peace::base	signature:(RecvData **dst, RecvData *src, RecvData **dstLast)
+peace::base::ReadSplitAAC	libSrc/base/file/readSplit/readSplitAAC.h	/^class ReadSplitAAC : public ReadSplitBase $/;"	c	namespace:peace::base	inherits:ReadSplitBase
+peace::base::ReadSplitAAC::split	libSrc/base/file/readSplit/readSplitAAC.cpp	/^int ReadSplitAAC::split(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const $/;"	f	class:peace::base::ReadSplitAAC	signature:(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const
+peace::base::ReadSplitAAC::split	libSrc/base/file/readSplit/readSplitAAC.h	/^	virtual	int split(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const;$/;"	p	class:peace::base::ReadSplitAAC	access:private	signature:(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const
+peace::base::ReadSplitBase	libSrc/base/file/readSplit/readSplitBase.h	/^class ReadSplitBase $/;"	c	namespace:peace::base
+peace::base::ReadSplitBase::create	libSrc/base/file/readSplit/readSplitBase.cpp	/^ReadSplitBase* ReadSplitBase::create(const std::string &fileType)$/;"	f	class:peace::base::ReadSplitBase	signature:(const std::string &fileType)
+peace::base::ReadSplitBase::create	libSrc/base/file/readSplit/readSplitBase.h	/^	static ReadSplitBase* create(const std::string &fileType);$/;"	p	class:peace::base::ReadSplitBase	access:public	signature:(const std::string &fileType)
+peace::base::ReadSplitBase::deal	libSrc/base/file/readSplit/readSplitBase.cpp	/^void ReadSplitBase::deal(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize) const$/;"	f	class:peace::base::ReadSplitBase	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize) const
+peace::base::ReadSplitBase::deal	libSrc/base/file/readSplit/readSplitBase.h	/^	void deal(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize) const;	$/;"	p	class:peace::base::ReadSplitBase	access:public	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize) const
+peace::base::ReadSplitBase::split	libSrc/base/file/readSplit/readSplitBase.h	/^	virtual int split(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const = 0;$/;"	p	class:peace::base::ReadSplitBase	access:private	signature:(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const
+peace::base::ReadSplitH264	libSrc/base/file/readSplit/readSplitH264.h	/^class ReadSplitH264 : public ReadSplitBase$/;"	c	namespace:peace::base	inherits:ReadSplitBase
+peace::base::ReadSplitH264::split	libSrc/base/file/readSplit/readSplitH264.cpp	/^int ReadSplitH264::split(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const$/;"	f	class:peace::base::ReadSplitH264	signature:(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const
+peace::base::ReadSplitH264::split	libSrc/base/file/readSplit/readSplitH264.h	/^	virtual	int split(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const;$/;"	p	class:peace::base::ReadSplitH264	access:private	signature:(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const
 peace::base::RecoveryChain	libSrc/base/chain/chain.cpp	/^void RecoveryChain(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)$/;"	f	namespace:peace::base	signature:(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
 peace::base::RecoveryChain	libSrc/base/chain/chain.h	/^	void RecoveryChain(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain);$/;"	p	namespace:peace::base	signature:(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
 peace::base::ReleaseChain	libSrc/base/chain/chain.cpp	/^void ReleaseChain(RecvData **ppHead)$/;"	f	namespace:peace::base	signature:(RecvData **ppHead)
@@ -430,6 +474,10 @@ peace::base::SaveFile::wr	libSrc/base/file/simpleSaveFile.h	/^	void wr(const voi
 peace::base::SaveFile::~SaveFile	libSrc/base/file/simpleSaveFile.cpp	/^SaveFile::~SaveFile()$/;"	f	class:peace::base::SaveFile	signature:()
 peace::base::SaveFile::~SaveFile	libSrc/base/file/simpleSaveFile.h	/^	~SaveFile();$/;"	p	class:peace::base::SaveFile	access:public	signature:()
 peace::base::SaveFileFpMap	libSrc/base/file/simpleSaveFile.h	/^typedef std::map<const char*, void*> SaveFileFpMap;$/;"	t	namespace:peace::base
+peace::base::fileReadSplitAAC	libSrc/base/file/file.cpp	/^void fileReadSplitAAC(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)	$/;"	f	namespace:peace::base	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)
+peace::base::fileReadSplitAAC	libSrc/base/file/file.h	/^void fileReadSplitAAC(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize);	$/;"	p	namespace:peace::base	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)
+peace::base::fileReadSplitH264	libSrc/base/file/file.cpp	/^void fileReadSplitH264(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)	$/;"	f	namespace:peace::base	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)
+peace::base::fileReadSplitH264	libSrc/base/file/file.h	/^void fileReadSplitH264(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize);	$/;"	p	namespace:peace::base	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)
 peace::base::fileSimpleClose	libSrc/base/file/file.cpp	/^void fileSimpleClose(const char *fileAbsName)$/;"	f	namespace:peace::base	signature:(const char *fileAbsName)
 peace::base::fileSimpleClose	libSrc/base/file/file.h	/^void fileSimpleClose(const char *fileAbsName);$/;"	p	namespace:peace::base	signature:(const char *fileAbsName)
 peace::base::fileSimpleWrite	libSrc/base/file/file.cpp	/^void fileSimpleWrite(const unsigned char *data, const int size, const char *fileAbsName)$/;"	f	namespace:peace::base	signature:(const unsigned char *data, const int size, const char *fileAbsName)
@@ -603,6 +651,12 @@ queuePush	libSrc/base/queue/queue.cpp	/^int queuePush(BlockInfo *pBlockInfo, con
 queuePush	libSrc/base/queue/queue.h	/^int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
 queuePush	libSrc/peaceInterface.cpp	/^int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)$/;"	f	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
 queuePush	libSrc/peaceInterface.h	/^int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize);$/;"	p	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
+readSplitAAC	install/include/peaceInterface.h	/^void readSplitAAC(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf = NULL, const int readBufSize = 0);	$/;"	p	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf = NULL, const int readBufSize = 0)
+readSplitAAC	libSrc/peaceInterface.cpp	/^void readSplitAAC(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)	$/;"	f	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)
+readSplitAAC	libSrc/peaceInterface.h	/^void readSplitAAC(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf = NULL, const int readBufSize = 0);	$/;"	p	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf = NULL, const int readBufSize = 0)
+readSplitH264	install/include/peaceInterface.h	/^void readSplitH264(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf = NULL, const int readBufSize = 0);	$/;"	p	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf = NULL, const int readBufSize = 0)
+readSplitH264	libSrc/peaceInterface.cpp	/^void readSplitH264(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)	$/;"	f	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)
+readSplitH264	libSrc/peaceInterface.h	/^void readSplitH264(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf = NULL, const int readBufSize = 0);	$/;"	p	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf = NULL, const int readBufSize = 0)
 realSend	libSrc/net/udp/udp.cpp	/^int Udp::realSend(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)$/;"	f	class:peace::net::Udp	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
 realSend	libSrc/net/udp/udp.h	/^	int realSend(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr); $/;"	p	class:peace::net::Udp	access:public	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
 recvServer	libSrc/net/udp/udp.cpp	/^void* Udp::recvServer(void *arg)$/;"	f	class:peace::net::Udp	signature:(void *arg)
@@ -635,6 +689,11 @@ setChainSize	libSrc/net/base/netBase.h	/^	void setChainSize(const int chainSize)
 setUseSendThread	libSrc/net/base/netBase.cpp	/^void NetBase::setUseSendThread()$/;"	f	class:peace::net::NetBase	signature:()
 setUseSendThread	libSrc/net/base/netBase.h	/^	void setUseSendThread();$/;"	p	class:peace::net::NetBase	access:public	signature:()
 soFLAGS	libSrc/makefile	/^soFLAGS = -fPIC $/;"	m
+split	libSrc/base/file/readSplit/readSplitAAC.cpp	/^int ReadSplitAAC::split(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const $/;"	f	class:peace::base::ReadSplitAAC	signature:(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const
+split	libSrc/base/file/readSplit/readSplitAAC.h	/^	virtual	int split(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const;$/;"	p	class:peace::base::ReadSplitAAC	access:private	signature:(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const
+split	libSrc/base/file/readSplit/readSplitBase.h	/^	virtual int split(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const = 0;$/;"	p	class:peace::base::ReadSplitBase	access:private	signature:(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const
+split	libSrc/base/file/readSplit/readSplitH264.cpp	/^int ReadSplitH264::split(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const$/;"	f	class:peace::base::ReadSplitH264	signature:(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const
+split	libSrc/base/file/readSplit/readSplitH264.h	/^	virtual	int split(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const;$/;"	p	class:peace::base::ReadSplitH264	access:private	signature:(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const
 start	libSrc/net/base/netBase.h	/^	virtual int start(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize) = 0;$/;"	p	class:peace::net::NetBase	access:public	signature:(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)
 start	libSrc/net/tcp/tcp.h	/^	virtual int start(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize);$/;"	p	class:peace::net::Tcp	access:public	signature:(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)
 start	libSrc/net/udp/udp.cpp	/^int Udp::start(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)$/;"	f	class:peace::net::Udp	signature:(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)

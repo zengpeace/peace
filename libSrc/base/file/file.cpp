@@ -48,6 +48,31 @@ void fileSimpleClose(const char *fileAbsName)
 	}
 }
 
+
+void fileReadSplitH264(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)	
+{
+	ReadSplitBase *r = ReadSplitBase::create("h264");
+	if(!r)
+	{
+		LOGD("new ReadSplitH264 fail !\n");
+		return;
+	}
+
+	r->deal(fileAbsName, dealFunc, arg, readBuf, readBufSize);
+}
+
+void fileReadSplitAAC(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)	
+{
+	ReadSplitBase *r = ReadSplitBase::create("aac");
+	if(!r)
+	{
+		LOGD("new ReadSplitAAC fail !\n");
+		return;
+	}
+
+	r->deal(fileAbsName, dealFunc, arg, readBuf, readBufSize);
+}
+
 } //namespace base
 } //namespace peace
 

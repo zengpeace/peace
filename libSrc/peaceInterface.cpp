@@ -62,6 +62,16 @@ void fileSimpleClose(const char *fileAbsName)
 	return peace::base::fileSimpleClose(fileAbsName);
 }
 
+void readSplitH264(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)	
+{
+	return peace::base::fileReadSplitH264(fileAbsName, dealFunc, arg, readBuf, readBufSize);
+}
+
+void readSplitAAC(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)	
+{
+	return peace::base::fileReadSplitAAC(fileAbsName, dealFunc, arg, readBuf, readBufSize);
+}
+
 
 //chain
 RecvData *chainCreate(const int len)

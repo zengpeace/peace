@@ -4,13 +4,12 @@
 
 #include "types.h"
 
-
 /*
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-*/ 
+*/  
 
 /**************** base **************************/
 //queue
@@ -29,6 +28,9 @@ void threadClose(pthread_t &pid);
 //file 
 void fileSimpleWrite(const unsigned char *data, const int size, const char *fileAbsName);
 void fileSimpleClose(const char *fileAbsName);
+void readSplitH264(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf = NULL, const int readBufSize = 0);	
+void readSplitAAC(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf = NULL, const int readBufSize = 0);	
+
 
 //chain
 RecvData *chainCreate(const int len);
@@ -60,11 +62,9 @@ int netSend(void *base, const unsigned char *data, const int dataSize);
 /*
 #ifdef __cplusplus
 }
-#endif 
-*/ 
+#endif  
+*/
 
 #endif
-
-
 
 
