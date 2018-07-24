@@ -1,15 +1,16 @@
 EXE="./test"
 
-##PLATFORM = arm-arago-linux-gnueabi-
-CC = $(PLATFORM)gcc
-XX = $(PLATFORM)g++
+CC = gcc
+XX = g++
 
 
 CXXFLAGS = -Werror -Wall -g -Wunused -Wsign-compare -Wunreachable-code -DDEBUG_SYS_INFO 
 CFLAGS = $(CXXFLAGS) -std=gnu99 $(MACRO)
-LDFLAGS	=
+
+LDFLAGS	= -L../install/bin 
+LIBS = -lpeace 
 			
-LIBS = ../install/bin/libpeace.so
+##LIBS = ../install/bin/libpeace.so
 
 INCLUDES = -I../install/include
 

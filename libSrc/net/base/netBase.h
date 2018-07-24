@@ -40,7 +40,7 @@ public:
 	void registerTcpBusinessDealFunc(const TcpBusinessDealFuncType pFunc);
 	void registerUdpBusinessDealFunc(const UdpBusinessDealFuncType pFunc);	
 
-public:
+protected:
 	bool _alreadyStart;
 	int _chainSize;
 	bool _useSendThread;

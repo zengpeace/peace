@@ -28,8 +28,6 @@ void threadClose(pthread_t &pid);
 //file 
 void fileSimpleWrite(const unsigned char *data, const int size, const char *fileAbsName);
 void fileSimpleClose(const char *fileAbsName);
-void readSplitH264(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf = NULL, const int readBufSize = 0);	
-void readSplitAAC(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf = NULL, const int readBufSize = 0);	
 
 
 //chain
@@ -48,9 +46,9 @@ unsigned int getCurMs();
 
 
 /**************** net ****************************/ 
-void* netCreate(const char *type);
-void* udpServerCreate();
-void* udpClientCreate();
+void* netCreate(const char *type, void* arg);
+void* udpServerCreate(void* arg);
+void* udpClientCreate(void* arg);
 void netDestroy(void *base);
 int netSetChainSize(void *base, const int size); //default value is CHAIN_SIZE
 void netSetUseSendThread(void *base);
@@ -62,6 +60,12 @@ int netSend(void *base, const unsigned char *data, const int dataSize, const str
 int netSend(void *base, const unsigned char *data, const int dataSize, const int sock);
 int netSend(void *base, const unsigned char *data, const int dataSize);
 /*************************************************/ 
+
+
+/**************** media ************************/ 
+void mediaReadSplitH264(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize);
+void mediaReadSplitAAC(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize);
+/***********************************************/ 
 
 /*
 #ifdef __cplusplus

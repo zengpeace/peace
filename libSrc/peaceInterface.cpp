@@ -62,16 +62,6 @@ void fileSimpleClose(const char *fileAbsName)
 	return peace::base::fileSimpleClose(fileAbsName);
 }
 
-void readSplitH264(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)	
-{
-	return peace::base::fileReadSplitH264(fileAbsName, dealFunc, arg, readBuf, readBufSize);
-}
-
-void readSplitAAC(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)	
-{
-	return peace::base::fileReadSplitAAC(fileAbsName, dealFunc, arg, readBuf, readBufSize);
-}
-
 
 //chain
 RecvData *chainCreate(const int len)
@@ -160,14 +150,14 @@ void* netCreate(const char *type, void *arg)
 	return (void*)s;
 }
 
-void* udpServerCreate()
+void* udpServerCreate(void* arg)
 {
-	return netCreate("udpServer");
+	return netCreate("udpServer", arg);
 }
 
-void* udpClientCreate()
+void* udpClientCreate(void* arg)
 {
-	return netCreate("udpClient");
+	return netCreate("udpClient", arg);
 }
 
 void netDestroy(void *base)
@@ -293,5 +283,29 @@ int netSend(void *base, const unsigned char *data, const int dataSize)
 /***************************************************/
 
 
+/********************* media ***********************/
+void mediaReadSplitH264(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)
+{
+    peace::media::ReadSplitBase *r = peace::media::ReadSplitBase::create("h264");
+    if(!r)
+    {
+        LOGD("new ReadSplitH264 fail !\n");
+        return;
+    }
 
+    r->deal(fileAbsName, dealFunc, arg, readBuf, readBufSize);
+}
 
+void mediaReadSplitAAC(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)
+{
+    peace::media::ReadSplitBase *r = peace::media::ReadSplitBase::create("aac");
+    if(!r)
+    {
+        LOGD("new ReadSplitAAC fail !\n");
+        return;
+    }
+
+    r->deal(fileAbsName, dealFunc, arg, readBuf, readBufSize);
+}
+
+/***************************************************/

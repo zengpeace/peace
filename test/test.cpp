@@ -1,13 +1,13 @@
 #include "peaceInterface.h"
 
 
-int server(void *udp, const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
+int server(void *udp, const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr, void* arg)
 {
 	LOGD("into %s ! dataSize is %d\n", __FUNCTION__, dataSize);	
 	return netSend(udp, data, dataSize, peerAddr);
 } 
 
-int client(void *udp, const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
+int client(void *udp, const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr, void* arg)
 {
 	LOGD("into %s ! dataSize is %d\n", __FUNCTION__, dataSize);	
 	//return netSend(udp, data, dataSize, peerAddr);
@@ -28,12 +28,13 @@ int main()
 	fileSimpleClose("test2.txt");*/ 
 
 	
-	void* us = netCreate("udpServer");
+	void* us = netCreate("udpServer", NULL);
+	//void *us = udpServerCreate(NULL);
 	netRegisterUdpBusFunc(us, server);
 	netSetUseSendThread(us);	
  	netStart(us, "0.0.0.0", 9876);
 
-	void* uc = netCreate("udpClient");
+	void* uc = netCreate("udpClient", NULL);
 	netRegisterUdpBusFunc(uc, client);
 	netSetUseSendThread(uc);
 	netStart(uc, "127.0.0.1", 9876);	

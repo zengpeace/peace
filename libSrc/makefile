@@ -1,12 +1,11 @@
 TARGET_BIN = ./peace 
 TARGET_SO = ./libpeace.so
 TARGET_LIB = ./libpeace.a
-##PLATFORM = arm-arago-linux-gnueabi-
 
-CC = $(PLATFORM)gcc
-XX = $(PLATFORM)g++
-AR = $(PLATFORM)ar
-AS = $(PLATFORM)as
+CC = gcc
+XX = g++
+AR = ar
+AS = as
 
 
 MACRO = 
