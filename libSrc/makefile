@@ -60,10 +60,11 @@ $(TARGET_BIN): $(OBJS)
 
 
 install:
-	mv $(TARGET_SO) ../install/bin 
+	cp $(TARGET_SO) ../install/bin 
 	##mv $(TARGET_LIB) ../install/lib 
 	cp ./peaceInterface.h ../install/include
 	cp ./types.h ../install/include
+	mv $(TARGET_SO) /lib
 
 ##clean:
 ##	$(RM) $(TARGET_SO) $(TARGET_LIB) $(OBJS)

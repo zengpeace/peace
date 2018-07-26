@@ -55,8 +55,8 @@ void ReadSplitBase::deal(const char *fileAbsName, void(*dealFunc)(const unsigned
 		LOGD("readBufSize error ! %d\n", readBufSize);
 	}
 
-	unsigned char *buf;
-	int bufSize;
+	unsigned char *buf = NULL;
+	int bufSize = 4 * 1024 * 1024;
 	if(readBuf)
 	{
 		buf = readBuf;
@@ -64,14 +64,13 @@ void ReadSplitBase::deal(const char *fileAbsName, void(*dealFunc)(const unsigned
 	}
 	else 
 	{
-		buf = new unsigned char [bufSize];
+		buf = new unsigned char[bufSize];
 		if(!buf)
 		{
 			LOGD("new buf fail !\n");
 			fclose(fp);
 			return;
 		}
-		bufSize = 4 * 1024 * 1024;
 	}
 
 	unsigned char *pTmp, *pBuf;

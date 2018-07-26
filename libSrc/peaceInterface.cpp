@@ -84,9 +84,19 @@ void chainInsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast)
 	return peace::base::InsertTailEx(dst, src, dstLast);
 }
 
+void chainInsertTailEx(RecvData **dst, RecvData **src, RecvData **dstLast, const int srcNum)
+{
+	return peace::base::InsertTailEx(dst, src, dstLast, srcNum);
+}
+
 RecvData *chainGetHead(RecvData **dst)
 {
 	return peace::base::GetHeadChain(dst);
+}
+
+int chainGetHead(RecvData **dst, const int wantNum, RecvData **result)
+{
+	return peace::base::GetHeadChain(dst, wantNum, result);
 }
 
 void chainRecovery(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
@@ -106,12 +116,24 @@ unsigned int getCurMs()
 	return peace::base::getCurMs();
 }
 
+//memory
+
+void newPP(void** &pp, const int num, const int eachByteSize)
+{
+	return peace::base::newPP(pp, num, eachByteSize);
+}
+
+void deletePP(void** &pp, const int num)
+{
+	return peace::base::deletePP(pp, num);
+}
+
 /**************************************************/ 
 
 
 
 /************************ net *********************/ 
-void* netCreate(const char *type, void *arg)
+void* netCreate(const char *type, void *arg, const bool useMmsg)
 {
 	if(!type)
 	{
@@ -132,7 +154,7 @@ void* netCreate(const char *type, void *arg)
 		return NULL;
 	}
 
-	peace::net::NetBase *s = peace::net::NetBase::create(t, arg);
+	peace::net::NetBase *s = peace::net::NetBase::create(t, arg, useMmsg);
 	if(!s)
 	{
 		LOGD("new netBase fail ! t=%u\n", (unsigned int)t);

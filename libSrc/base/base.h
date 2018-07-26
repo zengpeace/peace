@@ -6,6 +6,7 @@
 #include "base/file/file.h"
 #include "base/chain/chain.h"
 #include "base/time/time.h"
+#include "base/memmory/memmory.h"
 
 namespace peace 
 {

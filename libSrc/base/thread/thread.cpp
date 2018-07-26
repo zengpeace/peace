@@ -8,9 +8,9 @@ namespace base
  
 int threadCreate(pthread_t &pid, void*(*thread_callback)(void*), void *arg, const size_t stack_size)
 {
-	if (!pid || stack_size < 4 * 1024)
+	if (stack_size < 4 * 1024)
 	{
-		LOGD("%s: para errror ! %ld,%p,%d\n", __FUNCTION__, pid, thread_callback, (int)stack_size);
+		LOGD("%s: para error ! %ld,%p,%d\n", __FUNCTION__, pid, thread_callback, (int)stack_size);
 		return -1;
 	}
 

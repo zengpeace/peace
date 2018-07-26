@@ -72,6 +72,24 @@ void InsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast)
 	}
 }
 
+void InsertTailEx(RecvData **dst, RecvData **src, RecvData **dstLast, const int srcNum)
+{
+	if(*dst == NULL)
+	{
+		*dst = *src;
+		*dstLast = *src;
+	}
+	else 
+	{
+		for(int i = 0; i < srcNum; i ++)
+		{
+			(*dstLast)->pNext = src[i];
+			*dstLast = src[i];	
+		}
+	}
+}
+
+
 RecvData *GetHeadChain(RecvData **dst)
 {
 	RecvData *temp = *dst;
@@ -83,6 +101,19 @@ RecvData *GetHeadChain(RecvData **dst)
 	}
 
 	return temp;
+}
+
+int GetHeadChain(RecvData **dst, const int wantNum, RecvData **result)
+{
+	int resultNum;
+	*result = *dst;
+	for(resultNum = 0; *dst; *dst = (*dst)->pNext, resultNum ++)
+	{
+		result[resultNum] = *dst;
+		result[resultNum]->pNext = NULL;
+	}
+
+	return resultNum;
 }
 
 void RecoveryChain(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)

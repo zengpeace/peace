@@ -24,7 +24,7 @@ public:
 	NetBase();
 	virtual ~NetBase();
 
-	static NetBase* create(const NetType type, void* arg);	
+	static NetBase* create(const NetType type, void* arg, const bool useMmsg);	
 	void setChainSize(const int chainSize);	
 	void setUseSendThread();
 
@@ -48,6 +48,7 @@ protected:
 	TcpBusinessDealFuncType _tcpBusinessDealFunc;
 	UdpBusinessDealFuncType _udpBusinessDealFunc;
 	NetType _myNetType;
+	bool _useMmsg;
 
 	void *_businessDealFuncArg;
 };

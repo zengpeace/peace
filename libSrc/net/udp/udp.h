@@ -12,6 +12,7 @@ namespace net
 class Udp : public NetBase  
 {
 public:
+#define UDP_REV_MMSG_NUM 3
 	Udp();
 	virtual ~Udp();	
 
@@ -41,6 +42,10 @@ public:
 
 	void savePeerAddr(const char *ip, const int port);
 
+private:
+	void recvUdpLogic();
+	void recvUdpLogicMul();
+
 public:
 	bool _isRunning;
 
@@ -61,6 +66,14 @@ private:
 
 	int _myPort;
 	struct sockaddr_in _orgPeerAddr;
+
+private:
+	int _mmsgRecvNum;
+	struct mmsghdr _msgVec[UDP_REV_MMSG_NUM];
+	
+	RecvData** _mmsgRecvBuf;
+	struct sockaddr_in _mmsg_msg_name[UDP_REV_MMSG_NUM];
+	struct iovec _mmsg_msg_iov[UDP_REV_MMSG_NUM];
 };
 
 } //namespace net 

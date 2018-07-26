@@ -16,6 +16,7 @@ NetBase::NetBase()
 	_chainSize = CHAIN_SIZE;
 	_alreadyStart = false;
 	_useSendThread = false;
+	_useMmsg = false;
 }
 
 NetBase::~NetBase()
@@ -23,7 +24,7 @@ NetBase::~NetBase()
 
 }
 
-NetBase* NetBase::create(const NetType type, void* arg)
+NetBase* NetBase::create(const NetType type, void* arg, const bool useMmsg)
 {
 	UdpServer *us = NULL;
 	UdpClient *uc = NULL;
@@ -73,6 +74,7 @@ NetBase* NetBase::create(const NetType type, void* arg)
 	{
 		b->_myNetType = type;
 		b->_businessDealFuncArg = arg;
+		b->_useMmsg = useMmsg;
 	}
 
 	return b;

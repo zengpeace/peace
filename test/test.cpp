@@ -28,13 +28,13 @@ int main()
 	fileSimpleClose("test2.txt");*/ 
 
 	
-	void* us = netCreate("udpServer", NULL);
+	void* us = netCreate("udpServer", NULL, true);
 	//void *us = udpServerCreate(NULL);
 	netRegisterUdpBusFunc(us, server);
 	netSetUseSendThread(us);	
  	netStart(us, "0.0.0.0", 9876);
 
-	void* uc = netCreate("udpClient", NULL);
+	void* uc = netCreate("udpClient", NULL, true);
 	netRegisterUdpBusFunc(uc, client);
 	netSetUseSendThread(uc);
 	netStart(uc, "127.0.0.1", 9876);	

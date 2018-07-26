@@ -18,6 +18,20 @@ Udp::Udp()
 	_bufServerPid = -1;
 	_recvServerPid = -1;
 	_sendServerTid = -1;
+
+	_mmsgRecvNum = UDP_REV_MMSG_NUM;
+	memset(_msgVec, 0, sizeof(_msgVec));
+	void** tmpRecvBuf = (void**)tmpRecvBuf;
+	base::newPP(tmpRecvBuf, _mmsgRecvNum);
+
+	for(int i = 0; i < _mmsgRecvNum; i ++)
+	{
+		_mmsg_msg_iov[i].iov_base = (void*)_mmsgRecvBuf[i];
+		_mmsg_msg_iov[i].iov_len = sizeof(RecvData);
+		LOGD("deal %d\n", i);
+		_msgVec[i].msg_hdr.msg_name = (void*)_mmsg_msg_name;
+		_msgVec[i].msg_hdr.msg_iov = &_mmsg_msg_iov[i];
+	}
 }
 
 Udp::~Udp()
@@ -246,9 +260,7 @@ void* Udp::recvServer(void *arg)
 void Udp::_recvServer()
 {
 	int ret;
-	socklen_t svrlen = sizeof(struct sockaddr_in);
 	Epollop epInfo;
-	RecvData *recvDataTmp = NULL;
 	epInfo.epfd = epoll_create(EPOLL_MAX_EVENT);
 	if (epInfo.epfd <= 0)
 	{
@@ -290,36 +302,14 @@ void Udp::_recvServer()
 			{
 				for (;;)
 				{
-					if (recvDataTmp == NULL)
+					if(_useMmsg)
 					{
-						pthread_mutex_lock(&(_LockChain));
-						if (_recvDataUdp)
-						{
-							recvDataTmp = base::GetHeadChain(&_recvDataUdp);
-						}
-						pthread_mutex_unlock(&(_LockChain));
+						this->recvUdpLogicMul();
 					}
-
-					if (recvDataTmp == NULL)
+					else 
 					{
-						//LOGD("chain memory is not enough !{%s(%d)}\n", __FILE__, __LINE__);
-						continue;
+						this->recvUdpLogic();
 					}
-
-					recvDataTmp->pNext = NULL;
-					svrlen = sizeof(struct sockaddr_in);
-					recvDataTmp->count = recvfrom(_sock, recvDataTmp->buf, UDP_BUF_SIZE, 0, (struct sockaddr*)&(recvDataTmp->addr), &svrlen);
-					if (recvDataTmp->count < 1)
-					{
-						//LOGD("count<1!count=%d,revents=%u,errno=%d,error:%s\n", recvDataTmp->count, (unsigned int)epev->events, errno, strerror(errno));
-						break;
-					}
-
-					pthread_mutex_lock(&(_LockData));
-					base::InsertTailEx(&_recvDataBuf, recvDataTmp, &_recvDataBufLast);
-					pthread_mutex_unlock(&(_LockData));
-
-					recvDataTmp = NULL;
 				}
 				
 				sem_post(&(_taskSem));
@@ -337,6 +327,64 @@ void Udp::_recvServer()
 	}
 }
 
+void Udp::recvUdpLogic()
+{
+	socklen_t svrlen = sizeof(struct sockaddr_in);
+	RecvData *recvDataTmp = NULL;
+	pthread_mutex_lock(&(_LockChain));
+	if (_recvDataUdp)
+	{
+		recvDataTmp = base::GetHeadChain(&_recvDataUdp);
+	}
+	pthread_mutex_unlock(&(_LockChain));
+
+	if (recvDataTmp == NULL)
+	{
+		//LOGD("chain memory is not enough !{%s(%d)}\n", __FILE__, __LINE__);
+		return;
+	}
+
+	recvDataTmp->pNext = NULL;
+	recvDataTmp->count = recvfrom(_sock, recvDataTmp->buf, UDP_BUF_SIZE, 0, (struct sockaddr*)&(recvDataTmp->addr), &svrlen);
+	if (recvDataTmp->count < 1)
+	{
+		//LOGD("count<1!count=%d,revents=%u,errno=%d,error:%s\n", recvDataTmp->count, (unsigned int)epev->events, errno, strerror(errno));
+		return;
+	}
+
+	pthread_mutex_lock(&(_LockData));
+	base::InsertTailEx(&_recvDataBuf, recvDataTmp, &_recvDataBufLast);
+	pthread_mutex_unlock(&(_LockData));
+
+	recvDataTmp = NULL;
+}
+
+void Udp::recvUdpLogicMul()
+{
+	int getnum = 0;
+	pthread_mutex_lock(&(_LockChain));
+	getnum = base::GetHeadChain(&_recvDataUdp, _mmsgRecvNum, _mmsgRecvBuf);
+	pthread_mutex_unlock(&(_LockChain));
+
+	if (getnum != _mmsgRecvNum)
+	{
+		LOGD("chain memory is not enough ! %d {%s(%d)}\n", getnum, __FILE__, __LINE__);
+		return;
+	}
+
+	timespec tv = {2, 0};
+	int n = recvmmsg(_sock, _msgVec, _mmsgRecvNum, 0, &tv);
+	if(n <= 0)
+	{
+		LOGD("recvmmsg fail ! %d\n", n);
+		return;
+	}
+
+	pthread_mutex_lock(&(_LockData));
+	base::InsertTailEx(&_recvDataBuf, _mmsgRecvBuf, &_recvDataBufLast, _mmsgRecvNum);
+	pthread_mutex_unlock(&(_LockData));
+
+}
 
 int Udp::realSend(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
 {

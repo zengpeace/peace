@@ -35,18 +35,25 @@ RecvData *chainCreate(const int len);
 void chainInsertHead(RecvData **dst, RecvData *src);
 void chainInsertTail(RecvData **dst, RecvData *src);
 void chainInsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast);
+void chainInsertTailEx(RecvData **dst, RecvData **src, RecvData **dstLast, const int srcNum);
 RecvData *chainGetHead(RecvData **dst);
+int chainGetHead(RecvData **dst, const int wantNum, RecvData **result);
 void chainRecovery(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain);
 void chainRelease(RecvData **ppHead);
 
 
 //time
 unsigned int getCurMs();
+
+
+//memmory
+void newPP(void** &pp, const int num, const int eachByteSize = 0);
+void deletePP(void** &pp, const int num = 0);
 /*************************************************/
 
 
 /**************** net ****************************/ 
-void* netCreate(const char *type, void* arg);
+void* netCreate(const char *type, void* arg, const bool useMmsg = false);
 void* udpServerCreate(void* arg);
 void* udpClientCreate(void* arg);
 void netDestroy(void *base);
