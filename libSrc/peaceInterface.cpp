@@ -99,7 +99,7 @@ int chainGetHead(RecvData **dst, const int wantNum, RecvData **result)
 	return peace::base::GetHeadChain(dst, wantNum, result);
 }
 
-void chainRecovery(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
+void chainRecovery(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain)
 {
 	return peace::base::RecoveryChain(src, recvDataUdp, LockChain);
 }
@@ -118,9 +118,9 @@ unsigned int getCurMs()
 
 //memory
 
-void newPP(void** &pp, const int num, const int eachByteSize)
+void** newPP(const int num, const int eachByteSize)
 {
-	return peace::base::newPP(pp, num, eachByteSize);
+	return peace::base::newPP(num, eachByteSize);
 }
 
 void deletePP(void** &pp, const int num)

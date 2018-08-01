@@ -74,7 +74,7 @@ void ReadSplitBase::deal(const char *fileAbsName, void(*dealFunc)(const unsigned
 	}
 
 	unsigned char *pTmp, *pBuf;
-	int readBytes, restSize;
+	int readBytes, restSize = 0;
 	int ret, size;
 	bool notFinishRead = true;
 	while(notFinishRead)

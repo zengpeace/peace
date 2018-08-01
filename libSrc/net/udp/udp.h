@@ -43,8 +43,9 @@ public:
 	void savePeerAddr(const char *ip, const int port);
 
 private:
-	void recvUdpLogic();
-	void recvUdpLogicMul();
+	bool recvUdpLogic();
+	bool recvUdpLogicMul();
+	void initMmsgPara();
 
 public:
 	bool _isRunning;

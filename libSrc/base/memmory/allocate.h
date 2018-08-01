@@ -8,7 +8,7 @@ namespace peace
 namespace base 
 {
 	
-void newPP(void** &PP, const int num, const int eachByteSize = 0);
+void** newPP(const int num, const int eachByteSize = 0);
 void deletePP(void** &PP, const int num = 0);
 
 }

@@ -21,17 +21,10 @@ Udp::Udp()
 
 	_mmsgRecvNum = UDP_REV_MMSG_NUM;
 	memset(_msgVec, 0, sizeof(_msgVec));
-	void** tmpRecvBuf = (void**)tmpRecvBuf;
-	base::newPP(tmpRecvBuf, _mmsgRecvNum);
+	
+	void** tmpRecvBuf = base::newPP(_mmsgRecvNum);
+	_mmsgRecvBuf = (RecvData**)tmpRecvBuf;	
 
-	for(int i = 0; i < _mmsgRecvNum; i ++)
-	{
-		_mmsg_msg_iov[i].iov_base = (void*)_mmsgRecvBuf[i];
-		_mmsg_msg_iov[i].iov_len = sizeof(RecvData);
-		LOGD("deal %d\n", i);
-		_msgVec[i].msg_hdr.msg_name = (void*)_mmsg_msg_name;
-		_msgVec[i].msg_hdr.msg_iov = &_mmsg_msg_iov[i];
-	}
 }
 
 Udp::~Udp()
@@ -39,14 +32,30 @@ Udp::~Udp()
 
 }
 
+void Udp::initMmsgPara()
+{
+	for(int i = 0; i < _mmsgRecvNum; i ++)
+	{
+		_mmsg_msg_iov[i].iov_base = _mmsgRecvBuf[i]->buf;
+		_mmsg_msg_iov[i].iov_len = UDP_BUF_SIZE;
+		_msgVec[i].msg_hdr.msg_name = &(_mmsgRecvBuf[i]->addr);
+		_msgVec[i].msg_hdr.msg_namelen = sizeof(struct sockaddr_in);
+		_msgVec[i].msg_hdr.msg_iov = &_mmsg_msg_iov[i];
+		_msgVec[i].msg_hdr.msg_iovlen = 1;
+	}
+}
+
 int Udp::init()
 {
+	_chainSize = 7;
 	_recvDataUdp = base::CreateChain(_chainSize);
 	if(!_recvDataUdp) 
 	{
 		LOGD("CreateChain fail !\n");
 		return -2;
 	}	
+
+	LOGD("%s: %p,%p, %p\n", __FUNCTION__, _recvDataUdp, _mmsgRecvBuf[0], _mmsgRecvBuf);
 
 	if (!_lockSemFinishInit)
 	{
@@ -227,10 +236,12 @@ void Udp::_bufServer()
 	{
 		gettimeofday(&tv, NULL);
 
-		ts.tv_sec = tv.tv_sec + 1;
+		ts.tv_sec = tv.tv_sec + 2;
 		ts.tv_nsec = tv.tv_usec * 1000;
 
 		if (sem_timedwait(&(_taskSem), &ts) != 0)	continue;
+
+		LOGD("%s: recv _taskSem\n", __FUNCTION__);
 
 		pthread_mutex_lock(&(_LockData));
 		recvDataTmp = _recvDataBuf;
@@ -238,6 +249,7 @@ void Udp::_bufServer()
 		_recvDataBufLast = NULL;
 		pthread_mutex_unlock(&(_LockData));
 
+		LOGD("%s: prepare to deal data ! %p\n", __FUNCTION__, recvDataTmp);
 		while (recvDataTmp != NULL)
 		{
 			recvDataBak = recvDataTmp;
@@ -245,7 +257,7 @@ void Udp::_bufServer()
 			recvDataBak->pNext = NULL;
 
 			_udpBusinessDealFunc((void*)this, recvDataBak->buf, recvDataBak->count, recvDataBak->addr, _businessDealFuncArg);
-			base::RecoveryChain(recvDataBak, _recvDataUdp, _LockChain);
+			base::RecoveryChain(recvDataBak, &_recvDataUdp, &_LockChain);
 		}
 	}
 }
@@ -276,8 +288,9 @@ void Udp::_recvServer()
 		LOGD("epoll_ctl fail ! errno=%d, %s\n", errno, strerror(errno));
 	}
 
+	bool needBreak;
 	int nfds, epfd = epInfo.epfd;
-	int epollTimeout = 1;
+	int epollTimeout = 5;
 	struct epoll_event *allEpev = epInfo.events;
 	struct epoll_event *epev = &allEpev[0];
 	while (_isRunning)
@@ -300,18 +313,22 @@ void Udp::_recvServer()
 			epev = &(allEpev[i]);
 			if((epev->events & EPOLLIN) && epev->data.fd == _sock)
 			{
-				for (;;)
+				needBreak = false;
+				while(!needBreak)
 				{
 					if(_useMmsg)
 					{
-						this->recvUdpLogicMul();
+						needBreak = this->recvUdpLogicMul();
 					}
 					else 
 					{
-						this->recvUdpLogic();
+						needBreak = this->recvUdpLogic();
 					}
+
+					LOGD("needBreak = %s\n", needBreak?"true":"false");
 				}
-				
+			
+				LOGD("%d:prepare to sem post !\n", __LINE__);	
 				sem_post(&(_taskSem));
 			}
 			else
@@ -327,7 +344,7 @@ void Udp::_recvServer()
 	}
 }
 
-void Udp::recvUdpLogic()
+bool Udp::recvUdpLogic()
 {
 	socklen_t svrlen = sizeof(struct sockaddr_in);
 	RecvData *recvDataTmp = NULL;
@@ -341,49 +358,87 @@ void Udp::recvUdpLogic()
 	if (recvDataTmp == NULL)
 	{
 		//LOGD("chain memory is not enough !{%s(%d)}\n", __FILE__, __LINE__);
-		return;
+		return true;
 	}
 
+	bool rret = false;
 	recvDataTmp->pNext = NULL;
 	recvDataTmp->count = recvfrom(_sock, recvDataTmp->buf, UDP_BUF_SIZE, 0, (struct sockaddr*)&(recvDataTmp->addr), &svrlen);
 	if (recvDataTmp->count < 1)
 	{
 		//LOGD("count<1!count=%d,revents=%u,errno=%d,error:%s\n", recvDataTmp->count, (unsigned int)epev->events, errno, strerror(errno));
-		return;
+		//return;
+		rret = true;
+
+		base::RecoveryChain(recvDataTmp, &_recvDataUdp, &_LockChain);
+	}
+	else 
+	{
+		pthread_mutex_lock(&(_LockData));
+		base::InsertTailEx(&_recvDataBuf, recvDataTmp, &_recvDataBufLast);
+		pthread_mutex_unlock(&(_LockData));
 	}
 
-	pthread_mutex_lock(&(_LockData));
-	base::InsertTailEx(&_recvDataBuf, recvDataTmp, &_recvDataBufLast);
-	pthread_mutex_unlock(&(_LockData));
-
 	recvDataTmp = NULL;
+	return rret;
 }
 
-void Udp::recvUdpLogicMul()
+bool Udp::recvUdpLogicMul()
 {
 	int getnum = 0;
 	pthread_mutex_lock(&(_LockChain));
+	LOGD("%p, %d, %p\n", _recvDataUdp, _mmsgRecvNum, *_mmsgRecvBuf);
 	getnum = base::GetHeadChain(&_recvDataUdp, _mmsgRecvNum, _mmsgRecvBuf);
 	pthread_mutex_unlock(&(_LockChain));
 
 	if (getnum != _mmsgRecvNum)
 	{
 		LOGD("chain memory is not enough ! %d {%s(%d)}\n", getnum, __FILE__, __LINE__);
-		return;
+		sleep(1);
+		return true;
 	}
 
-	timespec tv = {2, 0};
-	int n = recvmmsg(_sock, _msgVec, _mmsgRecvNum, 0, &tv);
-	if(n <= 0)
+	int n = 0;
+	initMmsgPara();
+	timespec tv = {1, 0};
+	n = recvmmsg(_sock, _msgVec, _mmsgRecvNum, 0, &tv);
+	LOGD("recvmmsg number is %d\n", n);
+	for(int i = 0; i < n; i ++)
 	{
-		LOGD("recvmmsg fail ! %d\n", n);
-		return;
+		_mmsgRecvBuf[i]->count = _msgVec[i].msg_len;
+		LOGD("set count %d:%d\n", i, _mmsgRecvBuf[i]->count);
+	}
+	if(n < _mmsgRecvNum)
+	{
+		if(n < 0)
+		{
+			n = 0;
+		}
+
+
+		pthread_mutex_lock(&(_LockData));
+		LOGD("insertTailEx work list\n");
+		base::InsertTailEx(&_recvDataBuf, _mmsgRecvBuf, &_recvDataBufLast, n);
+		pthread_mutex_unlock(&(_LockData));
+
+		pthread_mutex_lock(&_LockChain);
+		for(int i = n; i < _mmsgRecvNum && _mmsgRecvBuf[i]; i ++)
+		{
+			LOGD("insertHead recv list ! %d\n", i);
+			base::InsertHead(&_recvDataUdp, _mmsgRecvBuf[i]);
+			_mmsgRecvBuf[i] = NULL;
+		}
+		pthread_mutex_unlock(&_LockChain);
+	}
+	else 
+	{
+		LOGD("insertTailEx work list");
+		pthread_mutex_lock(&(_LockData));
+		base::InsertTailEx(&_recvDataBuf, _mmsgRecvBuf, &_recvDataBufLast, _mmsgRecvNum);
+		pthread_mutex_unlock(&(_LockData));
 	}
 
-	pthread_mutex_lock(&(_LockData));
-	base::InsertTailEx(&_recvDataBuf, _mmsgRecvBuf, &_recvDataBufLast, _mmsgRecvNum);
-	pthread_mutex_unlock(&(_LockData));
-
+	return true;
 }
 
 int Udp::realSend(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)

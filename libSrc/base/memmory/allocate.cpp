@@ -5,19 +5,19 @@ namespace peace
 namespace base
 {
 
-void newPP(void** &pp, const int num, const int eachByteSize)
+void** newPP(const int num, const int eachByteSize)
 {
 	if(num <= 0)
 	{
 		LOGD("%s:num error ! %d\n", __FUNCTION__, num);
-		return;
+		return NULL;
 	}	
 
-	pp = new void*[num];
+	void** pp = new void*[num];
 	if(!pp)
 	{
 		LOGD("new first fail !\n");
-		return;
+		return NULL;
 	}
 
 	unsigned char *p;
@@ -31,7 +31,7 @@ void newPP(void** &pp, const int num, const int eachByteSize)
 				LOGD("new unsigned char %d fail !\n", eachByteSize);
 				delete[] pp;
 				pp = NULL;
-				return;
+				break;
 			}
 
 			pp[i] = (void*)p;
@@ -41,6 +41,8 @@ void newPP(void** &pp, const int num, const int eachByteSize)
 			pp[i] = NULL;
 		}
 	}
+
+	return pp;
 }
 
 void deletePP(void** &pp, const int num)

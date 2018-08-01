@@ -8,6 +8,7 @@ namespace base
 
 RecvData *CreateChain(const int len)
 {
+	LOGD("prepare to create %d chain !\n", len);
 	if (len < 1)
 	{
 		LOGD("param error ! length = %d\n", len);
@@ -74,19 +75,42 @@ void InsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast)
 
 void InsertTailEx(RecvData **dst, RecvData **src, RecvData **dstLast, const int srcNum)
 {
+	/*char logBuf[256];
+	int curSize, tmpSize;
+	RecvData *tmp;
+	curSize = snprintf(logBuf, 256, "%s begin:", __FUNCTION__);
+	for(tmp = *dst; tmp; tmp = tmp->pNext, curSize += tmpSize)
+	{
+		tmpSize = snprintf(&logBuf[curSize], 256, "%p ", tmp);
+	}
+	snprintf(&logBuf[curSize], 256, "\n");
+	LOGD("%s", logBuf);*/ 
+	
+	int srcStart = 0;
 	if(*dst == NULL)
 	{
 		*dst = *src;
+		(*dst)->pNext = NULL;
 		*dstLast = *src;
+		srcStart ++;
+		
 	}
-	else 
+	
+	for(int i = srcStart; i < srcNum; i ++)
 	{
-		for(int i = 0; i < srcNum; i ++)
-		{
-			(*dstLast)->pNext = src[i];
-			*dstLast = src[i];	
-		}
+		(*dstLast)->pNext = src[i];
+		*dstLast = (*dstLast)->pNext;
 	}
+
+	(*dstLast)->pNext = NULL;
+
+	/*curSize = snprintf(logBuf, 256, "%s end:", __FUNCTION__);
+	for(tmp = *dst; tmp; tmp = tmp->pNext, curSize += tmpSize)
+	{
+		tmpSize = snprintf(&logBuf[curSize], 256, "%p ", tmp);
+	}
+	snprintf(&logBuf[curSize], 256, "\n");
+	LOGD("%s", logBuf);*/ 
 }
 
 
@@ -105,25 +129,46 @@ RecvData *GetHeadChain(RecvData **dst)
 
 int GetHeadChain(RecvData **dst, const int wantNum, RecvData **result)
 {
-	int resultNum;
-	*result = *dst;
-	for(resultNum = 0; *dst; *dst = (*dst)->pNext, resultNum ++)
+	/*char logBuf[256];
+	int curSize, tmpSize;
+	RecvData *tmp;
+	curSize = snprintf(logBuf, 256, "%s begin:", __FUNCTION__);
+	for(tmp = *dst; tmp; tmp = tmp->pNext, curSize += tmpSize)
 	{
+		tmpSize = snprintf(&logBuf[curSize], 256, "%p ", tmp);
+	}
+	snprintf(&logBuf[curSize], 256, "\n");
+	LOGD("%s", logBuf);*/ 
+
+	int resultNum;
+	for(resultNum = 0; resultNum < wantNum && (*dst); resultNum ++)
+	{
+		//LOGD("%d: %p,%p, %p,%p\n", resultNum, *dst, result[resultNum], dst, result);
 		result[resultNum] = *dst;
+		*dst = (*dst)->pNext;
 		result[resultNum]->pNext = NULL;
 	}
+
+	/*curSize = snprintf(logBuf, 256, "%s end:", __FUNCTION__);
+	for(tmp = *dst; tmp; tmp = tmp->pNext, curSize += tmpSize)
+	{
+		tmpSize = snprintf(&logBuf[curSize], 256, "%p ", tmp);
+	}
+	snprintf(&logBuf[curSize], 256, "\n");
+	LOGD("%s", logBuf);*/ 
 
 	return resultNum;
 }
 
-void RecoveryChain(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
+void RecoveryChain(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain)
 {
-	pthread_mutex_lock(&(LockChain));
+	//LOGD("%s: %p,%p\n", __FUNCTION__, src, recvDataUdp);
+	pthread_mutex_lock(LockChain);
 	if (recvDataUdp)
 	{
-		InsertHead(&recvDataUdp, src);
+		InsertHead(recvDataUdp, src);
 	}
-	pthread_mutex_unlock(&(LockChain));
+	pthread_mutex_unlock(LockChain);
 }
 
 void ReleaseChain(RecvData **ppHead)
