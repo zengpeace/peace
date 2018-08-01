@@ -271,7 +271,7 @@ void Udp::_bufServer()
 
 		if (sem_timedwait(&(_taskSem), &ts) != 0)	continue;
 
-		LOGD("%s: recv _taskSem\n", __FUNCTION__);
+		//LOGD("%s: recv _taskSem\n", __FUNCTION__);
 
 		pthread_mutex_lock(&(_LockData));
 		recvDataTmp = _recvDataBuf;
@@ -355,10 +355,10 @@ void Udp::_recvServer()
 						needBreak = this->recvUdpLogic();
 					}
 
-					LOGD("needBreak = %s\n", needBreak?"true":"false");
+					//LOGD("needBreak = %s\n", needBreak?"true":"false");
 				}
 			
-				LOGD("%d:prepare to sem post !\n", __LINE__);	
+				//LOGD("%d:prepare to sem post !\n", __LINE__);	
 				sem_post(&(_taskSem));
 			}
 			else
@@ -447,14 +447,14 @@ bool Udp::recvUdpLogicMul()
 
 
 		pthread_mutex_lock(&(_LockData));
-		LOGD("insertTailEx work list\n");
+		//LOGD("insertTailEx work list\n");
 		base::InsertTailEx(&_recvDataBuf, _mmsgRecvBuf, &_recvDataBufLast, n);
 		pthread_mutex_unlock(&(_LockData));
 
 		pthread_mutex_lock(&_LockChain);
 		for(int i = n; i < _mmsgRecvNum && _mmsgRecvBuf[i]; i ++)
 		{
-			LOGD("insertHead recv list ! %d\n", i);
+			//LOGD("insertHead recv list ! %d\n", i);
 			base::InsertHead(&_recvDataUdp, _mmsgRecvBuf[i]);
 			_mmsgRecvBuf[i] = NULL;
 		}
@@ -462,7 +462,7 @@ bool Udp::recvUdpLogicMul()
 	}
 	else 
 	{
-		LOGD("insertTailEx work list");
+		//LOGD("insertTailEx work list");
 		pthread_mutex_lock(&(_LockData));
 		base::InsertTailEx(&_recvDataBuf, _mmsgRecvBuf, &_recvDataBufLast, _mmsgRecvNum);
 		pthread_mutex_unlock(&(_LockData));

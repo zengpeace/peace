@@ -47,7 +47,7 @@ unsigned int getCurMs();
 
 
 //memmory
-void newPP(void** &pp, const int num, const int eachByteSize = 0);
+void** newPP(const int num, const int eachByteSize = 0);
 void deletePP(void** &pp, const int num = 0);
 /*************************************************/
 

@@ -14,7 +14,7 @@ class Udp : public NetBase
 public:
 #define UDP_REV_MMSG_NUM 4
 #define UDP_REV_MMSG_IOV_NUM 5
-#define UDP_SND_MMSG_NUM 2
+#define UDP_SND_MMSG_NUM 1
 #define UDP_SND_MMSG_IOV_NUM 3
 	Udp();
 	virtual ~Udp();	

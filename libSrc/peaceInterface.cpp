@@ -331,3 +331,54 @@ void mediaReadSplitAAC(const char *fileAbsName, void(*dealFunc)(const unsigned c
 }
 
 /***************************************************/
+
+
+/********************* other ***********************/
+void* mmsgRecvInit(const char *ip, const int port)
+{
+	peace::other::MmsgRecv *r = new peace::other::MmsgRecv();
+	if(!r)
+	{
+		LOGD("new %s fail !\n", __FUNCTION__);
+		return NULL;
+	}
+
+	int ret = r->init(ip, port);
+	if(ret < 0)
+	{
+		LOGD("r->init fail ! %d\n", ret);
+		return NULL;
+	} 
+
+	return (void*)r;
+}
+
+int mmsgRecvDo(void* recv)
+{
+	peace::other::MmsgRecv *r = (peace::other::MmsgRecv*)recv;
+	if(!r)
+	{
+		LOGD("%s: para NULL !\n", __FUNCTION__);
+		return -1;
+	} 
+
+	return r->recv();
+}
+
+void mmsgRecvExit(void *recv)
+{
+	peace::other::MmsgRecv *r = (peace::other::MmsgRecv*)recv;
+	if(!r)
+	{
+		LOGD("%s: para NULL !\n", __FUNCTION__);
+		return;
+	} 
+
+	r->exit();
+	delete r;	
+}
+
+/***************************************************/
+
+
+

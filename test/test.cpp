@@ -34,13 +34,13 @@ int main()
 	netSetUseSendThread(us);	
  	netStart(us, "0.0.0.0", 9876);
 
-	void* uc = netCreate("udpClient", NULL, true);
+	/*void* uc = netCreate("udpClient", NULL, true);
 	netRegisterUdpBusFunc(uc, client);
 	netSetUseSendThread(uc);
 	netStart(uc, "127.0.0.1", 9876);	
 
 	unsigned char data[] = {1, 3, 5};
-	netSend(uc, data, sizeof(data)/sizeof(unsigned char));	
+	netSend(uc, data, sizeof(data)/sizeof(unsigned char));	*/
 
 	for(;;)
 	{

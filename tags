@@ -62,8 +62,8 @@ OBJS	test/makefile	/^OBJS := $(CSRC:%.c=%.o) $(CXXSRC:%.cpp=%.o)$/;"	m
 ReadSplitAAC	libSrc/media/mix/readSplit/readSplitAAC.h	/^class ReadSplitAAC : public ReadSplitBase $/;"	c	namespace:peace::media	inherits:ReadSplitBase
 ReadSplitBase	libSrc/media/mix/readSplit/readSplitBase.h	/^class ReadSplitBase $/;"	c	namespace:peace::media
 ReadSplitH264	libSrc/media/mix/readSplit/readSplitH264.h	/^class ReadSplitH264 : public ReadSplitBase$/;"	c	namespace:peace::media	inherits:ReadSplitBase
-RecoveryChain	libSrc/base/chain/chain.cpp	/^void RecoveryChain(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)$/;"	f	namespace:peace::base	signature:(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
-RecoveryChain	libSrc/base/chain/chain.h	/^	void RecoveryChain(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain);$/;"	p	namespace:peace::base	signature:(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
+RecoveryChain	libSrc/base/chain/chain.cpp	/^void RecoveryChain(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain)$/;"	f	namespace:peace::base	signature:(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain)
+RecoveryChain	libSrc/base/chain/chain.h	/^	void RecoveryChain(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain);$/;"	p	namespace:peace::base	signature:(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain)
 RecvData	install/include/types.h	/^}RecvData;$/;"	t	typeref:struct:_recvData
 RecvData	libSrc/types.h	/^}RecvData;$/;"	t	typeref:struct:_recvData
 ReleaseChain	libSrc/base/chain/chain.cpp	/^void ReleaseChain(RecvData **ppHead)$/;"	f	namespace:peace::base	signature:(RecvData **ppHead)
@@ -121,6 +121,8 @@ _PEACE_BASE_FILE_READ_SPLIT_READ_SPLIT_AAC_H_	libSrc/media/mix/readSplit/readSpl
 _PEACE_BASE_FILE_READ_SPLIT_READ_SPLIT_BASE_H_	libSrc/media/mix/readSplit/readSplitBase.h	2;"	d
 _PEACE_BASE_FILE_READ_SPLIT_READ_SPLIT_H264_H_	libSrc/media/mix/readSplit/readSplitH264.h	2;"	d
 _PEACE_BASE_FILE_SIMPLE_SAVE_FILE_H_	libSrc/base/file/simpleSaveFile.h	2;"	d
+_PEACE_BASE_MEMMORY_MEMMORY_H_	libSrc/base/memmory/memmory.h	2;"	d
+_PEACE_BASE_MEMORY_ALLOCATE_H_	libSrc/base/memmory/allocate.h	2;"	d
 _PEACE_BASE_QUEUE_QUEUE_H_	libSrc/base/queue/queue.h	2;"	d
 _PEACE_BASE_THREAD_THREAD_H_	libSrc/base/thread/thread.h	2;"	d
 _PEACE_BASE_TIME_TIME_H_	libSrc/base/time/time.h	2;"	d
@@ -172,7 +174,7 @@ _chainSize	libSrc/net/base/netBase.h	/^	int _chainSize;$/;"	m	class:peace::net::
 _fp	libSrc/base/file/simpleSaveFile.h	/^	FILE * _fp;$/;"	m	class:peace::base::SaveFile	access:private
 _isRunning	libSrc/net/udp/udp.h	/^	bool _isRunning;$/;"	m	class:peace::net::Udp	access:public
 _lockSemFinishInit	libSrc/net/udp/udp.h	/^	bool _lockSemFinishInit;$/;"	m	class:peace::net::Udp	access:private
-_mmsgRecvBuf	libSrc/net/udp/udp.h	/^	RecvData* _mmsgRecvBuf[UDP_REV_MMSG_NUM];$/;"	m	class:peace::net::Udp	access:private
+_mmsgRecvBuf	libSrc/net/udp/udp.h	/^	RecvData** _mmsgRecvBuf;$/;"	m	class:peace::net::Udp	access:private
 _mmsgRecvNum	libSrc/net/udp/udp.h	/^	int _mmsgRecvNum;$/;"	m	class:peace::net::Udp	access:private
 _mmsg_msg_iov	libSrc/net/udp/udp.h	/^	struct iovec _mmsg_msg_iov[UDP_REV_MMSG_NUM];$/;"	m	class:peace::net::Udp	typeref:struct:peace::net::Udp::iovec	access:private
 _mmsg_msg_name	libSrc/net/udp/udp.h	/^	struct sockaddr_in _mmsg_msg_name[UDP_REV_MMSG_NUM];$/;"	m	class:peace::net::Udp	typeref:struct:peace::net::Udp::sockaddr_in	access:private
@@ -217,6 +219,8 @@ base	libSrc/base/file/file.cpp	/^namespace base $/;"	n	namespace:peace	file:
 base	libSrc/base/file/file.h	/^namespace base $/;"	n	namespace:peace
 base	libSrc/base/file/simpleSaveFile.cpp	/^namespace base $/;"	n	namespace:peace	file:
 base	libSrc/base/file/simpleSaveFile.h	/^namespace base $/;"	n	namespace:peace
+base	libSrc/base/memmory/allocate.cpp	/^namespace base$/;"	n	namespace:peace	file:
+base	libSrc/base/memmory/allocate.h	/^namespace base $/;"	n	namespace:peace
 base	libSrc/base/queue/queue.cpp	/^namespace base $/;"	n	namespace:peace	file:
 base	libSrc/base/queue/queue.h	/^namespace base $/;"	n	namespace:peace
 base	libSrc/base/thread/thread.cpp	/^namespace base$/;"	n	namespace:peace	file:
@@ -234,23 +238,25 @@ chainCreate	install/include/peaceInterface.h	/^RecvData *chainCreate(const int l
 chainCreate	libSrc/peaceInterface.cpp	/^RecvData *chainCreate(const int len)$/;"	f	signature:(const int len)
 chainCreate	libSrc/peaceInterface.h	/^RecvData *chainCreate(const int len);$/;"	p	signature:(const int len)
 chainGetHead	install/include/peaceInterface.h	/^RecvData *chainGetHead(RecvData **dst);$/;"	p	signature:(RecvData **dst)
+chainGetHead	install/include/peaceInterface.h	/^int chainGetHead(RecvData **dst, const int wantNum, RecvData **result);$/;"	p	signature:(RecvData **dst, const int wantNum, RecvData **result)
 chainGetHead	libSrc/peaceInterface.cpp	/^RecvData *chainGetHead(RecvData **dst)$/;"	f	signature:(RecvData **dst)
-chainGetHead	libSrc/peaceInterface.cpp	/^RecvData *chainGetHead(RecvData **dst, const int wantNum, RecvData **result)$/;"	f	signature:(RecvData **dst, const int wantNum, RecvData **result)
+chainGetHead	libSrc/peaceInterface.cpp	/^int chainGetHead(RecvData **dst, const int wantNum, RecvData **result)$/;"	f	signature:(RecvData **dst, const int wantNum, RecvData **result)
 chainGetHead	libSrc/peaceInterface.h	/^RecvData *chainGetHead(RecvData **dst);$/;"	p	signature:(RecvData **dst)
-chainGetHead	libSrc/peaceInterface.h	/^RecvData *chainGetHead(RecvData **dst, const int wantNum, RecvData **result);$/;"	p	signature:(RecvData **dst, const int wantNum, RecvData **result)
+chainGetHead	libSrc/peaceInterface.h	/^int chainGetHead(RecvData **dst, const int wantNum, RecvData **result);$/;"	p	signature:(RecvData **dst, const int wantNum, RecvData **result)
 chainInsertHead	install/include/peaceInterface.h	/^void chainInsertHead(RecvData **dst, RecvData *src);$/;"	p	signature:(RecvData **dst, RecvData *src)
 chainInsertHead	libSrc/peaceInterface.cpp	/^void chainInsertHead(RecvData **dst, RecvData *src)$/;"	f	signature:(RecvData **dst, RecvData *src)
 chainInsertHead	libSrc/peaceInterface.h	/^void chainInsertHead(RecvData **dst, RecvData *src);$/;"	p	signature:(RecvData **dst, RecvData *src)
 chainInsertTail	install/include/peaceInterface.h	/^void chainInsertTail(RecvData **dst, RecvData *src);$/;"	p	signature:(RecvData **dst, RecvData *src)
 chainInsertTail	libSrc/peaceInterface.cpp	/^void chainInsertTail(RecvData **dst, RecvData *src)$/;"	f	signature:(RecvData **dst, RecvData *src)
 chainInsertTail	libSrc/peaceInterface.h	/^void chainInsertTail(RecvData **dst, RecvData *src);$/;"	p	signature:(RecvData **dst, RecvData *src)
+chainInsertTailEx	install/include/peaceInterface.h	/^void chainInsertTailEx(RecvData **dst, RecvData **src, RecvData **dstLast, const int srcNum);$/;"	p	signature:(RecvData **dst, RecvData **src, RecvData **dstLast, const int srcNum)
 chainInsertTailEx	install/include/peaceInterface.h	/^void chainInsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast);$/;"	p	signature:(RecvData **dst, RecvData *src, RecvData **dstLast)
 chainInsertTailEx	libSrc/peaceInterface.cpp	/^void chainInsertTailEx(RecvData **dst, RecvData **src, RecvData **dstLast, const int srcNum)$/;"	f	signature:(RecvData **dst, RecvData **src, RecvData **dstLast, const int srcNum)
 chainInsertTailEx	libSrc/peaceInterface.cpp	/^void chainInsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast)$/;"	f	signature:(RecvData **dst, RecvData *src, RecvData **dstLast)
 chainInsertTailEx	libSrc/peaceInterface.h	/^void chainInsertTailEx(RecvData **dst, RecvData **src, RecvData **dstLast, const int srcNum);$/;"	p	signature:(RecvData **dst, RecvData **src, RecvData **dstLast, const int srcNum)
 chainInsertTailEx	libSrc/peaceInterface.h	/^void chainInsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast);$/;"	p	signature:(RecvData **dst, RecvData *src, RecvData **dstLast)
 chainRecovery	install/include/peaceInterface.h	/^void chainRecovery(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain);$/;"	p	signature:(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
-chainRecovery	libSrc/peaceInterface.cpp	/^void chainRecovery(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)$/;"	f	signature:(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
+chainRecovery	libSrc/peaceInterface.cpp	/^void chainRecovery(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain)$/;"	f	signature:(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain)
 chainRecovery	libSrc/peaceInterface.h	/^void chainRecovery(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain);$/;"	p	signature:(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
 chainRelease	install/include/peaceInterface.h	/^void chainRelease(RecvData **ppHead);$/;"	p	signature:(RecvData **ppHead)
 chainRelease	libSrc/peaceInterface.cpp	/^void chainRelease(RecvData **ppHead)$/;"	f	signature:(RecvData **ppHead)
@@ -266,6 +272,11 @@ create	libSrc/net/base/netBase.cpp	/^NetBase* NetBase::create(const NetType type
 create	libSrc/net/base/netBase.h	/^	static NetBase* create(const NetType type, void* arg, const bool useMmsg);	$/;"	p	class:peace::net::NetBase	access:public	signature:(const NetType type, void* arg, const bool useMmsg)
 deal	libSrc/media/mix/readSplit/readSplitBase.cpp	/^void ReadSplitBase::deal(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize) const$/;"	f	class:peace::media::ReadSplitBase	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize) const
 deal	libSrc/media/mix/readSplit/readSplitBase.h	/^	void deal(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize) const;	$/;"	p	class:peace::media::ReadSplitBase	access:public	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize) const
+deletePP	install/include/peaceInterface.h	/^void deletePP(void** &pp, const int num = 0);$/;"	p	signature:(void** &pp, const int num = 0)
+deletePP	libSrc/base/memmory/allocate.cpp	/^void deletePP(void** &pp, const int num)$/;"	f	namespace:peace::base	signature:(void** &pp, const int num)
+deletePP	libSrc/base/memmory/allocate.h	/^void deletePP(void** &PP, const int num = 0);$/;"	p	namespace:peace::base	signature:(void** &PP, const int num = 0)
+deletePP	libSrc/peaceInterface.cpp	/^void deletePP(void** &pp, const int num)$/;"	f	signature:(void** &pp, const int num)
+deletePP	libSrc/peaceInterface.h	/^void deletePP(void** &pp, const int num = 0);$/;"	p	signature:(void** &pp, const int num = 0)
 eNetTcpClient	libSrc/net/base/netBase.h	/^		eNetTcpClient,$/;"	e	enum:peace::net::NetBase::__anon4
 eNetTcpServer	libSrc/net/base/netBase.h	/^		eNetTcpServer,$/;"	e	enum:peace::net::NetBase::__anon4
 eNetUdpClient	libSrc/net/base/netBase.h	/^		eNetUdpClient,$/;"	e	enum:peace::net::NetBase::__anon4
@@ -361,7 +372,7 @@ net	libSrc/net/udp/udpClient.cpp	/^namespace net $/;"	n	namespace:peace	file:
 net	libSrc/net/udp/udpClient.h	/^namespace net $/;"	n	namespace:peace
 net	libSrc/net/udp/udpServer.cpp	/^namespace net $/;"	n	namespace:peace	file:
 net	libSrc/net/udp/udpServer.h	/^namespace net $/;"	n	namespace:peace
-netCreate	install/include/peaceInterface.h	/^void* netCreate(const char *type, void* arg);$/;"	p	signature:(const char *type, void* arg)
+netCreate	install/include/peaceInterface.h	/^void* netCreate(const char *type, void* arg, const bool useMmsg = false);$/;"	p	signature:(const char *type, void* arg, const bool useMmsg = false)
 netCreate	libSrc/peaceInterface.cpp	/^void* netCreate(const char *type, void *arg, const bool useMmsg)$/;"	f	signature:(const char *type, void *arg, const bool useMmsg)
 netCreate	libSrc/peaceInterface.h	/^void* netCreate(const char *type, void* arg, const bool useMmsg = false);$/;"	p	signature:(const char *type, void* arg, const bool useMmsg = false)
 netDestroy	install/include/peaceInterface.h	/^void netDestroy(void *base);$/;"	p	signature:(void *base)
@@ -396,6 +407,11 @@ netStop	libSrc/peaceInterface.cpp	/^int netStop(void *base)$/;"	f	signature:(voi
 netStop	libSrc/peaceInterface.h	/^int netStop(void *base);$/;"	p	signature:(void *base)
 nevents	install/include/types.h	/^	int nevents;$/;"	m	struct:__anon1	access:public
 nevents	libSrc/types.h	/^	int nevents;$/;"	m	struct:__anon5	access:public
+newPP	install/include/peaceInterface.h	/^void** newPP(const int num, const int eachByteSize = 0);$/;"	p	signature:(const int num, const int eachByteSize = 0)
+newPP	libSrc/base/memmory/allocate.cpp	/^void** newPP(const int num, const int eachByteSize)$/;"	f	namespace:peace::base	signature:(const int num, const int eachByteSize)
+newPP	libSrc/base/memmory/allocate.h	/^void** newPP(const int num, const int eachByteSize = 0);$/;"	p	namespace:peace::base	signature:(const int num, const int eachByteSize = 0)
+newPP	libSrc/peaceInterface.cpp	/^void** newPP(const int num, const int eachByteSize)$/;"	f	signature:(const int num, const int eachByteSize)
+newPP	libSrc/peaceInterface.h	/^void** newPP(const int num, const int eachByteSize = 0);$/;"	p	signature:(const int num, const int eachByteSize = 0)
 open	libSrc/base/file/simpleSaveFile.cpp	/^void *SaveFile::open(const char *fileName)$/;"	f	class:peace::base::SaveFile	signature:(const char *fileName)
 open	libSrc/base/file/simpleSaveFile.h	/^	void * open(const char *fileName);$/;"	p	class:peace::base::SaveFile	access:public	signature:(const char *fileName)
 override	libSrc/media/mix/readSplit/readSplitAAC.h	/^	virtual	int split(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const override;$/;"	m	class:peace::media::ReadSplitAAC	access:private
@@ -422,6 +438,8 @@ peace	libSrc/base/file/file.cpp	/^namespace peace $/;"	n	file:
 peace	libSrc/base/file/file.h	/^namespace peace $/;"	n
 peace	libSrc/base/file/simpleSaveFile.cpp	/^namespace peace $/;"	n	file:
 peace	libSrc/base/file/simpleSaveFile.h	/^namespace peace $/;"	n
+peace	libSrc/base/memmory/allocate.cpp	/^namespace peace$/;"	n	file:
+peace	libSrc/base/memmory/allocate.h	/^namespace peace $/;"	n
 peace	libSrc/base/queue/queue.cpp	/^namespace peace $/;"	n	file:
 peace	libSrc/base/queue/queue.h	/^namespace peace $/;"	n
 peace	libSrc/base/thread/thread.cpp	/^namespace peace $/;"	n	file:
@@ -456,6 +474,8 @@ peace::base	libSrc/base/file/file.cpp	/^namespace base $/;"	n	namespace:peace	fi
 peace::base	libSrc/base/file/file.h	/^namespace base $/;"	n	namespace:peace
 peace::base	libSrc/base/file/simpleSaveFile.cpp	/^namespace base $/;"	n	namespace:peace	file:
 peace::base	libSrc/base/file/simpleSaveFile.h	/^namespace base $/;"	n	namespace:peace
+peace::base	libSrc/base/memmory/allocate.cpp	/^namespace base$/;"	n	namespace:peace	file:
+peace::base	libSrc/base/memmory/allocate.h	/^namespace base $/;"	n	namespace:peace
 peace::base	libSrc/base/queue/queue.cpp	/^namespace base $/;"	n	namespace:peace	file:
 peace::base	libSrc/base/queue/queue.h	/^namespace base $/;"	n	namespace:peace
 peace::base	libSrc/base/thread/thread.cpp	/^namespace base$/;"	n	namespace:peace	file:
@@ -477,8 +497,8 @@ peace::base::InsertTailEx	libSrc/base/chain/chain.cpp	/^void InsertTailEx(RecvDa
 peace::base::InsertTailEx	libSrc/base/chain/chain.cpp	/^void InsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast)$/;"	f	namespace:peace::base	signature:(RecvData **dst, RecvData *src, RecvData **dstLast)
 peace::base::InsertTailEx	libSrc/base/chain/chain.h	/^	void InsertTailEx(RecvData **dst, RecvData **src, RecvData **dstLast, const int srcNum);$/;"	p	namespace:peace::base	signature:(RecvData **dst, RecvData **src, RecvData **dstLast, const int srcNum)
 peace::base::InsertTailEx	libSrc/base/chain/chain.h	/^	void InsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast);$/;"	p	namespace:peace::base	signature:(RecvData **dst, RecvData *src, RecvData **dstLast)
-peace::base::RecoveryChain	libSrc/base/chain/chain.cpp	/^void RecoveryChain(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)$/;"	f	namespace:peace::base	signature:(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
-peace::base::RecoveryChain	libSrc/base/chain/chain.h	/^	void RecoveryChain(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain);$/;"	p	namespace:peace::base	signature:(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
+peace::base::RecoveryChain	libSrc/base/chain/chain.cpp	/^void RecoveryChain(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain)$/;"	f	namespace:peace::base	signature:(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain)
+peace::base::RecoveryChain	libSrc/base/chain/chain.h	/^	void RecoveryChain(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain);$/;"	p	namespace:peace::base	signature:(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain)
 peace::base::ReleaseChain	libSrc/base/chain/chain.cpp	/^void ReleaseChain(RecvData **ppHead)$/;"	f	namespace:peace::base	signature:(RecvData **ppHead)
 peace::base::ReleaseChain	libSrc/base/chain/chain.h	/^	void ReleaseChain(RecvData **ppHead);$/;"	p	namespace:peace::base	signature:(RecvData **ppHead)
 peace::base::SaveFile	libSrc/base/file/simpleSaveFile.h	/^class SaveFile$/;"	c	namespace:peace::base
@@ -494,6 +514,8 @@ peace::base::SaveFile::wr	libSrc/base/file/simpleSaveFile.h	/^	void wr(const voi
 peace::base::SaveFile::~SaveFile	libSrc/base/file/simpleSaveFile.cpp	/^SaveFile::~SaveFile()$/;"	f	class:peace::base::SaveFile	signature:()
 peace::base::SaveFile::~SaveFile	libSrc/base/file/simpleSaveFile.h	/^	~SaveFile();$/;"	p	class:peace::base::SaveFile	access:public	signature:()
 peace::base::SaveFileFpMap	libSrc/base/file/simpleSaveFile.h	/^typedef std::map<const char*, void*> SaveFileFpMap;$/;"	t	namespace:peace::base
+peace::base::deletePP	libSrc/base/memmory/allocate.cpp	/^void deletePP(void** &pp, const int num)$/;"	f	namespace:peace::base	signature:(void** &pp, const int num)
+peace::base::deletePP	libSrc/base/memmory/allocate.h	/^void deletePP(void** &PP, const int num = 0);$/;"	p	namespace:peace::base	signature:(void** &PP, const int num = 0)
 peace::base::fileSimpleClose	libSrc/base/file/file.cpp	/^void fileSimpleClose(const char *fileAbsName)$/;"	f	namespace:peace::base	signature:(const char *fileAbsName)
 peace::base::fileSimpleClose	libSrc/base/file/file.h	/^void fileSimpleClose(const char *fileAbsName);$/;"	p	namespace:peace::base	signature:(const char *fileAbsName)
 peace::base::fileSimpleWrite	libSrc/base/file/file.cpp	/^void fileSimpleWrite(const unsigned char *data, const int size, const char *fileAbsName)$/;"	f	namespace:peace::base	signature:(const unsigned char *data, const int size, const char *fileAbsName)
@@ -501,6 +523,8 @@ peace::base::fileSimpleWrite	libSrc/base/file/file.h	/^void fileSimpleWrite(cons
 peace::base::getCurMs	libSrc/base/time/time.cpp	/^unsigned int getCurMs()$/;"	f	namespace:peace::base	signature:()
 peace::base::getCurMs	libSrc/base/time/time.h	/^unsigned int getCurMs();	$/;"	p	namespace:peace::base	signature:()
 peace::base::mapFp	libSrc/base/file/simpleSaveFile.cpp	/^SaveFileFpMap mapFp;$/;"	m	namespace:peace::base	file:
+peace::base::newPP	libSrc/base/memmory/allocate.cpp	/^void** newPP(const int num, const int eachByteSize)$/;"	f	namespace:peace::base	signature:(const int num, const int eachByteSize)
+peace::base::newPP	libSrc/base/memmory/allocate.h	/^void** newPP(const int num, const int eachByteSize = 0);$/;"	p	namespace:peace::base	signature:(const int num, const int eachByteSize = 0)
 peace::base::queueDestroy	libSrc/base/queue/queue.cpp	/^void queueDestroy(BlockInfo *pBlockInfo)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo)
 peace::base::queueDestroy	libSrc/base/queue/queue.h	/^void queueDestroy(BlockInfo *pBlockInfo);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo)
 peace::base::queueInit	libSrc/base/queue/queue.cpp	/^int queueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
@@ -609,7 +633,7 @@ peace::net::Udp::_bufServer	libSrc/net/udp/udp.h	/^    void _bufServer();$/;"	p	
 peace::net::Udp::_bufServerPid	libSrc/net/udp/udp.h	/^	pthread_t _bufServerPid;$/;"	m	class:peace::net::Udp	access:private
 peace::net::Udp::_isRunning	libSrc/net/udp/udp.h	/^	bool _isRunning;$/;"	m	class:peace::net::Udp	access:public
 peace::net::Udp::_lockSemFinishInit	libSrc/net/udp/udp.h	/^	bool _lockSemFinishInit;$/;"	m	class:peace::net::Udp	access:private
-peace::net::Udp::_mmsgRecvBuf	libSrc/net/udp/udp.h	/^	RecvData* _mmsgRecvBuf[UDP_REV_MMSG_NUM];$/;"	m	class:peace::net::Udp	access:private
+peace::net::Udp::_mmsgRecvBuf	libSrc/net/udp/udp.h	/^	RecvData** _mmsgRecvBuf;$/;"	m	class:peace::net::Udp	access:private
 peace::net::Udp::_mmsgRecvNum	libSrc/net/udp/udp.h	/^	int _mmsgRecvNum;$/;"	m	class:peace::net::Udp	access:private
 peace::net::Udp::_mmsg_msg_iov	libSrc/net/udp/udp.h	/^	struct iovec _mmsg_msg_iov[UDP_REV_MMSG_NUM];$/;"	m	class:peace::net::Udp	typeref:struct:peace::net::Udp::iovec	access:private
 peace::net::Udp::_mmsg_msg_name	libSrc/net/udp/udp.h	/^	struct sockaddr_in _mmsg_msg_name[UDP_REV_MMSG_NUM];$/;"	m	class:peace::net::Udp	typeref:struct:peace::net::Udp::sockaddr_in	access:private
@@ -648,10 +672,10 @@ peace::net::Udp::realSend	libSrc/net/udp/udp.cpp	/^int Udp::realSend(const unsig
 peace::net::Udp::realSend	libSrc/net/udp/udp.h	/^	int realSend(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr); $/;"	p	class:peace::net::Udp	access:public	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
 peace::net::Udp::recvServer	libSrc/net/udp/udp.cpp	/^void* Udp::recvServer(void *arg)$/;"	f	class:peace::net::Udp	signature:(void *arg)
 peace::net::Udp::recvServer	libSrc/net/udp/udp.h	/^    static void* recvServer(void* arg);$/;"	p	class:peace::net::Udp	access:public	signature:(void* arg)
-peace::net::Udp::recvUdpLogic	libSrc/net/udp/udp.cpp	/^void Udp::recvUdpLogic()$/;"	f	class:peace::net::Udp	signature:()
-peace::net::Udp::recvUdpLogic	libSrc/net/udp/udp.h	/^	void recvUdpLogic();$/;"	p	class:peace::net::Udp	access:private	signature:()
-peace::net::Udp::recvUdpLogicMul	libSrc/net/udp/udp.cpp	/^void Udp::recvUdpLogicMul()$/;"	f	class:peace::net::Udp	signature:()
-peace::net::Udp::recvUdpLogicMul	libSrc/net/udp/udp.h	/^	void recvUdpLogicMul();$/;"	p	class:peace::net::Udp	access:private	signature:()
+peace::net::Udp::recvUdpLogic	libSrc/net/udp/udp.cpp	/^bool Udp::recvUdpLogic()$/;"	f	class:peace::net::Udp	signature:()
+peace::net::Udp::recvUdpLogic	libSrc/net/udp/udp.h	/^	bool recvUdpLogic();$/;"	p	class:peace::net::Udp	access:private	signature:()
+peace::net::Udp::recvUdpLogicMul	libSrc/net/udp/udp.cpp	/^bool Udp::recvUdpLogicMul()$/;"	f	class:peace::net::Udp	signature:()
+peace::net::Udp::recvUdpLogicMul	libSrc/net/udp/udp.h	/^	bool recvUdpLogicMul();$/;"	p	class:peace::net::Udp	access:private	signature:()
 peace::net::Udp::savePeerAddr	libSrc/net/udp/udp.cpp	/^void Udp::savePeerAddr(const char *ip, const int port)$/;"	f	class:peace::net::Udp	signature:(const char *ip, const int port)
 peace::net::Udp::savePeerAddr	libSrc/net/udp/udp.h	/^	void savePeerAddr(const char *ip, const int port);$/;"	p	class:peace::net::Udp	access:public	signature:(const char *ip, const int port)
 peace::net::Udp::selfBind	libSrc/net/udp/udp.h	/^	virtual int selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize) = 0;$/;"	p	class:peace::net::Udp	access:public	signature:(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)
@@ -702,10 +726,10 @@ realSend	libSrc/net/udp/udp.cpp	/^int Udp::realSend(const unsigned char *data, c
 realSend	libSrc/net/udp/udp.h	/^	int realSend(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr); $/;"	p	class:peace::net::Udp	access:public	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
 recvServer	libSrc/net/udp/udp.cpp	/^void* Udp::recvServer(void *arg)$/;"	f	class:peace::net::Udp	signature:(void *arg)
 recvServer	libSrc/net/udp/udp.h	/^    static void* recvServer(void* arg);$/;"	p	class:peace::net::Udp	access:public	signature:(void* arg)
-recvUdpLogic	libSrc/net/udp/udp.cpp	/^void Udp::recvUdpLogic()$/;"	f	class:peace::net::Udp	signature:()
-recvUdpLogic	libSrc/net/udp/udp.h	/^	void recvUdpLogic();$/;"	p	class:peace::net::Udp	access:private	signature:()
-recvUdpLogicMul	libSrc/net/udp/udp.cpp	/^void Udp::recvUdpLogicMul()$/;"	f	class:peace::net::Udp	signature:()
-recvUdpLogicMul	libSrc/net/udp/udp.h	/^	void recvUdpLogicMul();$/;"	p	class:peace::net::Udp	access:private	signature:()
+recvUdpLogic	libSrc/net/udp/udp.cpp	/^bool Udp::recvUdpLogic()$/;"	f	class:peace::net::Udp	signature:()
+recvUdpLogic	libSrc/net/udp/udp.h	/^	bool recvUdpLogic();$/;"	p	class:peace::net::Udp	access:private	signature:()
+recvUdpLogicMul	libSrc/net/udp/udp.cpp	/^bool Udp::recvUdpLogicMul()$/;"	f	class:peace::net::Udp	signature:()
+recvUdpLogicMul	libSrc/net/udp/udp.h	/^	bool recvUdpLogicMul();$/;"	p	class:peace::net::Udp	access:private	signature:()
 registerTcpBusinessDealFunc	libSrc/net/base/netBase.cpp	/^void NetBase::registerTcpBusinessDealFunc(const TcpBusinessDealFuncType pFunc)$/;"	f	class:peace::net::NetBase	signature:(const TcpBusinessDealFuncType pFunc)
 registerTcpBusinessDealFunc	libSrc/net/base/netBase.h	/^	void registerTcpBusinessDealFunc(const TcpBusinessDealFuncType pFunc);$/;"	p	class:peace::net::NetBase	access:public	signature:(const TcpBusinessDealFuncType pFunc)
 registerUdpBusinessDealFunc	libSrc/net/base/netBase.cpp	/^void NetBase::registerUdpBusinessDealFunc(const UdpBusinessDealFuncType pFunc)$/;"	f	class:peace::net::NetBase	signature:(const UdpBusinessDealFuncType pFunc)

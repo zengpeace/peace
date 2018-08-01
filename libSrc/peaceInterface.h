@@ -74,6 +74,13 @@ void mediaReadSplitH264(const char *fileAbsName, void(*dealFunc)(const unsigned 
 void mediaReadSplitAAC(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize);
 /***********************************************/ 
 
+
+/**************** other ************************/ 
+void* mmsgRecvInit(const char *ip, const int port);
+int mmsgRecvDo(void* recv);
+void mmsgRecvExit(void *recv);
+/***********************************************/ 
+
 /*
 #ifdef __cplusplus
 }

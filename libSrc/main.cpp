@@ -14,7 +14,7 @@ int server(void *udp, const unsigned char *data, const int dataSize, const struc
 	LOGD("\n");
 
 	return netSend(udp, data, dataSize, peerAddr);
-} 
+}
 
 int main()
 {
@@ -22,11 +22,22 @@ int main()
 	netRegisterUdpBusFunc(us, server);
 	//netSetUseSendThread(us);	
  	netStart(us, "0.0.0.0", 9876);
-	
+
 	for(;;)
 	{
+		sleep(100);
+	} 
 
+	/*void *r = mmsgRecvInit("0.0.0.0", 9876);
+
+	for(;;)
+	{
+		mmsgRecvDo(r);
+		sleep(1);
 	}
+	
+	mmsgRecvExit(r);
+	r = NULL;*/
 }
 
 
