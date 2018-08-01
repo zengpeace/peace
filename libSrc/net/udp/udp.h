@@ -12,7 +12,10 @@ namespace net
 class Udp : public NetBase  
 {
 public:
-#define UDP_REV_MMSG_NUM 3
+#define UDP_REV_MMSG_NUM 4
+#define UDP_REV_MMSG_IOV_NUM 5
+#define UDP_SND_MMSG_NUM 2
+#define UDP_SND_MMSG_IOV_NUM 3
 	Udp();
 	virtual ~Udp();	
 
@@ -30,7 +33,6 @@ public:
 	static void sendServerDealFunc(const unsigned char* data, const int dataSize, void* arg);
 	void _sendServerDealFunc(const unsigned char *data, const int dataSize);		
 	static bool isStart(void* arg);
-	int realSend(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr); 
 
 	static int bindSocket(const UdpUserType type, const char *ip, const int nPort, const int sendBufSize, const int recvBufSize);
 	virtual int selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize) = 0;
@@ -43,9 +45,12 @@ public:
 	void savePeerAddr(const char *ip, const int port);
 
 private:
+	int realSend(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr); 
+	int realSendEx(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr); 
 	bool recvUdpLogic();
 	bool recvUdpLogicMul();
 	void initMmsgPara();
+	void initMmsgSendPara(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr);
 
 public:
 	bool _isRunning;
@@ -71,10 +76,15 @@ private:
 private:
 	int _mmsgRecvNum;
 	struct mmsghdr _msgVec[UDP_REV_MMSG_NUM];
-	
 	RecvData** _mmsgRecvBuf;
-	struct sockaddr_in _mmsg_msg_name[UDP_REV_MMSG_NUM];
+	//struct sockaddr_in _mmsg_msg_name[UDP_REV_MMSG_NUM];
 	struct iovec _mmsg_msg_iov[UDP_REV_MMSG_NUM];
+
+	int _mmsgSendNum;
+	struct mmsghdr _mmsgSendVec[UDP_SND_MMSG_NUM];
+	struct sockaddr_in _mmsgSendName[UDP_SND_MMSG_NUM];
+	struct iovec _mmsgSendIov[UDP_SND_MMSG_NUM];
+	unsigned char _mmsgSendIovBase[UDP_SND_MMSG_NUM][UDP_BUF_SIZE];
 };
 
 } //namespace net 

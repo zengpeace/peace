@@ -25,6 +25,7 @@ Udp::Udp()
 	void** tmpRecvBuf = base::newPP(_mmsgRecvNum);
 	_mmsgRecvBuf = (RecvData**)tmpRecvBuf;	
 
+	_mmsgSendNum = UDP_SND_MMSG_NUM;
 }
 
 Udp::~Udp()
@@ -34,20 +35,42 @@ Udp::~Udp()
 
 void Udp::initMmsgPara()
 {
+	struct msghdr *one;
 	for(int i = 0; i < _mmsgRecvNum; i ++)
 	{
+		one = &_msgVec[i].msg_hdr;
 		_mmsg_msg_iov[i].iov_base = _mmsgRecvBuf[i]->buf;
 		_mmsg_msg_iov[i].iov_len = UDP_BUF_SIZE;
-		_msgVec[i].msg_hdr.msg_name = &(_mmsgRecvBuf[i]->addr);
-		_msgVec[i].msg_hdr.msg_namelen = sizeof(struct sockaddr_in);
-		_msgVec[i].msg_hdr.msg_iov = &_mmsg_msg_iov[i];
-		_msgVec[i].msg_hdr.msg_iovlen = 1;
+		
+		one->msg_name = &(_mmsgRecvBuf[i]->addr);
+		one->msg_namelen = sizeof(struct sockaddr_in);
+		one->msg_iov = &_mmsg_msg_iov[i];
+		one->msg_iovlen = UDP_REV_MMSG_IOV_NUM;
 	}
 }
 
+void Udp::initMmsgSendPara(const unsigned char* data, const int dataSize, const struct sockaddr_in &peerAddr)
+{
+	struct msghdr *one;
+	for(int i = 0; i < _mmsgSendNum; i ++)
+	{
+		one = &_mmsgSendVec[i].msg_hdr;
+		_mmsgSendIov[i].iov_base = _mmsgSendIovBase[i];
+		_mmsgSendIov[i].iov_len = UDP_BUF_SIZE;
+		one->msg_name = &_mmsgSendName[i];	
+		one->msg_namelen = sizeof(struct sockaddr_in);
+		one->msg_iov = &_mmsgSendIov[i];
+		one->msg_iovlen = 1;
+
+		memcpy(&_mmsgSendName[i], &peerAddr, sizeof(struct sockaddr_in));
+		memcpy(&_mmsgSendIovBase[i], data, dataSize);
+	}
+}
+
+
 int Udp::init()
 {
-	_chainSize = 7;
+	_chainSize = 50;
 	_recvDataUdp = base::CreateChain(_chainSize);
 	if(!_recvDataUdp) 
 	{
@@ -208,8 +231,15 @@ void Udp::_sendServerDealFunc(const unsigned char *data, const int dataSize)
 	size_t headBytes = sizeof(struct sockaddr_in);
 	const unsigned char *realData = &data[headBytes];
 	int realDataSize = dataSize - headBytes;
-	
-	realSend(realData, realDataSize, *peerAddr);
+
+	if(_useMmsg)
+	{
+		realSendEx(realData, realDataSize, *peerAddr);
+	}
+	else 
+	{	
+		realSend(realData, realDataSize, *peerAddr);
+	}
 }
 
 bool Udp::isStart(void *arg)
@@ -405,7 +435,7 @@ bool Udp::recvUdpLogicMul()
 	LOGD("recvmmsg number is %d\n", n);
 	for(int i = 0; i < n; i ++)
 	{
-		_mmsgRecvBuf[i]->count = _msgVec[i].msg_len;
+		_mmsgRecvBuf[i]->count =  _msgVec[i].msg_len;
 		LOGD("set count %d:%d\n", i, _mmsgRecvBuf[i]->count);
 	}
 	if(n < _mmsgRecvNum)
@@ -441,6 +471,15 @@ bool Udp::recvUdpLogicMul()
 	return true;
 }
 
+int Udp::realSendEx(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
+{
+	initMmsgSendPara(data, dataSize, peerAddr);
+	int ret;
+	ret = sendmmsg(_sock, _mmsgSendVec, _mmsgSendNum, 0);
+	LOGD("%s:sendmmsg return %d\n", __FUNCTION__, ret);
+	return ret;
+}
+
 int Udp::realSend(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
 {
 	static socklen_t svrlen = sizeof(struct sockaddr_in);
@@ -463,10 +502,17 @@ int Udp::send(const unsigned char *data, const int dataSize, const struct sockad
 		return base::queuePush(&_sendBlock, data, dataSize, (const unsigned char *)&peerAddr, sizeof(struct sockaddr_in));
 	}
 
+	int ret;
 	pthread_mutex_unlock(&_LockSend);
-	int ret = realSend(data, dataSize, peerAddr);
+	if(_useMmsg)
+	{
+		ret = realSendEx(data, dataSize, peerAddr);
+	}
+	else 
+	{
+		ret = realSend(data, dataSize, peerAddr);
+	}
 	pthread_mutex_lock(&_LockSend);
-
 	return ret;
 }
 

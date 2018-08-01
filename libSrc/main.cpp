@@ -20,7 +20,7 @@ int main()
 {
 	void* us = netCreate("udpServer", NULL, true);
 	netRegisterUdpBusFunc(us, server);
-	netSetUseSendThread(us);	
+	//netSetUseSendThread(us);	
  	netStart(us, "0.0.0.0", 9876);
 	
 	for(;;)
