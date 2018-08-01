@@ -18,7 +18,7 @@ int server(void *udp, const unsigned char *data, const int dataSize, const struc
 
 int main()
 {
-	void* us = netCreate("udpServer", NULL, true);
+	/*void* us = netCreate("udpServer", NULL, true);
 	netRegisterUdpBusFunc(us, server);
 	//netSetUseSendThread(us);	
  	netStart(us, "0.0.0.0", 9876);
@@ -26,9 +26,9 @@ int main()
 	for(;;)
 	{
 		sleep(100);
-	} 
+	} */
 
-	/*void *r = mmsgRecvInit("0.0.0.0", 9876);
+	void *r = mmsgRecvInit("0.0.0.0", 9876);
 
 	for(;;)
 	{
@@ -37,7 +37,7 @@ int main()
 	}
 	
 	mmsgRecvExit(r);
-	r = NULL;*/
+	r = NULL;
 }
 
 

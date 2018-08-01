@@ -15,7 +15,7 @@ class MmsgRecv
 #define MMSG_RECV_BUF_SIZE 	32
 
 private:
-	static const int _timeout = 5;
+	static const int _timeout = 10;
 
 public:
 	int init(const char *ip, const int port);	
@@ -29,9 +29,9 @@ private:
 	struct sockaddr_in _peerAddr;
 	
 	struct mmsghdr _msgs[MMSG_RECV_HDR_NUM];
-	struct iovec _msgsIovec[MMSG_RECV_HDR_NUM];
-	unsigned char _buf[MMSG_RECV_HDR_NUM][MMSG_RECV_BUF_SIZE];
-	
+	struct iovec _msgsIovec[MMSG_RECV_HDR_NUM][MMSG_RECV_IOV_SIZE];
+	unsigned char _buf[MMSG_RECV_HDR_NUM][MMSG_RECV_IOV_SIZE][MMSG_RECV_BUF_SIZE];
+	struct sockaddr_in _addr[MMSG_RECV_HDR_NUM];	
 };
 
 }

@@ -18,18 +18,25 @@ int MmsgRecv::init(const char *ip, const int port)
 
 void MmsgRecv::initMmsgPara()
 {
+	memset(_buf, 0, sizeof(_buf));
 	memset(_msgs, 0, sizeof(_msgs));
 	struct msghdr *hdr;
-	struct iovec *io;
+	struct iovec *io, *io2;
 	for(int i = 0; i < MMSG_RECV_HDR_NUM; i ++)
 	{
-		io = &_msgsIovec[i];
-		io->iov_base = _buf[i];
-		io->iov_len = MMSG_RECV_BUF_SIZE;
-		
+		io = _msgsIovec[i];
+		for(int j = 0; j < MMSG_RECV_IOV_SIZE; j ++)
+		{
+			io2 = &io[j];
+			io2->iov_base = _buf[i][j];
+			io2->iov_len = MMSG_RECV_BUF_SIZE;
+		}
+	
 		hdr = &_msgs[i].msg_hdr;
 		hdr->msg_iov = io;
-		hdr->msg_iovlen = 1;
+		hdr->msg_iovlen = MMSG_RECV_IOV_SIZE;
+		hdr->msg_name = (void*)&_addr[i];
+		hdr->msg_namelen = sizeof(struct sockaddr_in);
 	}
 }
 
@@ -41,8 +48,11 @@ int MmsgRecv::recv()
 	LOGD("recvmmsg return %d\n", ret);
 	for(int i = 0; i < ret; i ++)
 	{
-		_buf[i][_msgs[i].msg_len] = 0;
-		LOGD("%d: %s\n", i, _buf[i]);
+		for(int j = 0; j < MMSG_RECV_IOV_SIZE; j ++)
+		{
+			//_buf[i][j][_msgs[i].msg_len] = 0;
+			LOGD("%d,%d: %s\n", i, j, _buf[i][j]);
+		}
 	}
 
 	return ret;
