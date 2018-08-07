@@ -46,7 +46,7 @@ void ReadSplitBase::deal(const char *fileAbsName, void(*dealFunc)(const unsigned
 	FILE *fp = fopen(fileAbsName, "rb");
 	if(!fp)
 	{
-		LOGD("fopen fail ! %s\n", fileAbsName);
+		//LOGD("fopen fail ! %s\n", fileAbsName);
 		return;
 	}
 
@@ -56,7 +56,7 @@ void ReadSplitBase::deal(const char *fileAbsName, void(*dealFunc)(const unsigned
 	}
 
 	unsigned char *buf = NULL;
-	int bufSize = 4 * 1024 * 1024;
+	int bufSize = 2 * 1024 * 1024;
 	if(readBuf)
 	{
 		buf = readBuf;
@@ -86,24 +86,30 @@ void ReadSplitBase::deal(const char *fileAbsName, void(*dealFunc)(const unsigned
 			break;
 		}
 
+		//LOGD("readBytes %d, restSize %d\n", readBytes, restSize);
+		readBytes += restSize;
 		pTmp = buf;
-		ret = this->split(pTmp, buf + readBytes - pTmp,  pBuf, size);
-		if(ret == 1)
+		while(1)
 		{
-			dealFunc(pBuf, size, arg);
-			pTmp = pBuf + size;
-		}
-		else if(ret == 0)
-		{
-			memcpy(buf, pBuf, size);	
-			restSize = size;
-			break;
-		}
-		else 
-		{
-			notFinishRead = false;
-			restSize = 0;
-			break;
+			//LOGD("rest buf data size %ld\n", buf + readBytes - pTmp);
+			ret = this->split(pTmp, buf + readBytes - pTmp,  pBuf, size);
+			if(ret == 1)
+			{
+				dealFunc(pBuf, size, arg);
+				pTmp = pBuf + size;
+			}
+			else if(ret == 0)
+			{
+				memcpy(buf, pBuf, size);	
+				restSize = size;
+				break;
+			}
+			else 
+			{
+				notFinishRead = false;
+				restSize = 0;
+				break;
+			}
 		}
 	}
 

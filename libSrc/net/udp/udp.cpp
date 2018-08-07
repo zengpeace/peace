@@ -70,7 +70,7 @@ void Udp::initMmsgSendPara(const unsigned char* data, const int dataSize, const 
 
 int Udp::init()
 {
-	_chainSize = 50;
+	//_chainSize = 50;
 	_recvDataUdp = base::CreateChain(_chainSize);
 	if(!_recvDataUdp) 
 	{
@@ -121,6 +121,7 @@ int Udp::init()
 
 int Udp::start(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)
 {
+	LOGD("into %s: ip=%s, port=%d\n", __FUNCTION__, ip, (int)port);
 	int ret;
 	if(_udpBusinessDealFunc == NULL)
 	{
@@ -128,14 +129,15 @@ int Udp::start(const char *ip, const int port, const int sockSendBufSize, const 
 		return -1;
 	}
 
-	int _myPort = port;
-	_sock = selfBind(ip, _myPort, sockSendBufSize, sockRecvBufSize);		
+	_myPort = port;
+	_sock = selfBind(ip, port, sockSendBufSize, sockRecvBufSize);		
 	if(_sock <= 0)
 	{
 		LOGD("selfBind fail ! _sock = %d\n", _sock);
 		return -2;
 	}
 
+	LOGD("id is %u, _myport is %d, peerPort is %d\n", (unsigned int)_myNetType, _myPort, (int)ntohs(_orgPeerAddr.sin_port));
 	_isRunning = true;
 	if(_useSendThread)
 	{
@@ -279,7 +281,7 @@ void Udp::_bufServer()
 		_recvDataBufLast = NULL;
 		pthread_mutex_unlock(&(_LockData));
 
-		LOGD("%s: prepare to deal data ! %p\n", __FUNCTION__, recvDataTmp);
+		//LOGD("%s: prepare to deal data ! %p\n", __FUNCTION__, recvDataTmp);
 		while (recvDataTmp != NULL)
 		{
 			recvDataBak = recvDataTmp;
@@ -328,7 +330,7 @@ void Udp::_recvServer()
 		nfds = epoll_wait(epfd, allEpev, EPOLL_MAX_EVENT, epollTimeout);
 		if (nfds < 0)
 		{
-			LOGD("epoll_wait error ! errno=%d, %s\n", errno, strerror(errno));
+			//LOGD("epoll_wait error ! errno=%d, %s\n", errno, strerror(errno));
 			continue;
 		}
 		else if (nfds == 0) continue;
@@ -497,6 +499,7 @@ int Udp::realSend(const unsigned char *data, const int dataSize, const struct so
 
 int Udp::send(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
 {
+	//LOGD("peerAddr is %x:%d\n", ntohl(peerAddr.sin_addr.s_addr), (int)ntohs(peerAddr.sin_port));
 	if(_useSendThread)
 	{
 		return base::queuePush(&_sendBlock, data, dataSize, (const unsigned char *)&peerAddr, sizeof(struct sockaddr_in));
@@ -604,7 +607,7 @@ int Udp::bindSocket(const UdpUserType type, const char *ip, const int nPort, con
 
 void Udp::savePeerAddr(const char *ip, const int port)
 {
-	_myPort = port;
+	//_myPort = port;
  	_orgPeerAddr.sin_family = AF_INET;
  	_orgPeerAddr.sin_port = htons(port);
  	_orgPeerAddr.sin_addr.s_addr = inet_addr(ip);

@@ -1,0 +1,16 @@
+rm client
+rm client.o
+mv client.cpp.bak client.cpp
+mv server.cpp server.cpp.bak
+make clean
+make
+mv test client
+
+rm server
+rm server.o
+mv client.cpp client.cpp.bak
+mv server.cpp.bak server.cpp
+make clean
+make
+mv test server
+

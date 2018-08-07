@@ -20,11 +20,17 @@ INC = -I./
 DIR = ./
 
 
-sSRC = $(shell find $(DIR) -name "*.s")
-SSRC = $(shell find $(DIR) -name "*.S")
-CSRC = $(shell find $(DIR) -name "*.c")
-CXXSRC = $(shell find $(DIR) -name "*.cpp")
-CCSRC = $(shell find $(DIR) -name "*.cc")
+sSRC := $(shell find $(DIR) -name "*.s")
+SSRC := $(shell find $(DIR) -name "*.S")
+CSRC := $(shell find $(DIR) -name "*.c")
+CXXSRC := $(shell find $(DIR) -name "*.cpp")
+CCSRC := $(shell find $(DIR) -name "*.cc")
+
+##ifeq ( $1, "so")
+##CXXSRC := $(CXXSRC) ../tmp/main.cpp 
+##else
+##CXXSRC := $(CXXSRC) ../tmp/main.cpp 
+##endif
 
 soFLAGS = -fPIC 
 

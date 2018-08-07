@@ -9,14 +9,15 @@ AS	makefile	/^AS = as$/;"	m
 BlockInfo	types.h	/^}BlockInfo;$/;"	t	typeref:struct:__anon3
 BufferInfo	types.h	/^}BufferInfo;$/;"	t	typeref:struct:_BufferInfo
 CC	makefile	/^CC = gcc$/;"	m
-CCSRC	makefile	/^CCSRC = $(shell find $(DIR) -name "*.cc")$/;"	m
+CCSRC	makefile	/^CCSRC := $(shell find $(DIR) -name "*.cc")$/;"	m
 CFLAGS	makefile	/^CFLAGS = $(CXXFLAGS) -std=gnu99 $(MACRO)$/;"	m
 CHAIN_SIZE	types.h	37;"	d
-CSRC	makefile	/^CSRC = $(shell find $(DIR) -name "*.c")$/;"	m
+CSRC	makefile	/^CSRC := $(shell find $(DIR) -name "*.c")$/;"	m
 CXXFLAGS	makefile	/^CXXFLAGS = -Werror -Wall -g -Wunused -Wsign-compare -Wunreachable-code -DDEBUG_SYS_INFO -fPIC $/;"	m
-CXXSRC	makefile	/^CXXSRC = $(shell find $(DIR) -name "*.cpp")$/;"	m
+CXXSRC	makefile	/^CXXSRC := $(shell find $(DIR) -name "*.cpp")$/;"	m
 CreateChain	base/chain/chain.cpp	/^RecvData *CreateChain(const int len)$/;"	f	namespace:peace::base	signature:(const int len)
 CreateChain	base/chain/chain.h	/^	RecvData *CreateChain(const int len);$/;"	p	namespace:peace::base	signature:(const int len)
+DEFAULT_SIZE	media/transmission/kcp/kcp.h	39;"	d
 DIR	makefile	/^DIR = .\/$/;"	m
 EPOLL_MAX_EVENT	types.h	39;"	d
 Epollop	types.h	/^}Epollop;$/;"	t	typeref:struct:__anon2
@@ -24,7 +25,150 @@ GetHeadChain	base/chain/chain.cpp	/^RecvData *GetHeadChain(RecvData **dst)$/;"	f
 GetHeadChain	base/chain/chain.cpp	/^int GetHeadChain(RecvData **dst, const int wantNum, RecvData **result)$/;"	f	namespace:peace::base	signature:(RecvData **dst, const int wantNum, RecvData **result)
 GetHeadChain	base/chain/chain.h	/^	RecvData *GetHeadChain(RecvData **dst);$/;"	p	namespace:peace::base	signature:(RecvData **dst)
 GetHeadChain	base/chain/chain.h	/^	int GetHeadChain(RecvData **dst, const int wantNum, RecvData **result);$/;"	p	namespace:peace::base	signature:(RecvData **dst, const int wantNum, RecvData **result)
+ICONTAINEROF	media/transmission/kcp/ikcp.h	156;"	d
+IINT16	media/transmission/kcp/ikcp.h	/^typedef short IINT16;$/;"	t
+IINT32	media/transmission/kcp/ikcp.h	/^typedef ISTDINT32 IINT32;$/;"	t
+IINT64	media/transmission/kcp/ikcp.h	/^typedef __int64 IINT64;$/;"	t
+IINT64	media/transmission/kcp/ikcp.h	/^typedef long long IINT64;$/;"	t
+IINT8	media/transmission/kcp/ikcp.h	/^typedef char IINT8;$/;"	t
+IKCPCB	media/transmission/kcp/ikcp.h	/^struct IKCPCB$/;"	s
+IKCPCB::ackblock	media/transmission/kcp/ikcp.h	/^	IUINT32 ackblock;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::ackcount	media/transmission/kcp/ikcp.h	/^	IUINT32 ackcount;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::acklist	media/transmission/kcp/ikcp.h	/^	IUINT32 *acklist;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::buffer	media/transmission/kcp/ikcp.h	/^	char *buffer;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::conv	media/transmission/kcp/ikcp.h	/^	IUINT32 conv, mtu, mss, state;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::current	media/transmission/kcp/ikcp.h	/^	IUINT32 current, interval, ts_flush, xmit;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::cwnd	media/transmission/kcp/ikcp.h	/^	IUINT32 snd_wnd, rcv_wnd, rmt_wnd, cwnd, probe;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::dead_link	media/transmission/kcp/ikcp.h	/^	IUINT32 dead_link, incr;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::fastresend	media/transmission/kcp/ikcp.h	/^	int fastresend;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::incr	media/transmission/kcp/ikcp.h	/^	IUINT32 dead_link, incr;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::interval	media/transmission/kcp/ikcp.h	/^	IUINT32 current, interval, ts_flush, xmit;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::logmask	media/transmission/kcp/ikcp.h	/^	int logmask;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::mss	media/transmission/kcp/ikcp.h	/^	IUINT32 conv, mtu, mss, state;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::mtu	media/transmission/kcp/ikcp.h	/^	IUINT32 conv, mtu, mss, state;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::nocwnd	media/transmission/kcp/ikcp.h	/^	int nocwnd, stream;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::nodelay	media/transmission/kcp/ikcp.h	/^	IUINT32 nodelay, updated;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::nrcv_buf	media/transmission/kcp/ikcp.h	/^	IUINT32 nrcv_buf, nsnd_buf;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::nrcv_que	media/transmission/kcp/ikcp.h	/^	IUINT32 nrcv_que, nsnd_que;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::nsnd_buf	media/transmission/kcp/ikcp.h	/^	IUINT32 nrcv_buf, nsnd_buf;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::nsnd_que	media/transmission/kcp/ikcp.h	/^	IUINT32 nrcv_que, nsnd_que;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::output	media/transmission/kcp/ikcp.h	/^	int (*output)(const char *buf, int len, struct IKCPCB *kcp, void *user);$/;"	m	struct:IKCPCB	access:public
+IKCPCB::probe	media/transmission/kcp/ikcp.h	/^	IUINT32 snd_wnd, rcv_wnd, rmt_wnd, cwnd, probe;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::probe_wait	media/transmission/kcp/ikcp.h	/^	IUINT32 ts_probe, probe_wait;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::rcv_buf	media/transmission/kcp/ikcp.h	/^	struct IQUEUEHEAD rcv_buf;$/;"	m	struct:IKCPCB	typeref:struct:IKCPCB::IQUEUEHEAD	access:public
+IKCPCB::rcv_nxt	media/transmission/kcp/ikcp.h	/^	IUINT32 snd_una, snd_nxt, rcv_nxt;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::rcv_queue	media/transmission/kcp/ikcp.h	/^	struct IQUEUEHEAD rcv_queue;$/;"	m	struct:IKCPCB	typeref:struct:IKCPCB::IQUEUEHEAD	access:public
+IKCPCB::rcv_wnd	media/transmission/kcp/ikcp.h	/^	IUINT32 snd_wnd, rcv_wnd, rmt_wnd, cwnd, probe;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::rmt_wnd	media/transmission/kcp/ikcp.h	/^	IUINT32 snd_wnd, rcv_wnd, rmt_wnd, cwnd, probe;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::rx_minrto	media/transmission/kcp/ikcp.h	/^	IINT32 rx_rttval, rx_srtt, rx_rto, rx_minrto;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::rx_rto	media/transmission/kcp/ikcp.h	/^	IINT32 rx_rttval, rx_srtt, rx_rto, rx_minrto;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::rx_rttval	media/transmission/kcp/ikcp.h	/^	IINT32 rx_rttval, rx_srtt, rx_rto, rx_minrto;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::rx_srtt	media/transmission/kcp/ikcp.h	/^	IINT32 rx_rttval, rx_srtt, rx_rto, rx_minrto;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::snd_buf	media/transmission/kcp/ikcp.h	/^	struct IQUEUEHEAD snd_buf;$/;"	m	struct:IKCPCB	typeref:struct:IKCPCB::IQUEUEHEAD	access:public
+IKCPCB::snd_nxt	media/transmission/kcp/ikcp.h	/^	IUINT32 snd_una, snd_nxt, rcv_nxt;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::snd_queue	media/transmission/kcp/ikcp.h	/^	struct IQUEUEHEAD snd_queue;$/;"	m	struct:IKCPCB	typeref:struct:IKCPCB::IQUEUEHEAD	access:public
+IKCPCB::snd_una	media/transmission/kcp/ikcp.h	/^	IUINT32 snd_una, snd_nxt, rcv_nxt;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::snd_wnd	media/transmission/kcp/ikcp.h	/^	IUINT32 snd_wnd, rcv_wnd, rmt_wnd, cwnd, probe;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::ssthresh	media/transmission/kcp/ikcp.h	/^	IUINT32 ts_recent, ts_lastack, ssthresh;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::state	media/transmission/kcp/ikcp.h	/^	IUINT32 conv, mtu, mss, state;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::stream	media/transmission/kcp/ikcp.h	/^	int nocwnd, stream;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::ts_flush	media/transmission/kcp/ikcp.h	/^	IUINT32 current, interval, ts_flush, xmit;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::ts_lastack	media/transmission/kcp/ikcp.h	/^	IUINT32 ts_recent, ts_lastack, ssthresh;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::ts_probe	media/transmission/kcp/ikcp.h	/^	IUINT32 ts_probe, probe_wait;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::ts_recent	media/transmission/kcp/ikcp.h	/^	IUINT32 ts_recent, ts_lastack, ssthresh;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::updated	media/transmission/kcp/ikcp.h	/^	IUINT32 nodelay, updated;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::user	media/transmission/kcp/ikcp.h	/^	void *user;$/;"	m	struct:IKCPCB	access:public
+IKCPCB::writelog	media/transmission/kcp/ikcp.h	/^	void (*writelog)(const char *log, struct IKCPCB *kcp, void *user);$/;"	m	struct:IKCPCB	access:public
+IKCPCB::xmit	media/transmission/kcp/ikcp.h	/^	IUINT32 current, interval, ts_flush, xmit;$/;"	m	struct:IKCPCB	access:public
+IKCPSEG	media/transmission/kcp/ikcp.c	/^typedef struct IKCPSEG IKCPSEG;$/;"	t	typeref:struct:IKCPSEG	file:
+IKCPSEG	media/transmission/kcp/ikcp.h	/^struct IKCPSEG$/;"	s
+IKCPSEG::cmd	media/transmission/kcp/ikcp.h	/^	IUINT32 cmd;$/;"	m	struct:IKCPSEG	access:public
+IKCPSEG::conv	media/transmission/kcp/ikcp.h	/^	IUINT32 conv;$/;"	m	struct:IKCPSEG	access:public
+IKCPSEG::data	media/transmission/kcp/ikcp.h	/^	char data[1];$/;"	m	struct:IKCPSEG	access:public
+IKCPSEG::fastack	media/transmission/kcp/ikcp.h	/^	IUINT32 fastack;$/;"	m	struct:IKCPSEG	access:public
+IKCPSEG::frg	media/transmission/kcp/ikcp.h	/^	IUINT32 frg;$/;"	m	struct:IKCPSEG	access:public
+IKCPSEG::len	media/transmission/kcp/ikcp.h	/^	IUINT32 len;$/;"	m	struct:IKCPSEG	access:public
+IKCPSEG::node	media/transmission/kcp/ikcp.h	/^	struct IQUEUEHEAD node;$/;"	m	struct:IKCPSEG	typeref:struct:IKCPSEG::IQUEUEHEAD	access:public
+IKCPSEG::resendts	media/transmission/kcp/ikcp.h	/^	IUINT32 resendts;$/;"	m	struct:IKCPSEG	access:public
+IKCPSEG::rto	media/transmission/kcp/ikcp.h	/^	IUINT32 rto;$/;"	m	struct:IKCPSEG	access:public
+IKCPSEG::sn	media/transmission/kcp/ikcp.h	/^	IUINT32 sn;$/;"	m	struct:IKCPSEG	access:public
+IKCPSEG::ts	media/transmission/kcp/ikcp.h	/^	IUINT32 ts;$/;"	m	struct:IKCPSEG	access:public
+IKCPSEG::una	media/transmission/kcp/ikcp.h	/^	IUINT32 una;$/;"	m	struct:IKCPSEG	access:public
+IKCPSEG::wnd	media/transmission/kcp/ikcp.h	/^	IUINT32 wnd;$/;"	m	struct:IKCPSEG	access:public
+IKCPSEG::xmit	media/transmission/kcp/ikcp.h	/^	IUINT32 xmit;$/;"	m	struct:IKCPSEG	access:public
+IKCP_ACK_FAST	media/transmission/kcp/ikcp.c	/^const IUINT32 IKCP_ACK_FAST	= 3;$/;"	v
+IKCP_ASK_SEND	media/transmission/kcp/ikcp.c	/^const IUINT32 IKCP_ASK_SEND = 1;		\/\/ need to send IKCP_CMD_WASK$/;"	v
+IKCP_ASK_TELL	media/transmission/kcp/ikcp.c	/^const IUINT32 IKCP_ASK_TELL = 2;		\/\/ need to send IKCP_CMD_WINS$/;"	v
+IKCP_CMD_ACK	media/transmission/kcp/ikcp.c	/^const IUINT32 IKCP_CMD_ACK  = 82;		\/\/ cmd: ack$/;"	v
+IKCP_CMD_PUSH	media/transmission/kcp/ikcp.c	/^const IUINT32 IKCP_CMD_PUSH = 81;		\/\/ cmd: push data$/;"	v
+IKCP_CMD_WASK	media/transmission/kcp/ikcp.c	/^const IUINT32 IKCP_CMD_WASK = 83;		\/\/ cmd: window probe (ask)$/;"	v
+IKCP_CMD_WINS	media/transmission/kcp/ikcp.c	/^const IUINT32 IKCP_CMD_WINS = 84;		\/\/ cmd: window size (tell)$/;"	v
+IKCP_DEADLINK	media/transmission/kcp/ikcp.c	/^const IUINT32 IKCP_DEADLINK = 20;$/;"	v
+IKCP_INTERVAL	media/transmission/kcp/ikcp.c	/^const IUINT32 IKCP_INTERVAL	= 100;$/;"	v
+IKCP_LOG_INPUT	media/transmission/kcp/ikcp.h	311;"	d
+IKCP_LOG_IN_ACK	media/transmission/kcp/ikcp.h	315;"	d
+IKCP_LOG_IN_DATA	media/transmission/kcp/ikcp.h	314;"	d
+IKCP_LOG_IN_PROBE	media/transmission/kcp/ikcp.h	316;"	d
+IKCP_LOG_IN_WINS	media/transmission/kcp/ikcp.h	317;"	d
+IKCP_LOG_OUTPUT	media/transmission/kcp/ikcp.h	310;"	d
+IKCP_LOG_OUT_ACK	media/transmission/kcp/ikcp.h	319;"	d
+IKCP_LOG_OUT_DATA	media/transmission/kcp/ikcp.h	318;"	d
+IKCP_LOG_OUT_PROBE	media/transmission/kcp/ikcp.h	320;"	d
+IKCP_LOG_OUT_WINS	media/transmission/kcp/ikcp.h	321;"	d
+IKCP_LOG_RECV	media/transmission/kcp/ikcp.h	313;"	d
+IKCP_LOG_SEND	media/transmission/kcp/ikcp.h	312;"	d
+IKCP_MTU_DEF	media/transmission/kcp/ikcp.c	/^const IUINT32 IKCP_MTU_DEF = 1400;$/;"	v
+IKCP_OVERHEAD	media/transmission/kcp/ikcp.c	/^const IUINT32 IKCP_OVERHEAD = 24;$/;"	v
+IKCP_PROBE_INIT	media/transmission/kcp/ikcp.c	/^const IUINT32 IKCP_PROBE_INIT = 7000;		\/\/ 7 secs to probe window size$/;"	v
+IKCP_PROBE_LIMIT	media/transmission/kcp/ikcp.c	/^const IUINT32 IKCP_PROBE_LIMIT = 120000;	\/\/ up to 120 secs to probe window$/;"	v
+IKCP_RTO_DEF	media/transmission/kcp/ikcp.c	/^const IUINT32 IKCP_RTO_DEF = 200;$/;"	v
+IKCP_RTO_MAX	media/transmission/kcp/ikcp.c	/^const IUINT32 IKCP_RTO_MAX = 60000;$/;"	v
+IKCP_RTO_MIN	media/transmission/kcp/ikcp.c	/^const IUINT32 IKCP_RTO_MIN = 100;		\/\/ normal min rto$/;"	v
+IKCP_RTO_NDL	media/transmission/kcp/ikcp.c	/^const IUINT32 IKCP_RTO_NDL = 30;		\/\/ no delay min rto$/;"	v
+IKCP_THRESH_INIT	media/transmission/kcp/ikcp.c	/^const IUINT32 IKCP_THRESH_INIT = 2;$/;"	v
+IKCP_THRESH_MIN	media/transmission/kcp/ikcp.c	/^const IUINT32 IKCP_THRESH_MIN = 2;$/;"	v
+IKCP_WND_RCV	media/transmission/kcp/ikcp.c	/^const IUINT32 IKCP_WND_RCV = 32;$/;"	v
+IKCP_WND_SND	media/transmission/kcp/ikcp.c	/^const IUINT32 IKCP_WND_SND = 32;$/;"	v
 INC	makefile	/^INC = -I.\/$/;"	m
+INLINE	media/transmission/kcp/ikcp.h	114;"	d
+INLINE	media/transmission/kcp/ikcp.h	116;"	d
+INLINE	media/transmission/kcp/ikcp.h	120;"	d
+INLINE	media/transmission/kcp/ikcp.h	122;"	d
+IOFFSETOF	media/transmission/kcp/ikcp.h	154;"	d
+IQUEUEHEAD	media/transmission/kcp/ikcp.h	/^struct IQUEUEHEAD {$/;"	s
+IQUEUEHEAD::next	media/transmission/kcp/ikcp.h	/^	struct IQUEUEHEAD *next, *prev;$/;"	m	struct:IQUEUEHEAD	typeref:struct:IQUEUEHEAD::IQUEUEHEAD	access:public
+IQUEUEHEAD::prev	media/transmission/kcp/ikcp.h	/^	struct IQUEUEHEAD *next, *prev;$/;"	m	struct:IQUEUEHEAD	typeref:struct:IQUEUEHEAD::	access:public
+IQUEUE_ADD	media/transmission/kcp/ikcp.h	165;"	d
+IQUEUE_ADD_TAIL	media/transmission/kcp/ikcp.h	169;"	d
+IQUEUE_DEL	media/transmission/kcp/ikcp.h	175;"	d
+IQUEUE_DEL_BETWEEN	media/transmission/kcp/ikcp.h	173;"	d
+IQUEUE_DEL_INIT	media/transmission/kcp/ikcp.h	180;"	d
+IQUEUE_ENTRY	media/transmission/kcp/ikcp.h	159;"	d
+IQUEUE_FOREACH	media/transmission/kcp/ikcp.h	193;"	d
+IQUEUE_HEAD	media/transmission/kcp/ikcp.h	148;"	d
+IQUEUE_HEAD_INIT	media/transmission/kcp/ikcp.h	147;"	d
+IQUEUE_INIT	media/transmission/kcp/ikcp.h	151;"	d
+IQUEUE_IS_EMPTY	media/transmission/kcp/ikcp.h	183;"	d
+ISTDINT32	media/transmission/kcp/ikcp.h	/^	typedef SInt32 ISTDINT32;$/;"	t
+ISTDINT32	media/transmission/kcp/ikcp.h	/^	typedef __int32 ISTDINT32;$/;"	t
+ISTDINT32	media/transmission/kcp/ikcp.h	/^	typedef int ISTDINT32;$/;"	t
+ISTDINT32	media/transmission/kcp/ikcp.h	/^	typedef int32_t ISTDINT32;$/;"	t
+ISTDINT32	media/transmission/kcp/ikcp.h	/^	typedef long ISTDINT32;$/;"	t
+ISTDUINT32	media/transmission/kcp/ikcp.h	/^	typedef UInt32 ISTDUINT32;$/;"	t
+ISTDUINT32	media/transmission/kcp/ikcp.h	/^	typedef u_int32_t ISTDUINT32;$/;"	t
+ISTDUINT32	media/transmission/kcp/ikcp.h	/^	typedef uint32_t ISTDUINT32;$/;"	t
+ISTDUINT32	media/transmission/kcp/ikcp.h	/^	typedef unsigned __int32 ISTDUINT32;$/;"	t
+ISTDUINT32	media/transmission/kcp/ikcp.h	/^	typedef unsigned int ISTDUINT32;$/;"	t
+ISTDUINT32	media/transmission/kcp/ikcp.h	/^	typedef unsigned long ISTDUINT32; $/;"	t
+ISTDUINT32	media/transmission/kcp/ikcp.h	/^	typedef unsigned long ISTDUINT32;$/;"	t
+IUINT16	media/transmission/kcp/ikcp.h	/^typedef unsigned short IUINT16;$/;"	t
+IUINT32	media/transmission/kcp/ikcp.h	/^typedef ISTDUINT32 IUINT32;$/;"	t
+IUINT64	media/transmission/kcp/ikcp.h	/^typedef unsigned __int64 IUINT64;$/;"	t
+IUINT64	media/transmission/kcp/ikcp.h	/^typedef unsigned long long IUINT64;$/;"	t
+IUINT8	media/transmission/kcp/ikcp.h	/^typedef unsigned char IUINT8;$/;"	t
+IWORDS_BIG_ENDIAN	media/transmission/kcp/ikcp.h	233;"	d
+IWORDS_BIG_ENDIAN	media/transmission/kcp/ikcp.h	243;"	d
+IWORDS_BIG_ENDIAN	media/transmission/kcp/ikcp.h	247;"	d
 InsertHead	base/chain/chain.cpp	/^void InsertHead(RecvData **dst, RecvData *src)$/;"	f	namespace:peace::base	signature:(RecvData **dst, RecvData *src)
 InsertHead	base/chain/chain.h	/^	void InsertHead(RecvData **dst, RecvData *src);$/;"	p	namespace:peace::base	signature:(RecvData **dst, RecvData *src)
 InsertTail	base/chain/chain.cpp	/^void InsertTail(RecvData **dst, RecvData *src)$/;"	f	namespace:peace::base	signature:(RecvData **dst, RecvData *src)
@@ -33,10 +177,48 @@ InsertTailEx	base/chain/chain.cpp	/^void InsertTailEx(RecvData **dst, RecvData *
 InsertTailEx	base/chain/chain.cpp	/^void InsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast)$/;"	f	namespace:peace::base	signature:(RecvData **dst, RecvData *src, RecvData **dstLast)
 InsertTailEx	base/chain/chain.h	/^	void InsertTailEx(RecvData **dst, RecvData **src, RecvData **dstLast, const int srcNum);$/;"	p	namespace:peace::base	signature:(RecvData **dst, RecvData **src, RecvData **dstLast, const int srcNum)
 InsertTailEx	base/chain/chain.h	/^	void InsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast);$/;"	p	namespace:peace::base	signature:(RecvData **dst, RecvData *src, RecvData **dstLast)
+Kcp	media/transmission/kcp/kcp.h	/^class Kcp $/;"	c
+Kcp::KcpOutFuncType	media/transmission/kcp/kcp.h	/^	typedef int(*KcpOutFuncType)(const char *buf, int len, ikcpcb *kcp, void *user);$/;"	t	class:Kcp	access:public
+Kcp::_buf	media/transmission/kcp/kcp.h	/^	char _buf[DEFAULT_SIZE];$/;"	m	class:Kcp	access:private
+Kcp::_bufSize	media/transmission/kcp/kcp.h	/^	static const int _bufSize = DEFAULT_SIZE;$/;"	m	class:Kcp	access:private
+Kcp::_isRunning	media/transmission/kcp/kcp.h	/^	bool _isRunning;$/;"	m	class:Kcp	access:private
+Kcp::_kcp	media/transmission/kcp/kcp.h	/^	ikcpcb *_kcp;$/;"	m	class:Kcp	access:private
+Kcp::_recvFunc	media/transmission/kcp/kcp.h	/^	KcpOutFuncType _recvFunc;$/;"	m	class:Kcp	access:private
+Kcp::_recvLock	media/transmission/kcp/kcp.h	/^	pthread_mutex_t _recvLock;$/;"	m	class:Kcp	access:private
+Kcp::_recvThread	media/transmission/kcp/kcp.cpp	/^void Kcp::_recvThread()$/;"	f	class:Kcp	signature:()
+Kcp::_recvThread	media/transmission/kcp/kcp.h	/^	void _recvThread();$/;"	p	class:Kcp	access:public	signature:()
+Kcp::_recvTid	media/transmission/kcp/kcp.h	/^	pthread_t _recvTid;$/;"	m	class:Kcp	access:private
+Kcp::_send	media/transmission/kcp/kcp.cpp	/^void Kcp::_send(const unsigned char *data, const int dataSize)$/;"	f	class:Kcp	signature:(const unsigned char *data, const int dataSize)
+Kcp::_send	media/transmission/kcp/kcp.h	/^	void _send(const unsigned char *data, const int dataSize);$/;"	p	class:Kcp	access:public	signature:(const unsigned char *data, const int dataSize)
+Kcp::_sendLock	media/transmission/kcp/kcp.h	/^	pthread_mutex_t _sendLock;$/;"	m	class:Kcp	access:private
+Kcp::_updateThread	media/transmission/kcp/kcp.cpp	/^void Kcp::_updateThread()$/;"	f	class:Kcp	signature:()
+Kcp::_updateThread	media/transmission/kcp/kcp.h	/^	void _updateThread();$/;"	p	class:Kcp	access:public	signature:()
+Kcp::_updateTid	media/transmission/kcp/kcp.h	/^	pthread_t _updateTid;$/;"	m	class:Kcp	access:private
+Kcp::_user	media/transmission/kcp/kcp.h	/^	void* _user;$/;"	m	class:Kcp	access:private
+Kcp::exit	media/transmission/kcp/kcp.cpp	/^void Kcp::exit()$/;"	f	class:Kcp	signature:()
+Kcp::exit	media/transmission/kcp/kcp.h	/^	void exit();$/;"	p	class:Kcp	access:public	signature:()
+Kcp::init	media/transmission/kcp/kcp.cpp	/^int Kcp::init(const int conv, void* user, const int kcpMode, const KcpOutFuncType udpSendFunc, const KcpOutFuncType kcpRecvFunc)$/;"	f	class:Kcp	signature:(const int conv, void* user, const int kcpMode, const KcpOutFuncType udpSendFunc, const KcpOutFuncType kcpRecvFunc)
+Kcp::init	media/transmission/kcp/kcp.h	/^	int init(const int conv, void* user, const int kcpMode, const KcpOutFuncType udpSendFunc, const KcpOutFuncType kcpRecvFunc);	$/;"	p	class:Kcp	access:public	signature:(const int conv, void* user, const int kcpMode, const KcpOutFuncType udpSendFunc, const KcpOutFuncType kcpRecvFunc)
+Kcp::recvThread	media/transmission/kcp/kcp.cpp	/^void* Kcp::recvThread(void *arg)$/;"	f	class:Kcp	signature:(void *arg)
+Kcp::recvThread	media/transmission/kcp/kcp.h	/^	static void* recvThread(void *arg);$/;"	p	class:Kcp	access:public	signature:(void *arg)
+Kcp::recvUdpPackage	media/transmission/kcp/kcp.cpp	/^int Kcp::recvUdpPackage(const unsigned char *data, const int dataSize)$/;"	f	class:Kcp	signature:(const unsigned char *data, const int dataSize)
+Kcp::recvUdpPackage	media/transmission/kcp/kcp.h	/^	int recvUdpPackage(const unsigned char *data, const int dataSize);$/;"	p	class:Kcp	access:public	signature:(const unsigned char *data, const int dataSize)
+Kcp::send	media/transmission/kcp/kcp.cpp	/^void Kcp::send(const unsigned char *data, const int dataSize, void* arg)$/;"	f	class:Kcp	signature:(const unsigned char *data, const int dataSize, void* arg)
+Kcp::send	media/transmission/kcp/kcp.h	/^	static void send(const unsigned char *data, const int dataSize, void* arg);$/;"	p	class:Kcp	access:public	signature:(const unsigned char *data, const int dataSize, void* arg)
+Kcp::sendPackage	media/transmission/kcp/kcp.cpp	/^int Kcp::sendPackage(const unsigned char *data, const int dataSize)$/;"	f	class:Kcp	signature:(const unsigned char *data, const int dataSize)
+Kcp::sendPackage	media/transmission/kcp/kcp.h	/^	int sendPackage(const unsigned char *data, const int dataSize);	$/;"	p	class:Kcp	access:public	signature:(const unsigned char *data, const int dataSize)
+Kcp::updateThread	media/transmission/kcp/kcp.cpp	/^void* Kcp::updateThread(void* arg)$/;"	f	class:Kcp	signature:(void* arg)
+Kcp::updateThread	media/transmission/kcp/kcp.h	/^	static void* updateThread(void* arg);	$/;"	p	class:Kcp	access:public	signature:(void* arg)
+KcpOutFuncType	media/transmission/kcp/kcp.h	/^	typedef int(*KcpOutFuncType)(const char *buf, int len, ikcpcb *kcp, void *user);$/;"	t	class:Kcp	access:public
 LDFLAGS	makefile	/^LDFLAGS	= $/;"	m
 LIBS	makefile	/^LIBS = -lz -lpthread$/;"	m
 LOGD	types.h	87;"	d
 MACRO	makefile	/^MACRO = $/;"	m
+MMSG_RECV_BUF_SIZE	other/mmsg/recv.h	15;"	d
+MMSG_RECV_HDR_NUM	other/mmsg/recv.h	13;"	d
+MMSG_RECV_IOV_SIZE	other/mmsg/recv.h	14;"	d
+MmsgRecv	other/mmsg/recv.h	/^class MmsgRecv $/;"	c	namespace:peace::other
+MmsgSend	other/mmsg/send.h	/^class MmsgSend $/;"	c	namespace:peace::other
 NetBase	net/base/netBase.cpp	/^NetBase::NetBase()$/;"	f	class:peace::net::NetBase	signature:()
 NetBase	net/base/netBase.h	/^	NetBase();$/;"	p	class:peace::net::NetBase	access:public	signature:()
 NetBase	net/base/netBase.h	/^class NetBase$/;"	c	namespace:peace::net
@@ -45,12 +227,12 @@ OBJS	makefile	/^OBJS := $(CSRC:%.c=%.o) $(CXXSRC:%.cc=%.o) $(SSRC:%.S=%.o) $(sSR
 ReadSplitAAC	media/mix/readSplit/readSplitAAC.h	/^class ReadSplitAAC : public ReadSplitBase $/;"	c	namespace:peace::media	inherits:ReadSplitBase
 ReadSplitBase	media/mix/readSplit/readSplitBase.h	/^class ReadSplitBase $/;"	c	namespace:peace::media
 ReadSplitH264	media/mix/readSplit/readSplitH264.h	/^class ReadSplitH264 : public ReadSplitBase$/;"	c	namespace:peace::media	inherits:ReadSplitBase
-RecoveryChain	base/chain/chain.cpp	/^void RecoveryChain(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)$/;"	f	namespace:peace::base	signature:(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
-RecoveryChain	base/chain/chain.h	/^	void RecoveryChain(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain);$/;"	p	namespace:peace::base	signature:(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
+RecoveryChain	base/chain/chain.cpp	/^void RecoveryChain(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain)$/;"	f	namespace:peace::base	signature:(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain)
+RecoveryChain	base/chain/chain.h	/^	void RecoveryChain(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain);$/;"	p	namespace:peace::base	signature:(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain)
 RecvData	types.h	/^}RecvData;$/;"	t	typeref:struct:_recvData
 ReleaseChain	base/chain/chain.cpp	/^void ReleaseChain(RecvData **ppHead)$/;"	f	namespace:peace::base	signature:(RecvData **ppHead)
 ReleaseChain	base/chain/chain.h	/^	void ReleaseChain(RecvData **ppHead);$/;"	p	namespace:peace::base	signature:(RecvData **ppHead)
-SSRC	makefile	/^SSRC = $(shell find $(DIR) -name "*.S")$/;"	m
+SSRC	makefile	/^SSRC := $(shell find $(DIR) -name "*.S")$/;"	m
 SaveFile	base/file/simpleSaveFile.h	/^class SaveFile$/;"	c	namespace:peace::base
 SaveFileFpMap	base/file/simpleSaveFile.h	/^typedef std::map<const char*, void*> SaveFileFpMap;$/;"	t	namespace:peace::base
 TARGET_BIN	makefile	/^TARGET_BIN = .\/peace $/;"	m
@@ -64,7 +246,10 @@ TcpBusinessDealFuncType	types.h	/^typedef int (*TcpBusinessDealFuncType)(void *t
 TcpClient	net/tcp/tcpClient.h	/^class TcpClient : public Tcp $/;"	c	namespace:peace::net	inherits:Tcp
 TcpServer	net/tcp/tcpServer.h	/^class TcpServer : public Tcp $/;"	c	namespace:peace::net	inherits:Tcp
 UDP_BUF_SIZE	types.h	36;"	d
+UDP_REV_MMSG_IOV_NUM	net/udp/udp.h	16;"	d
 UDP_REV_MMSG_NUM	net/udp/udp.h	15;"	d
+UDP_SND_MMSG_IOV_NUM	net/udp/udp.h	18;"	d
+UDP_SND_MMSG_NUM	net/udp/udp.h	17;"	d
 Udp	net/udp/udp.cpp	/^Udp::Udp()$/;"	f	class:peace::net::Udp	signature:()
 Udp	net/udp/udp.h	/^	Udp();$/;"	p	class:peace::net::Udp	access:public	signature:()
 Udp	net/udp/udp.h	/^class Udp : public NetBase  $/;"	c	namespace:peace::net	inherits:NetBase
@@ -80,6 +265,7 @@ _BufferInfo::nFlag	types.h	/^        int nFlag;$/;"	m	struct:_BufferInfo	access:
 _BufferInfo::nSize	types.h	/^        int nSize;$/;"	m	struct:_BufferInfo	access:public
 _BufferInfo::pData	types.h	/^        unsigned char *pData;$/;"	m	struct:_BufferInfo	access:public
 _BufferInfo::pNext	types.h	/^        struct _BufferInfo *pNext;$/;"	m	struct:_BufferInfo	typeref:struct:_BufferInfo::_BufferInfo	access:public
+_KCP_H_	media/transmission/kcp/kcp.h	2;"	d
 _LockChain	net/udp/udp.h	/^	pthread_mutex_t _LockChain;$/;"	m	class:peace::net::Udp	access:private
 _LockData	net/udp/udp.h	/^	pthread_mutex_t _LockData;$/;"	m	class:peace::net::Udp	access:private
 _LockSend	net/udp/udp.h	/^	pthread_mutex_t _LockSend;$/;"	m	class:peace::net::Udp	access:private
@@ -105,9 +291,23 @@ _PEACE_NET_TCP_TCP_SERVER_H_	net/tcp/tcpServer.h	2;"	d
 _PEACE_NET_UDP_UDP_CLIENT_H_	net/udp/udpClient.h	2;"	d
 _PEACE_NET_UDP_UDP_H_	net/udp/udp.h	2;"	d
 _PEACE_NET_UDP_UDP_SERVER_H_	net/udp/udpServer.h	2;"	d
+_PEACE_OTHER_MMSG_RECV_H_	other/mmsg/recv.h	2;"	d
+_PEACE_OTHER_MMSG_SEND_H_	other/mmsg/send.h	2;"	d
+_PEACE_OTHER_OTHER_H_	other/other.h	2;"	d
 _PEACE_PEACE_H_	peace.h	2;"	d
 _PEACE_PEACE_INTERFACE_H_	peaceInterface.h	2;"	d
 _PEACE_TYPES_H_	types.h	2;"	d
+__IINT16_DEFINED	media/transmission/kcp/ikcp.h	78;"	d
+__IINT32_DEFINED	media/transmission/kcp/ikcp.h	83;"	d
+__IINT64_DEFINED	media/transmission/kcp/ikcp.h	93;"	d
+__IINT8_DEFINED	media/transmission/kcp/ikcp.h	63;"	d
+__IKCP_H__	media/transmission/kcp/ikcp.h	13;"	d
+__INTEGER_32_BITS__	media/transmission/kcp/ikcp.h	24;"	d
+__IQUEUE_DEF__	media/transmission/kcp/ikcp.h	135;"	d
+__IUINT16_DEFINED	media/transmission/kcp/ikcp.h	73;"	d
+__IUINT32_DEFINED	media/transmission/kcp/ikcp.h	88;"	d
+__IUINT64_DEFINED	media/transmission/kcp/ikcp.h	102;"	d
+__IUINT8_DEFINED	media/transmission/kcp/ikcp.h	68;"	d
 __anon2::epfd	types.h	/^	int epfd;$/;"	m	struct:__anon2	access:public
 __anon2::events	types.h	/^	struct epoll_event events[EPOLL_MAX_EVENT + 1];$/;"	m	struct:__anon2	typeref:struct:__anon2::epoll_event	access:public
 __anon2::nevents	types.h	/^	int nevents;$/;"	m	struct:__anon2	access:public
@@ -120,23 +320,41 @@ __anon3::m_nInfoSize	types.h	/^        int m_nInfoSize;$/;"	m	struct:__anon3	acc
 __anon3::m_pCurr	types.h	/^        unsigned char *m_pCurr;$/;"	m	struct:__anon3	access:public
 __anon3::m_pData	types.h	/^        unsigned char *m_pData;$/;"	m	struct:__anon3	access:public
 __anon3::m_pInfo	types.h	/^        BufferInfo *m_pInfo;$/;"	m	struct:__anon3	access:public
+__iqueue_splice	media/transmission/kcp/ikcp.h	205;"	d
+_addr	other/mmsg/recv.h	/^	struct sockaddr_in _addr[MMSG_RECV_HDR_NUM];	$/;"	m	class:peace::other::MmsgRecv	typeref:struct:peace::other::MmsgRecv::sockaddr_in	access:private
 _alreadyStart	net/base/netBase.h	/^	bool _alreadyStart;$/;"	m	class:peace::net::NetBase	access:protected
+_buf	media/transmission/kcp/kcp.h	/^	char _buf[DEFAULT_SIZE];$/;"	m	class:Kcp	access:private
+_buf	other/mmsg/recv.h	/^	unsigned char _buf[MMSG_RECV_HDR_NUM][MMSG_RECV_IOV_SIZE][MMSG_RECV_BUF_SIZE];$/;"	m	class:peace::other::MmsgRecv	access:private
 _bufServer	net/udp/udp.cpp	/^void Udp::_bufServer()$/;"	f	class:peace::net::Udp	signature:()
 _bufServer	net/udp/udp.h	/^    void _bufServer();$/;"	p	class:peace::net::Udp	access:public	signature:()
 _bufServerPid	net/udp/udp.h	/^	pthread_t _bufServerPid;$/;"	m	class:peace::net::Udp	access:private
+_bufSize	media/transmission/kcp/kcp.h	/^	static const int _bufSize = DEFAULT_SIZE;$/;"	m	class:Kcp	access:private
 _businessDealFuncArg	net/base/netBase.h	/^	void *_businessDealFuncArg;$/;"	m	class:peace::net::NetBase	access:protected
 _chainSize	net/base/netBase.h	/^	int _chainSize;$/;"	m	class:peace::net::NetBase	access:protected
 _fp	base/file/simpleSaveFile.h	/^	FILE * _fp;$/;"	m	class:peace::base::SaveFile	access:private
+_ibound_	media/transmission/kcp/ikcp.c	/^static inline IUINT32 _ibound_(IUINT32 lower, IUINT32 middle, IUINT32 upper) $/;"	f	file:	signature:(IUINT32 lower, IUINT32 middle, IUINT32 upper)
+_imax_	media/transmission/kcp/ikcp.c	/^static inline IUINT32 _imax_(IUINT32 a, IUINT32 b) {$/;"	f	file:	signature:(IUINT32 a, IUINT32 b)
+_imin_	media/transmission/kcp/ikcp.c	/^static inline IUINT32 _imin_(IUINT32 a, IUINT32 b) {$/;"	f	file:	signature:(IUINT32 a, IUINT32 b)
+_isRunning	media/transmission/kcp/kcp.h	/^	bool _isRunning;$/;"	m	class:Kcp	access:private
 _isRunning	net/udp/udp.h	/^	bool _isRunning;$/;"	m	class:peace::net::Udp	access:public
+_itimediff	media/transmission/kcp/ikcp.c	/^static inline long _itimediff(IUINT32 later, IUINT32 earlier) $/;"	f	file:	signature:(IUINT32 later, IUINT32 earlier)
+_kcp	media/transmission/kcp/kcp.h	/^	ikcpcb *_kcp;$/;"	m	class:Kcp	access:private
 _lockSemFinishInit	net/udp/udp.h	/^	bool _lockSemFinishInit;$/;"	m	class:peace::net::Udp	access:private
 _mmsgRecvBuf	net/udp/udp.h	/^	RecvData** _mmsgRecvBuf;$/;"	m	class:peace::net::Udp	access:private
 _mmsgRecvNum	net/udp/udp.h	/^	int _mmsgRecvNum;$/;"	m	class:peace::net::Udp	access:private
+_mmsgSendIov	net/udp/udp.h	/^	struct iovec _mmsgSendIov[UDP_SND_MMSG_NUM];$/;"	m	class:peace::net::Udp	typeref:struct:peace::net::Udp::iovec	access:private
+_mmsgSendIovBase	net/udp/udp.h	/^	unsigned char _mmsgSendIovBase[UDP_SND_MMSG_NUM][UDP_BUF_SIZE];$/;"	m	class:peace::net::Udp	access:private
+_mmsgSendName	net/udp/udp.h	/^	struct sockaddr_in _mmsgSendName[UDP_SND_MMSG_NUM];$/;"	m	class:peace::net::Udp	typeref:struct:peace::net::Udp::sockaddr_in	access:private
+_mmsgSendNum	net/udp/udp.h	/^	int _mmsgSendNum;$/;"	m	class:peace::net::Udp	access:private
+_mmsgSendVec	net/udp/udp.h	/^	struct mmsghdr _mmsgSendVec[UDP_SND_MMSG_NUM];$/;"	m	class:peace::net::Udp	typeref:struct:peace::net::Udp::mmsghdr	access:private
 _mmsg_msg_iov	net/udp/udp.h	/^	struct iovec _mmsg_msg_iov[UDP_REV_MMSG_NUM];$/;"	m	class:peace::net::Udp	typeref:struct:peace::net::Udp::iovec	access:private
-_mmsg_msg_name	net/udp/udp.h	/^	struct sockaddr_in _mmsg_msg_name[UDP_REV_MMSG_NUM];$/;"	m	class:peace::net::Udp	typeref:struct:peace::net::Udp::sockaddr_in	access:private
 _msgVec	net/udp/udp.h	/^	struct mmsghdr _msgVec[UDP_REV_MMSG_NUM];$/;"	m	class:peace::net::Udp	typeref:struct:peace::net::Udp::mmsghdr	access:private
+_msgs	other/mmsg/recv.h	/^	struct mmsghdr _msgs[MMSG_RECV_HDR_NUM];$/;"	m	class:peace::other::MmsgRecv	typeref:struct:peace::other::MmsgRecv::mmsghdr	access:private
+_msgsIovec	other/mmsg/recv.h	/^	struct iovec _msgsIovec[MMSG_RECV_HDR_NUM][MMSG_RECV_IOV_SIZE];$/;"	m	class:peace::other::MmsgRecv	typeref:struct:peace::other::MmsgRecv::iovec	access:private
 _myNetType	net/base/netBase.h	/^	NetType _myNetType;$/;"	m	class:peace::net::NetBase	access:protected
-_myPort	net/udp/udp.h	/^	int _myPort;$/;"	m	class:peace::net::Udp	access:private
-_orgPeerAddr	net/udp/udp.h	/^	struct sockaddr_in _orgPeerAddr;$/;"	m	class:peace::net::Udp	typeref:struct:peace::net::Udp::sockaddr_in	access:private
+_myPort	net/udp/udp.h	/^	int _myPort;$/;"	m	class:peace::net::Udp	access:protected
+_orgPeerAddr	net/udp/udp.h	/^	struct sockaddr_in _orgPeerAddr;$/;"	m	class:peace::net::Udp	typeref:struct:peace::net::Udp::sockaddr_in	access:protected
+_peerAddr	other/mmsg/recv.h	/^	struct sockaddr_in _peerAddr;$/;"	m	class:peace::other::MmsgRecv	typeref:struct:peace::other::MmsgRecv::sockaddr_in	access:private
 _recvData	types.h	/^typedef struct _recvData$/;"	s
 _recvData::addr	types.h	/^	struct sockaddr_in addr;$/;"	m	struct:_recvData	typeref:struct:_recvData::sockaddr_in	access:public
 _recvData::buf	types.h	/^	unsigned char buf[UDP_BUF_SIZE];$/;"	m	struct:_recvData	access:public
@@ -145,21 +363,38 @@ _recvData::pNext	types.h	/^	struct _recvData *pNext;$/;"	m	struct:_recvData	type
 _recvDataBuf	net/udp/udp.h	/^	RecvData *_recvDataBuf;$/;"	m	class:peace::net::Udp	access:private
 _recvDataBufLast	net/udp/udp.h	/^	RecvData *_recvDataBufLast;$/;"	m	class:peace::net::Udp	access:private
 _recvDataUdp	net/udp/udp.h	/^	RecvData *_recvDataUdp;$/;"	m	class:peace::net::Udp	access:private
+_recvFunc	media/transmission/kcp/kcp.h	/^	KcpOutFuncType _recvFunc;$/;"	m	class:Kcp	access:private
+_recvLock	media/transmission/kcp/kcp.h	/^	pthread_mutex_t _recvLock;$/;"	m	class:Kcp	access:private
 _recvServer	net/udp/udp.cpp	/^void Udp::_recvServer()$/;"	f	class:peace::net::Udp	signature:()
 _recvServer	net/udp/udp.h	/^    void _recvServer();$/;"	p	class:peace::net::Udp	access:public	signature:()
 _recvServerPid	net/udp/udp.h	/^	pthread_t _recvServerPid;$/;"	m	class:peace::net::Udp	access:private
+_recvThread	media/transmission/kcp/kcp.cpp	/^void Kcp::_recvThread()$/;"	f	class:Kcp	signature:()
+_recvThread	media/transmission/kcp/kcp.h	/^	void _recvThread();$/;"	p	class:Kcp	access:public	signature:()
+_recvTid	media/transmission/kcp/kcp.h	/^	pthread_t _recvTid;$/;"	m	class:Kcp	access:private
+_send	media/transmission/kcp/kcp.cpp	/^void Kcp::_send(const unsigned char *data, const int dataSize)$/;"	f	class:Kcp	signature:(const unsigned char *data, const int dataSize)
+_send	media/transmission/kcp/kcp.h	/^	void _send(const unsigned char *data, const int dataSize);$/;"	p	class:Kcp	access:public	signature:(const unsigned char *data, const int dataSize)
 _sendBlock	net/base/netBase.h	/^	BlockInfo _sendBlock;$/;"	m	class:peace::net::NetBase	access:protected
+_sendLock	media/transmission/kcp/kcp.h	/^	pthread_mutex_t _sendLock;$/;"	m	class:Kcp	access:private
 _sendServer	net/udp/udp.cpp	/^void Udp::_sendServer()$/;"	f	class:peace::net::Udp	signature:()
 _sendServer	net/udp/udp.h	/^	void _sendServer();$/;"	p	class:peace::net::Udp	access:public	signature:()
 _sendServerDealFunc	net/udp/udp.cpp	/^void Udp::_sendServerDealFunc(const unsigned char *data, const int dataSize)$/;"	f	class:peace::net::Udp	signature:(const unsigned char *data, const int dataSize)
 _sendServerDealFunc	net/udp/udp.h	/^	void _sendServerDealFunc(const unsigned char *data, const int dataSize);		$/;"	p	class:peace::net::Udp	access:public	signature:(const unsigned char *data, const int dataSize)
 _sendServerTid	net/udp/udp.h	/^	pthread_t _sendServerTid;$/;"	m	class:peace::net::Udp	access:private
 _sock	net/udp/udp.h	/^	int _sock;$/;"	m	class:peace::net::Udp	access:private
+_sock	other/mmsg/recv.h	/^	int _sock;$/;"	m	class:peace::other::MmsgRecv	access:private
 _taskSem	net/udp/udp.h	/^	sem_t _taskSem;$/;"	m	class:peace::net::Udp	access:private
 _tcpBusinessDealFunc	net/base/netBase.h	/^	TcpBusinessDealFuncType _tcpBusinessDealFunc;$/;"	m	class:peace::net::NetBase	access:protected
+_timeout	other/mmsg/recv.h	/^	static const int _timeout = 10;$/;"	m	class:peace::other::MmsgRecv	access:private
 _udpBusinessDealFunc	net/base/netBase.h	/^	UdpBusinessDealFuncType _udpBusinessDealFunc;$/;"	m	class:peace::net::NetBase	access:protected
+_updateThread	media/transmission/kcp/kcp.cpp	/^void Kcp::_updateThread()$/;"	f	class:Kcp	signature:()
+_updateThread	media/transmission/kcp/kcp.h	/^	void _updateThread();$/;"	p	class:Kcp	access:public	signature:()
+_updateTid	media/transmission/kcp/kcp.h	/^	pthread_t _updateTid;$/;"	m	class:Kcp	access:private
 _useMmsg	net/base/netBase.h	/^	bool _useMmsg;$/;"	m	class:peace::net::NetBase	access:protected
 _useSendThread	net/base/netBase.h	/^	bool _useSendThread;$/;"	m	class:peace::net::NetBase	access:protected
+_user	media/transmission/kcp/kcp.h	/^	void* _user;$/;"	m	class:Kcp	access:private
+ackblock	media/transmission/kcp/ikcp.h	/^	IUINT32 ackblock;$/;"	m	struct:IKCPCB	access:public
+ackcount	media/transmission/kcp/ikcp.h	/^	IUINT32 ackcount;$/;"	m	struct:IKCPCB	access:public
+acklist	media/transmission/kcp/ikcp.h	/^	IUINT32 *acklist;$/;"	m	struct:IKCPCB	access:public
 addr	types.h	/^	struct sockaddr_in addr;$/;"	m	struct:_recvData	typeref:struct:_recvData::sockaddr_in	access:public
 base	base/base.h	/^namespace base $/;"	n	namespace:peace
 base	base/chain/chain.cpp	/^namespace base $/;"	n	namespace:peace	file:
@@ -182,6 +417,7 @@ bindSocket	net/udp/udp.h	/^	static int bindSocket(const UdpUserType type, const 
 buf	types.h	/^	unsigned char buf[UDP_BUF_SIZE];$/;"	m	struct:_recvData	access:public
 bufServer	net/udp/udp.cpp	/^void* Udp::bufServer(void* arg)$/;"	f	class:peace::net::Udp	signature:(void* arg)
 bufServer	net/udp/udp.h	/^	static void* bufServer(void* arg);$/;"	p	class:peace::net::Udp	access:public	signature:(void* arg)
+buffer	media/transmission/kcp/ikcp.h	/^	char *buffer;$/;"	m	struct:IKCPCB	access:public
 chainCreate	peaceInterface.cpp	/^RecvData *chainCreate(const int len)$/;"	f	signature:(const int len)
 chainCreate	peaceInterface.h	/^RecvData *chainCreate(const int len);$/;"	p	signature:(const int len)
 chainGetHead	peaceInterface.cpp	/^RecvData *chainGetHead(RecvData **dst)$/;"	f	signature:(RecvData **dst)
@@ -196,17 +432,24 @@ chainInsertTailEx	peaceInterface.cpp	/^void chainInsertTailEx(RecvData **dst, Re
 chainInsertTailEx	peaceInterface.cpp	/^void chainInsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast)$/;"	f	signature:(RecvData **dst, RecvData *src, RecvData **dstLast)
 chainInsertTailEx	peaceInterface.h	/^void chainInsertTailEx(RecvData **dst, RecvData **src, RecvData **dstLast, const int srcNum);$/;"	p	signature:(RecvData **dst, RecvData **src, RecvData **dstLast, const int srcNum)
 chainInsertTailEx	peaceInterface.h	/^void chainInsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast);$/;"	p	signature:(RecvData **dst, RecvData *src, RecvData **dstLast)
-chainRecovery	peaceInterface.cpp	/^void chainRecovery(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)$/;"	f	signature:(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
+chainRecovery	peaceInterface.cpp	/^void chainRecovery(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain)$/;"	f	signature:(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain)
 chainRecovery	peaceInterface.h	/^void chainRecovery(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain);$/;"	p	signature:(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
 chainRelease	peaceInterface.cpp	/^void chainRelease(RecvData **ppHead)$/;"	f	signature:(RecvData **ppHead)
 chainRelease	peaceInterface.h	/^void chainRelease(RecvData **ppHead);$/;"	p	signature:(RecvData **ppHead)
 close	base/file/simpleSaveFile.cpp	/^void SaveFile::close()$/;"	f	class:peace::base::SaveFile	signature:()
 close	base/file/simpleSaveFile.h	/^	void close();$/;"	p	class:peace::base::SaveFile	access:public	signature:()
+cmd	media/transmission/kcp/ikcp.h	/^	IUINT32 cmd;$/;"	m	struct:IKCPSEG	access:public
+conv	media/transmission/kcp/ikcp.h	/^	IUINT32 conv, mtu, mss, state;$/;"	m	struct:IKCPCB	access:public
+conv	media/transmission/kcp/ikcp.h	/^	IUINT32 conv;$/;"	m	struct:IKCPSEG	access:public
 count	types.h	/^	int count;$/;"	m	struct:_recvData	access:public
 create	media/mix/readSplit/readSplitBase.cpp	/^ReadSplitBase* ReadSplitBase::create(const std::string &fileType)$/;"	f	class:peace::media::ReadSplitBase	signature:(const std::string &fileType)
 create	media/mix/readSplit/readSplitBase.h	/^	static ReadSplitBase* create(const std::string &fileType);$/;"	p	class:peace::media::ReadSplitBase	access:public	signature:(const std::string &fileType)
 create	net/base/netBase.cpp	/^NetBase* NetBase::create(const NetType type, void* arg, const bool useMmsg)$/;"	f	class:peace::net::NetBase	signature:(const NetType type, void* arg, const bool useMmsg)
 create	net/base/netBase.h	/^	static NetBase* create(const NetType type, void* arg, const bool useMmsg);	$/;"	p	class:peace::net::NetBase	access:public	signature:(const NetType type, void* arg, const bool useMmsg)
+current	media/transmission/kcp/ikcp.h	/^	IUINT32 current, interval, ts_flush, xmit;$/;"	m	struct:IKCPCB	access:public
+cwnd	media/transmission/kcp/ikcp.h	/^	IUINT32 snd_wnd, rcv_wnd, rmt_wnd, cwnd, probe;$/;"	m	struct:IKCPCB	access:public
+data	media/transmission/kcp/ikcp.h	/^	char data[1];$/;"	m	struct:IKCPSEG	access:public
+dead_link	media/transmission/kcp/ikcp.h	/^	IUINT32 dead_link, incr;$/;"	m	struct:IKCPCB	access:public
 deal	media/mix/readSplit/readSplitBase.cpp	/^void ReadSplitBase::deal(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize) const$/;"	f	class:peace::media::ReadSplitBase	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize) const
 deal	media/mix/readSplit/readSplitBase.h	/^	void deal(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize) const;	$/;"	p	class:peace::media::ReadSplitBase	access:public	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize) const
 deletePP	base/memmory/allocate.cpp	/^void deletePP(void** &pp, const int num)$/;"	f	namespace:peace::base	signature:(void** &pp, const int num)
@@ -221,9 +464,15 @@ eUdpClient	types.h	/^	eUdpClient,$/;"	e	enum:__anon4
 eUdpServer	types.h	/^	eUdpServer,$/;"	e	enum:__anon4
 epfd	types.h	/^	int epfd;$/;"	m	struct:__anon2	access:public
 events	types.h	/^	struct epoll_event events[EPOLL_MAX_EVENT + 1];$/;"	m	struct:__anon2	typeref:struct:__anon2::epoll_event	access:public
+exit	media/transmission/kcp/kcp.cpp	/^void Kcp::exit()$/;"	f	class:Kcp	signature:()
+exit	media/transmission/kcp/kcp.h	/^	void exit();$/;"	p	class:Kcp	access:public	signature:()
 exit	net/base/netBase.h	/^	virtual void exit() = 0;$/;"	p	class:peace::net::NetBase	access:public	signature:()
 exit	net/tcp/tcp.h	/^	virtual void exit();$/;"	p	class:peace::net::Tcp	access:public	signature:()
 exit	net/udp/udp.cpp	/^void Udp::exit()$/;"	f	class:peace::net::Udp	signature:()
+exit	other/mmsg/recv.cpp	/^void MmsgRecv::exit()$/;"	f	class:peace::other::MmsgRecv	signature:()
+exit	other/mmsg/recv.h	/^	void exit();$/;"	p	class:peace::other::MmsgRecv	access:public	signature:()
+fastack	media/transmission/kcp/ikcp.h	/^	IUINT32 fastack;$/;"	m	struct:IKCPSEG	access:public
+fastresend	media/transmission/kcp/ikcp.h	/^	int fastresend;$/;"	m	struct:IKCPCB	access:public
 fileSimpleClose	base/file/file.cpp	/^void fileSimpleClose(const char *fileAbsName)$/;"	f	namespace:peace::base	signature:(const char *fileAbsName)
 fileSimpleClose	base/file/file.h	/^void fileSimpleClose(const char *fileAbsName);$/;"	p	namespace:peace::base	signature:(const char *fileAbsName)
 fileSimpleClose	peaceInterface.cpp	/^void fileSimpleClose(const char *fileAbsName)$/;"	f	signature:(const char *fileAbsName)
@@ -232,6 +481,7 @@ fileSimpleWrite	base/file/file.cpp	/^void fileSimpleWrite(const unsigned char *d
 fileSimpleWrite	base/file/file.h	/^void fileSimpleWrite(const unsigned char *data, const int size, const char *fileAbsName);$/;"	p	namespace:peace::base	signature:(const unsigned char *data, const int size, const char *fileAbsName)
 fileSimpleWrite	peaceInterface.cpp	/^void fileSimpleWrite(const unsigned char *data, const int size, const char *fileAbsName)$/;"	f	signature:(const unsigned char *data, const int size, const char *fileAbsName)
 fileSimpleWrite	peaceInterface.h	/^void fileSimpleWrite(const unsigned char *data, const int size, const char *fileAbsName);$/;"	p	signature:(const unsigned char *data, const int size, const char *fileAbsName)
+frg	media/transmission/kcp/ikcp.h	/^	IUINT32 frg;$/;"	m	struct:IKCPSEG	access:public
 gNetSendQueueBufSize	types.h	/^static const int gNetSendQueueBufSize = 2 * 1024 * 1024;$/;"	v
 gSockBufSize	types.h	/^static const int gSockBufSize = 256 * 1024;$/;"	v
 gUdpClientSelfPortRangeBegin	types.h	/^static const int gUdpClientSelfPortRangeBegin = 40001;$/;"	v
@@ -242,11 +492,100 @@ getCurMs	peaceInterface.cpp	/^unsigned int getCurMs()$/;"	f	signature:()
 getCurMs	peaceInterface.h	/^unsigned int getCurMs();$/;"	p	signature:()
 getObj	base/file/simpleSaveFile.cpp	/^SaveFile* SaveFile::getObj(const char *fileName)$/;"	f	class:peace::base::SaveFile	signature:(const char *fileName)
 getObj	base/file/simpleSaveFile.h	/^	static SaveFile* getObj(const char *fileName); $/;"	p	class:peace::base::SaveFile	access:public	signature:(const char *fileName)
+ikcp_ack_get	media/transmission/kcp/ikcp.c	/^static void ikcp_ack_get(const ikcpcb *kcp, int p, IUINT32 *sn, IUINT32 *ts)$/;"	f	file:	signature:(const ikcpcb *kcp, int p, IUINT32 *sn, IUINT32 *ts)
+ikcp_ack_push	media/transmission/kcp/ikcp.c	/^static void ikcp_ack_push(ikcpcb *kcp, IUINT32 sn, IUINT32 ts)$/;"	f	file:	signature:(ikcpcb *kcp, IUINT32 sn, IUINT32 ts)
+ikcp_allocator	media/transmission/kcp/ikcp.c	/^void ikcp_allocator(void* (*new_malloc)(size_t), void (*new_free)(void*))$/;"	f	signature:(void* (*new_malloc)(size_t), void (*new_free)(void*))
+ikcp_allocator	media/transmission/kcp/ikcp.h	/^void ikcp_allocator(void* (*new_malloc)(size_t), void (*new_free)(void*));$/;"	p	signature:(void* (*new_malloc)(size_t), void (*new_free)(void*))
+ikcp_canlog	media/transmission/kcp/ikcp.c	/^static int ikcp_canlog(const ikcpcb *kcp, int mask)$/;"	f	file:	signature:(const ikcpcb *kcp, int mask)
+ikcp_check	media/transmission/kcp/ikcp.c	/^IUINT32 ikcp_check(const ikcpcb *kcp, IUINT32 current)$/;"	f	signature:(const ikcpcb *kcp, IUINT32 current)
+ikcp_check	media/transmission/kcp/ikcp.h	/^IUINT32 ikcp_check(const ikcpcb *kcp, IUINT32 current);$/;"	p	signature:(const ikcpcb *kcp, IUINT32 current)
+ikcp_create	media/transmission/kcp/ikcp.c	/^ikcpcb* ikcp_create(IUINT32 conv, void *user)$/;"	f	signature:(IUINT32 conv, void *user)
+ikcp_create	media/transmission/kcp/ikcp.h	/^ikcpcb* ikcp_create(IUINT32 conv, void *user);$/;"	p	signature:(IUINT32 conv, void *user)
+ikcp_decode16u	media/transmission/kcp/ikcp.c	/^static inline const char *ikcp_decode16u(const char *p, unsigned short *w)$/;"	f	file:	signature:(const char *p, unsigned short *w)
+ikcp_decode32u	media/transmission/kcp/ikcp.c	/^static inline const char *ikcp_decode32u(const char *p, IUINT32 *l)$/;"	f	file:	signature:(const char *p, IUINT32 *l)
+ikcp_decode8u	media/transmission/kcp/ikcp.c	/^static inline const char *ikcp_decode8u(const char *p, unsigned char *c)$/;"	f	file:	signature:(const char *p, unsigned char *c)
+ikcp_encode16u	media/transmission/kcp/ikcp.c	/^static inline char *ikcp_encode16u(char *p, unsigned short w)$/;"	f	file:	signature:(char *p, unsigned short w)
+ikcp_encode32u	media/transmission/kcp/ikcp.c	/^static inline char *ikcp_encode32u(char *p, IUINT32 l)$/;"	f	file:	signature:(char *p, IUINT32 l)
+ikcp_encode8u	media/transmission/kcp/ikcp.c	/^static inline char *ikcp_encode8u(char *p, unsigned char c)$/;"	f	file:	signature:(char *p, unsigned char c)
+ikcp_encode_seg	media/transmission/kcp/ikcp.c	/^static char *ikcp_encode_seg(char *ptr, const IKCPSEG *seg)$/;"	f	file:	signature:(char *ptr, const IKCPSEG *seg)
+ikcp_flush	media/transmission/kcp/ikcp.c	/^void ikcp_flush(ikcpcb *kcp)$/;"	f	signature:(ikcpcb *kcp)
+ikcp_flush	media/transmission/kcp/ikcp.h	/^void ikcp_flush(ikcpcb *kcp);$/;"	p	signature:(ikcpcb *kcp)
+ikcp_free	media/transmission/kcp/ikcp.c	/^static void ikcp_free(void *ptr) {$/;"	f	file:	signature:(void *ptr)
+ikcp_free_hook	media/transmission/kcp/ikcp.c	/^static void (*ikcp_free_hook)(void *) = NULL;$/;"	v	file:
+ikcp_getconv	media/transmission/kcp/ikcp.c	/^IUINT32 ikcp_getconv(const void *ptr)$/;"	f	signature:(const void *ptr)
+ikcp_getconv	media/transmission/kcp/ikcp.h	/^IUINT32 ikcp_getconv(const void *ptr);$/;"	p	signature:(const void *ptr)
+ikcp_input	media/transmission/kcp/ikcp.c	/^int ikcp_input(ikcpcb *kcp, const char *data, long size)$/;"	f	signature:(ikcpcb *kcp, const char *data, long size)
+ikcp_input	media/transmission/kcp/ikcp.h	/^int ikcp_input(ikcpcb *kcp, const char *data, long size);$/;"	p	signature:(ikcpcb *kcp, const char *data, long size)
+ikcp_interval	media/transmission/kcp/ikcp.c	/^int ikcp_interval(ikcpcb *kcp, int interval)$/;"	f	signature:(ikcpcb *kcp, int interval)
+ikcp_log	media/transmission/kcp/ikcp.c	/^void ikcp_log(ikcpcb *kcp, int mask, const char *fmt, ...)$/;"	f	signature:(ikcpcb *kcp, int mask, const char *fmt, ...)
+ikcp_log	media/transmission/kcp/ikcp.h	/^void ikcp_log(ikcpcb *kcp, int mask, const char *fmt, ...);$/;"	p	signature:(ikcpcb *kcp, int mask, const char *fmt, ...)
+ikcp_malloc	media/transmission/kcp/ikcp.c	/^static void* ikcp_malloc(size_t size) {$/;"	f	file:	signature:(size_t size)
+ikcp_malloc_hook	media/transmission/kcp/ikcp.c	/^static void* (*ikcp_malloc_hook)(size_t) = NULL;$/;"	v	file:
+ikcp_nodelay	media/transmission/kcp/ikcp.c	/^int ikcp_nodelay(ikcpcb *kcp, int nodelay, int interval, int resend, int nc)$/;"	f	signature:(ikcpcb *kcp, int nodelay, int interval, int resend, int nc)
+ikcp_nodelay	media/transmission/kcp/ikcp.h	/^int ikcp_nodelay(ikcpcb *kcp, int nodelay, int interval, int resend, int nc);$/;"	p	signature:(ikcpcb *kcp, int nodelay, int interval, int resend, int nc)
+ikcp_output	media/transmission/kcp/ikcp.c	/^static int ikcp_output(ikcpcb *kcp, const void *data, int size)$/;"	f	file:	signature:(ikcpcb *kcp, const void *data, int size)
+ikcp_parse_ack	media/transmission/kcp/ikcp.c	/^static void ikcp_parse_ack(ikcpcb *kcp, IUINT32 sn)$/;"	f	file:	signature:(ikcpcb *kcp, IUINT32 sn)
+ikcp_parse_data	media/transmission/kcp/ikcp.c	/^void ikcp_parse_data(ikcpcb *kcp, IKCPSEG *newseg)$/;"	f	signature:(ikcpcb *kcp, IKCPSEG *newseg)
+ikcp_parse_fastack	media/transmission/kcp/ikcp.c	/^static void ikcp_parse_fastack(ikcpcb *kcp, IUINT32 sn)$/;"	f	file:	signature:(ikcpcb *kcp, IUINT32 sn)
+ikcp_parse_una	media/transmission/kcp/ikcp.c	/^static void ikcp_parse_una(ikcpcb *kcp, IUINT32 una)$/;"	f	file:	signature:(ikcpcb *kcp, IUINT32 una)
+ikcp_peeksize	media/transmission/kcp/ikcp.c	/^int ikcp_peeksize(const ikcpcb *kcp)$/;"	f	signature:(const ikcpcb *kcp)
+ikcp_peeksize	media/transmission/kcp/ikcp.h	/^int ikcp_peeksize(const ikcpcb *kcp);$/;"	p	signature:(const ikcpcb *kcp)
+ikcp_qprint	media/transmission/kcp/ikcp.c	/^void ikcp_qprint(const char *name, const struct IQUEUEHEAD *head)$/;"	f	signature:(const char *name, const struct IQUEUEHEAD *head)
+ikcp_recv	media/transmission/kcp/ikcp.c	/^int ikcp_recv(ikcpcb *kcp, char *buffer, int len)$/;"	f	signature:(ikcpcb *kcp, char *buffer, int len)
+ikcp_recv	media/transmission/kcp/ikcp.h	/^int ikcp_recv(ikcpcb *kcp, char *buffer, int len);$/;"	p	signature:(ikcpcb *kcp, char *buffer, int len)
+ikcp_release	media/transmission/kcp/ikcp.c	/^void ikcp_release(ikcpcb *kcp)$/;"	f	signature:(ikcpcb *kcp)
+ikcp_release	media/transmission/kcp/ikcp.h	/^void ikcp_release(ikcpcb *kcp);$/;"	p	signature:(ikcpcb *kcp)
+ikcp_segment_delete	media/transmission/kcp/ikcp.c	/^static void ikcp_segment_delete(ikcpcb *kcp, IKCPSEG *seg)$/;"	f	file:	signature:(ikcpcb *kcp, IKCPSEG *seg)
+ikcp_segment_new	media/transmission/kcp/ikcp.c	/^static IKCPSEG* ikcp_segment_new(ikcpcb *kcp, int size)$/;"	f	file:	signature:(ikcpcb *kcp, int size)
+ikcp_send	media/transmission/kcp/ikcp.c	/^int ikcp_send(ikcpcb *kcp, const char *buffer, int len)$/;"	f	signature:(ikcpcb *kcp, const char *buffer, int len)
+ikcp_send	media/transmission/kcp/ikcp.h	/^int ikcp_send(ikcpcb *kcp, const char *buffer, int len);$/;"	p	signature:(ikcpcb *kcp, const char *buffer, int len)
+ikcp_setmtu	media/transmission/kcp/ikcp.c	/^int ikcp_setmtu(ikcpcb *kcp, int mtu)$/;"	f	signature:(ikcpcb *kcp, int mtu)
+ikcp_setmtu	media/transmission/kcp/ikcp.h	/^int ikcp_setmtu(ikcpcb *kcp, int mtu);$/;"	p	signature:(ikcpcb *kcp, int mtu)
+ikcp_setoutput	media/transmission/kcp/ikcp.c	/^void ikcp_setoutput(ikcpcb *kcp, int (*output)(const char *buf, int len,$/;"	f	signature:(ikcpcb *kcp, int (*output)(const char *buf, int len, ikcpcb *kcp, void *user))
+ikcp_setoutput	media/transmission/kcp/ikcp.h	/^void ikcp_setoutput(ikcpcb *kcp, int (*output)(const char *buf, int len, $/;"	p	signature:(ikcpcb *kcp, int (*output)(const char *buf, int len, ikcpcb *kcp, void *user))
+ikcp_shrink_buf	media/transmission/kcp/ikcp.c	/^static void ikcp_shrink_buf(ikcpcb *kcp)$/;"	f	file:	signature:(ikcpcb *kcp)
+ikcp_update	media/transmission/kcp/ikcp.c	/^void ikcp_update(ikcpcb *kcp, IUINT32 current)$/;"	f	signature:(ikcpcb *kcp, IUINT32 current)
+ikcp_update	media/transmission/kcp/ikcp.h	/^void ikcp_update(ikcpcb *kcp, IUINT32 current);$/;"	p	signature:(ikcpcb *kcp, IUINT32 current)
+ikcp_update_ack	media/transmission/kcp/ikcp.c	/^static void ikcp_update_ack(ikcpcb *kcp, IINT32 rtt)$/;"	f	file:	signature:(ikcpcb *kcp, IINT32 rtt)
+ikcp_waitsnd	media/transmission/kcp/ikcp.c	/^int ikcp_waitsnd(const ikcpcb *kcp)$/;"	f	signature:(const ikcpcb *kcp)
+ikcp_waitsnd	media/transmission/kcp/ikcp.h	/^int ikcp_waitsnd(const ikcpcb *kcp);$/;"	p	signature:(const ikcpcb *kcp)
+ikcp_wnd_unused	media/transmission/kcp/ikcp.c	/^static int ikcp_wnd_unused(const ikcpcb *kcp)$/;"	f	file:	signature:(const ikcpcb *kcp)
+ikcp_wndsize	media/transmission/kcp/ikcp.c	/^int ikcp_wndsize(ikcpcb *kcp, int sndwnd, int rcvwnd)$/;"	f	signature:(ikcpcb *kcp, int sndwnd, int rcvwnd)
+ikcp_wndsize	media/transmission/kcp/ikcp.h	/^int ikcp_wndsize(ikcpcb *kcp, int sndwnd, int rcvwnd);$/;"	p	signature:(ikcpcb *kcp, int sndwnd, int rcvwnd)
+ikcpcb	media/transmission/kcp/ikcp.h	/^typedef struct IKCPCB ikcpcb;$/;"	t	typeref:struct:IKCPCB
+incr	media/transmission/kcp/ikcp.h	/^	IUINT32 dead_link, incr;$/;"	m	struct:IKCPCB	access:public
+init	media/transmission/kcp/kcp.cpp	/^int Kcp::init(const int conv, void* user, const int kcpMode, const KcpOutFuncType udpSendFunc, const KcpOutFuncType kcpRecvFunc)$/;"	f	class:Kcp	signature:(const int conv, void* user, const int kcpMode, const KcpOutFuncType udpSendFunc, const KcpOutFuncType kcpRecvFunc)
+init	media/transmission/kcp/kcp.h	/^	int init(const int conv, void* user, const int kcpMode, const KcpOutFuncType udpSendFunc, const KcpOutFuncType kcpRecvFunc);	$/;"	p	class:Kcp	access:public	signature:(const int conv, void* user, const int kcpMode, const KcpOutFuncType udpSendFunc, const KcpOutFuncType kcpRecvFunc)
 init	net/base/netBase.h	/^	virtual int init() = 0;$/;"	p	class:peace::net::NetBase	access:public	signature:()
 init	net/tcp/tcp.h	/^	virtual int init();$/;"	p	class:peace::net::Tcp	access:public	signature:()
 init	net/udp/udp.cpp	/^int Udp::init()$/;"	f	class:peace::net::Udp	signature:()
+init	other/mmsg/recv.cpp	/^int MmsgRecv::init(const char *ip, const int port)$/;"	f	class:peace::other::MmsgRecv	signature:(const char *ip, const int port)
+init	other/mmsg/recv.h	/^	int init(const char *ip, const int port);	$/;"	p	class:peace::other::MmsgRecv	access:public	signature:(const char *ip, const int port)
+init	other/mmsg/send.h	/^	int init();$/;"	p	class:peace::other::MmsgSend	access:private	signature:()
+initMmsgPara	net/udp/udp.cpp	/^void Udp::initMmsgPara()$/;"	f	class:peace::net::Udp	signature:()
+initMmsgPara	net/udp/udp.h	/^	void initMmsgPara();$/;"	p	class:peace::net::Udp	access:private	signature:()
+initMmsgPara	other/mmsg/recv.cpp	/^void MmsgRecv::initMmsgPara()$/;"	f	class:peace::other::MmsgRecv	signature:()
+initMmsgPara	other/mmsg/recv.h	/^	void initMmsgPara();$/;"	p	class:peace::other::MmsgRecv	access:private	signature:()
+initMmsgSendPara	net/udp/udp.cpp	/^void Udp::initMmsgSendPara(const unsigned char* data, const int dataSize, const struct sockaddr_in &peerAddr)$/;"	f	class:peace::net::Udp	signature:(const unsigned char* data, const int dataSize, const struct sockaddr_in &peerAddr)
+initMmsgSendPara	net/udp/udp.h	/^	void initMmsgSendPara(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr);$/;"	p	class:peace::net::Udp	access:private	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
+inline	media/transmission/kcp/ikcp.h	127;"	d
+interval	media/transmission/kcp/ikcp.h	/^	IUINT32 current, interval, ts_flush, xmit;$/;"	m	struct:IKCPCB	access:public
+iqueue_add	media/transmission/kcp/ikcp.h	187;"	d
+iqueue_add_tail	media/transmission/kcp/ikcp.h	188;"	d
+iqueue_del	media/transmission/kcp/ikcp.h	189;"	d
+iqueue_del_init	media/transmission/kcp/ikcp.h	190;"	d
+iqueue_entry	media/transmission/kcp/ikcp.h	186;"	d
+iqueue_foreach	media/transmission/kcp/ikcp.h	198;"	d
+iqueue_foreach_entry	media/transmission/kcp/ikcp.h	201;"	d
+iqueue_head	media/transmission/kcp/ikcp.h	/^typedef struct IQUEUEHEAD iqueue_head;$/;"	t	typeref:struct:IQUEUEHEAD
+iqueue_init	media/transmission/kcp/ikcp.h	185;"	d
+iqueue_is_empty	media/transmission/kcp/ikcp.h	191;"	d
+iqueue_splice	media/transmission/kcp/ikcp.h	211;"	d
+iqueue_splice_init	media/transmission/kcp/ikcp.h	214;"	d
 isStart	net/udp/udp.cpp	/^bool Udp::isStart(void *arg)$/;"	f	class:peace::net::Udp	signature:(void *arg)
 isStart	net/udp/udp.h	/^	static bool isStart(void* arg);$/;"	p	class:peace::net::Udp	access:public	signature:(void* arg)
+len	media/transmission/kcp/ikcp.h	/^	IUINT32 len;$/;"	m	struct:IKCPSEG	access:public
+logmask	media/transmission/kcp/ikcp.h	/^	int logmask;$/;"	m	struct:IKCPCB	access:public
 m_Lock	types.h	/^        pthread_mutex_t m_Lock;$/;"	m	struct:__anon3	access:public
 m_Pop	types.h	/^        BufferInfo *m_Pop;$/;"	m	struct:__anon3	access:public
 m_Push	types.h	/^        BufferInfo *m_Push;$/;"	m	struct:__anon3	access:public
@@ -267,6 +606,14 @@ mediaReadSplitAAC	peaceInterface.cpp	/^void mediaReadSplitAAC(const char *fileAb
 mediaReadSplitAAC	peaceInterface.h	/^void mediaReadSplitAAC(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize);$/;"	p	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)
 mediaReadSplitH264	peaceInterface.cpp	/^void mediaReadSplitH264(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)$/;"	f	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)
 mediaReadSplitH264	peaceInterface.h	/^void mediaReadSplitH264(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize);$/;"	p	signature:(const char *fileAbsName, void(*dealFunc)(const unsigned char *data, const int dataSize, void* arg), void* arg, unsigned char *readBuf, const int readBufSize)
+mmsgRecvDo	peaceInterface.cpp	/^int mmsgRecvDo(void* recv)$/;"	f	signature:(void* recv)
+mmsgRecvDo	peaceInterface.h	/^int mmsgRecvDo(void* recv);$/;"	p	signature:(void* recv)
+mmsgRecvExit	peaceInterface.cpp	/^void mmsgRecvExit(void *recv)$/;"	f	signature:(void *recv)
+mmsgRecvExit	peaceInterface.h	/^void mmsgRecvExit(void *recv);$/;"	p	signature:(void *recv)
+mmsgRecvInit	peaceInterface.cpp	/^void* mmsgRecvInit(const char *ip, const int port)$/;"	f	signature:(const char *ip, const int port)
+mmsgRecvInit	peaceInterface.h	/^void* mmsgRecvInit(const char *ip, const int port);$/;"	p	signature:(const char *ip, const int port)
+mss	media/transmission/kcp/ikcp.h	/^	IUINT32 conv, mtu, mss, state;$/;"	m	struct:IKCPCB	access:public
+mtu	media/transmission/kcp/ikcp.h	/^	IUINT32 conv, mtu, mss, state;$/;"	m	struct:IKCPCB	access:public
 nFlag	types.h	/^        int nFlag;$/;"	m	struct:_BufferInfo	access:public
 nSize	types.h	/^        int nSize;$/;"	m	struct:_BufferInfo	access:public
 net	net/base/netBase.cpp	/^namespace net $/;"	n	namespace:peace	file:
@@ -306,12 +653,24 @@ netStart	peaceInterface.h	/^int netStart(void*base, const char *ip, const int po
 netStop	peaceInterface.cpp	/^int netStop(void *base)$/;"	f	signature:(void *base)
 netStop	peaceInterface.h	/^int netStop(void *base);$/;"	p	signature:(void *base)
 nevents	types.h	/^	int nevents;$/;"	m	struct:__anon2	access:public
-newPP	base/memmory/allocate.cpp	/^void newPP(void** &pp, const int num, const int eachByteSize)$/;"	f	namespace:peace::base	signature:(void** &pp, const int num, const int eachByteSize)
-newPP	base/memmory/allocate.h	/^void newPP(void** &PP, const int num, const int eachByteSize = 0);$/;"	p	namespace:peace::base	signature:(void** &PP, const int num, const int eachByteSize = 0)
-newPP	peaceInterface.cpp	/^void newPP(void** &pp, const int num, const int eachByteSize)$/;"	f	signature:(void** &pp, const int num, const int eachByteSize)
-newPP	peaceInterface.h	/^void newPP(void** &pp, const int num, const int eachByteSize = 0);$/;"	p	signature:(void** &pp, const int num, const int eachByteSize = 0)
+newPP	base/memmory/allocate.cpp	/^void** newPP(const int num, const int eachByteSize)$/;"	f	namespace:peace::base	signature:(const int num, const int eachByteSize)
+newPP	base/memmory/allocate.h	/^void** newPP(const int num, const int eachByteSize = 0);$/;"	p	namespace:peace::base	signature:(const int num, const int eachByteSize = 0)
+newPP	peaceInterface.cpp	/^void** newPP(const int num, const int eachByteSize)$/;"	f	signature:(const int num, const int eachByteSize)
+newPP	peaceInterface.h	/^void** newPP(const int num, const int eachByteSize = 0);$/;"	p	signature:(const int num, const int eachByteSize = 0)
+next	media/transmission/kcp/ikcp.h	/^	struct IQUEUEHEAD *next, *prev;$/;"	m	struct:IQUEUEHEAD	typeref:struct:IQUEUEHEAD::IQUEUEHEAD	access:public
+nocwnd	media/transmission/kcp/ikcp.h	/^	int nocwnd, stream;$/;"	m	struct:IKCPCB	access:public
+node	media/transmission/kcp/ikcp.h	/^	struct IQUEUEHEAD node;$/;"	m	struct:IKCPSEG	typeref:struct:IKCPSEG::IQUEUEHEAD	access:public
+nodelay	media/transmission/kcp/ikcp.h	/^	IUINT32 nodelay, updated;$/;"	m	struct:IKCPCB	access:public
+nrcv_buf	media/transmission/kcp/ikcp.h	/^	IUINT32 nrcv_buf, nsnd_buf;$/;"	m	struct:IKCPCB	access:public
+nrcv_que	media/transmission/kcp/ikcp.h	/^	IUINT32 nrcv_que, nsnd_que;$/;"	m	struct:IKCPCB	access:public
+nsnd_buf	media/transmission/kcp/ikcp.h	/^	IUINT32 nrcv_buf, nsnd_buf;$/;"	m	struct:IKCPCB	access:public
+nsnd_que	media/transmission/kcp/ikcp.h	/^	IUINT32 nrcv_que, nsnd_que;$/;"	m	struct:IKCPCB	access:public
 open	base/file/simpleSaveFile.cpp	/^void *SaveFile::open(const char *fileName)$/;"	f	class:peace::base::SaveFile	signature:(const char *fileName)
 open	base/file/simpleSaveFile.h	/^	void * open(const char *fileName);$/;"	p	class:peace::base::SaveFile	access:public	signature:(const char *fileName)
+other	other/mmsg/recv.cpp	/^namespace other$/;"	n	namespace:peace	file:
+other	other/mmsg/recv.h	/^namespace other $/;"	n	namespace:peace
+other	other/mmsg/send.h	/^namespace other $/;"	n	namespace:peace
+output	media/transmission/kcp/ikcp.h	/^	int (*output)(const char *buf, int len, struct IKCPCB *kcp, void *user);$/;"	m	struct:IKCPCB	access:public
 override	media/mix/readSplit/readSplitAAC.h	/^	virtual	int split(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const override;$/;"	m	class:peace::media::ReadSplitAAC	access:private
 override	media/mix/readSplit/readSplitH264.h	/^	virtual	int split(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const override;$/;"	m	class:peace::media::ReadSplitH264	access:private
 override	net/udp/udp.h	/^	virtual int init() override;$/;"	m	class:peace::net::Udp	access:public
@@ -362,6 +721,9 @@ peace	net/udp/udpClient.cpp	/^namespace peace $/;"	n	file:
 peace	net/udp/udpClient.h	/^namespace peace $/;"	n
 peace	net/udp/udpServer.cpp	/^namespace peace $/;"	n	file:
 peace	net/udp/udpServer.h	/^namespace peace $/;"	n
+peace	other/mmsg/recv.cpp	/^namespace peace$/;"	n	file:
+peace	other/mmsg/recv.h	/^namespace peace $/;"	n
+peace	other/mmsg/send.h	/^namespace peace $/;"	n
 peace::base	base/base.h	/^namespace base $/;"	n	namespace:peace
 peace::base	base/chain/chain.cpp	/^namespace base $/;"	n	namespace:peace	file:
 peace::base	base/chain/chain.h	/^namespace base $/;"	n	namespace:peace
@@ -392,8 +754,8 @@ peace::base::InsertTailEx	base/chain/chain.cpp	/^void InsertTailEx(RecvData **ds
 peace::base::InsertTailEx	base/chain/chain.cpp	/^void InsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast)$/;"	f	namespace:peace::base	signature:(RecvData **dst, RecvData *src, RecvData **dstLast)
 peace::base::InsertTailEx	base/chain/chain.h	/^	void InsertTailEx(RecvData **dst, RecvData **src, RecvData **dstLast, const int srcNum);$/;"	p	namespace:peace::base	signature:(RecvData **dst, RecvData **src, RecvData **dstLast, const int srcNum)
 peace::base::InsertTailEx	base/chain/chain.h	/^	void InsertTailEx(RecvData **dst, RecvData *src, RecvData **dstLast);$/;"	p	namespace:peace::base	signature:(RecvData **dst, RecvData *src, RecvData **dstLast)
-peace::base::RecoveryChain	base/chain/chain.cpp	/^void RecoveryChain(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)$/;"	f	namespace:peace::base	signature:(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
-peace::base::RecoveryChain	base/chain/chain.h	/^	void RecoveryChain(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain);$/;"	p	namespace:peace::base	signature:(RecvData *src, RecvData *recvDataUdp, pthread_mutex_t LockChain)
+peace::base::RecoveryChain	base/chain/chain.cpp	/^void RecoveryChain(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain)$/;"	f	namespace:peace::base	signature:(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain)
+peace::base::RecoveryChain	base/chain/chain.h	/^	void RecoveryChain(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain);$/;"	p	namespace:peace::base	signature:(RecvData *src, RecvData **recvDataUdp, pthread_mutex_t *LockChain)
 peace::base::ReleaseChain	base/chain/chain.cpp	/^void ReleaseChain(RecvData **ppHead)$/;"	f	namespace:peace::base	signature:(RecvData **ppHead)
 peace::base::ReleaseChain	base/chain/chain.h	/^	void ReleaseChain(RecvData **ppHead);$/;"	p	namespace:peace::base	signature:(RecvData **ppHead)
 peace::base::SaveFile	base/file/simpleSaveFile.h	/^class SaveFile$/;"	c	namespace:peace::base
@@ -418,8 +780,8 @@ peace::base::fileSimpleWrite	base/file/file.h	/^void fileSimpleWrite(const unsig
 peace::base::getCurMs	base/time/time.cpp	/^unsigned int getCurMs()$/;"	f	namespace:peace::base	signature:()
 peace::base::getCurMs	base/time/time.h	/^unsigned int getCurMs();	$/;"	p	namespace:peace::base	signature:()
 peace::base::mapFp	base/file/simpleSaveFile.cpp	/^SaveFileFpMap mapFp;$/;"	m	namespace:peace::base	file:
-peace::base::newPP	base/memmory/allocate.cpp	/^void newPP(void** &pp, const int num, const int eachByteSize)$/;"	f	namespace:peace::base	signature:(void** &pp, const int num, const int eachByteSize)
-peace::base::newPP	base/memmory/allocate.h	/^void newPP(void** &PP, const int num, const int eachByteSize = 0);$/;"	p	namespace:peace::base	signature:(void** &PP, const int num, const int eachByteSize = 0)
+peace::base::newPP	base/memmory/allocate.cpp	/^void** newPP(const int num, const int eachByteSize)$/;"	f	namespace:peace::base	signature:(const int num, const int eachByteSize)
+peace::base::newPP	base/memmory/allocate.h	/^void** newPP(const int num, const int eachByteSize = 0);$/;"	p	namespace:peace::base	signature:(const int num, const int eachByteSize = 0)
 peace::base::queueDestroy	base/queue/queue.cpp	/^void queueDestroy(BlockInfo *pBlockInfo)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo)
 peace::base::queueDestroy	base/queue/queue.h	/^void queueDestroy(BlockInfo *pBlockInfo);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo)
 peace::base::queueInit	base/queue/queue.cpp	/^int queueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
@@ -530,11 +892,15 @@ peace::net::Udp::_isRunning	net/udp/udp.h	/^	bool _isRunning;$/;"	m	class:peace:
 peace::net::Udp::_lockSemFinishInit	net/udp/udp.h	/^	bool _lockSemFinishInit;$/;"	m	class:peace::net::Udp	access:private
 peace::net::Udp::_mmsgRecvBuf	net/udp/udp.h	/^	RecvData** _mmsgRecvBuf;$/;"	m	class:peace::net::Udp	access:private
 peace::net::Udp::_mmsgRecvNum	net/udp/udp.h	/^	int _mmsgRecvNum;$/;"	m	class:peace::net::Udp	access:private
+peace::net::Udp::_mmsgSendIov	net/udp/udp.h	/^	struct iovec _mmsgSendIov[UDP_SND_MMSG_NUM];$/;"	m	class:peace::net::Udp	typeref:struct:peace::net::Udp::iovec	access:private
+peace::net::Udp::_mmsgSendIovBase	net/udp/udp.h	/^	unsigned char _mmsgSendIovBase[UDP_SND_MMSG_NUM][UDP_BUF_SIZE];$/;"	m	class:peace::net::Udp	access:private
+peace::net::Udp::_mmsgSendName	net/udp/udp.h	/^	struct sockaddr_in _mmsgSendName[UDP_SND_MMSG_NUM];$/;"	m	class:peace::net::Udp	typeref:struct:peace::net::Udp::sockaddr_in	access:private
+peace::net::Udp::_mmsgSendNum	net/udp/udp.h	/^	int _mmsgSendNum;$/;"	m	class:peace::net::Udp	access:private
+peace::net::Udp::_mmsgSendVec	net/udp/udp.h	/^	struct mmsghdr _mmsgSendVec[UDP_SND_MMSG_NUM];$/;"	m	class:peace::net::Udp	typeref:struct:peace::net::Udp::mmsghdr	access:private
 peace::net::Udp::_mmsg_msg_iov	net/udp/udp.h	/^	struct iovec _mmsg_msg_iov[UDP_REV_MMSG_NUM];$/;"	m	class:peace::net::Udp	typeref:struct:peace::net::Udp::iovec	access:private
-peace::net::Udp::_mmsg_msg_name	net/udp/udp.h	/^	struct sockaddr_in _mmsg_msg_name[UDP_REV_MMSG_NUM];$/;"	m	class:peace::net::Udp	typeref:struct:peace::net::Udp::sockaddr_in	access:private
 peace::net::Udp::_msgVec	net/udp/udp.h	/^	struct mmsghdr _msgVec[UDP_REV_MMSG_NUM];$/;"	m	class:peace::net::Udp	typeref:struct:peace::net::Udp::mmsghdr	access:private
-peace::net::Udp::_myPort	net/udp/udp.h	/^	int _myPort;$/;"	m	class:peace::net::Udp	access:private
-peace::net::Udp::_orgPeerAddr	net/udp/udp.h	/^	struct sockaddr_in _orgPeerAddr;$/;"	m	class:peace::net::Udp	typeref:struct:peace::net::Udp::sockaddr_in	access:private
+peace::net::Udp::_myPort	net/udp/udp.h	/^	int _myPort;$/;"	m	class:peace::net::Udp	access:protected
+peace::net::Udp::_orgPeerAddr	net/udp/udp.h	/^	struct sockaddr_in _orgPeerAddr;$/;"	m	class:peace::net::Udp	typeref:struct:peace::net::Udp::sockaddr_in	access:protected
 peace::net::Udp::_recvDataBuf	net/udp/udp.h	/^	RecvData *_recvDataBuf;$/;"	m	class:peace::net::Udp	access:private
 peace::net::Udp::_recvDataBufLast	net/udp/udp.h	/^	RecvData *_recvDataBufLast;$/;"	m	class:peace::net::Udp	access:private
 peace::net::Udp::_recvDataUdp	net/udp/udp.h	/^	RecvData *_recvDataUdp;$/;"	m	class:peace::net::Udp	access:private
@@ -554,6 +920,10 @@ peace::net::Udp::bufServer	net/udp/udp.cpp	/^void* Udp::bufServer(void* arg)$/;"
 peace::net::Udp::bufServer	net/udp/udp.h	/^	static void* bufServer(void* arg);$/;"	p	class:peace::net::Udp	access:public	signature:(void* arg)
 peace::net::Udp::exit	net/udp/udp.cpp	/^void Udp::exit()$/;"	f	class:peace::net::Udp	signature:()
 peace::net::Udp::init	net/udp/udp.cpp	/^int Udp::init()$/;"	f	class:peace::net::Udp	signature:()
+peace::net::Udp::initMmsgPara	net/udp/udp.cpp	/^void Udp::initMmsgPara()$/;"	f	class:peace::net::Udp	signature:()
+peace::net::Udp::initMmsgPara	net/udp/udp.h	/^	void initMmsgPara();$/;"	p	class:peace::net::Udp	access:private	signature:()
+peace::net::Udp::initMmsgSendPara	net/udp/udp.cpp	/^void Udp::initMmsgSendPara(const unsigned char* data, const int dataSize, const struct sockaddr_in &peerAddr)$/;"	f	class:peace::net::Udp	signature:(const unsigned char* data, const int dataSize, const struct sockaddr_in &peerAddr)
+peace::net::Udp::initMmsgSendPara	net/udp/udp.h	/^	void initMmsgSendPara(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr);$/;"	p	class:peace::net::Udp	access:private	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
 peace::net::Udp::isStart	net/udp/udp.cpp	/^bool Udp::isStart(void *arg)$/;"	f	class:peace::net::Udp	signature:(void *arg)
 peace::net::Udp::isStart	net/udp/udp.h	/^	static bool isStart(void* arg);$/;"	p	class:peace::net::Udp	access:public	signature:(void* arg)
 peace::net::Udp::override	net/udp/udp.h	/^	virtual int init() override;$/;"	m	class:peace::net::Udp	access:public
@@ -564,13 +934,15 @@ peace::net::Udp::override	net/udp/udp.h	/^	virtual int start(const char *ip, con
 peace::net::Udp::override	net/udp/udp.h	/^	virtual void exit() override;$/;"	m	class:peace::net::Udp	access:public
 peace::net::Udp::override	net/udp/udp.h	/^	virtual void stop() override;$/;"	m	class:peace::net::Udp	access:public
 peace::net::Udp::realSend	net/udp/udp.cpp	/^int Udp::realSend(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)$/;"	f	class:peace::net::Udp	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
-peace::net::Udp::realSend	net/udp/udp.h	/^	int realSend(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr); $/;"	p	class:peace::net::Udp	access:public	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
+peace::net::Udp::realSend	net/udp/udp.h	/^	int realSend(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr); $/;"	p	class:peace::net::Udp	access:private	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
+peace::net::Udp::realSendEx	net/udp/udp.cpp	/^int Udp::realSendEx(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)$/;"	f	class:peace::net::Udp	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
+peace::net::Udp::realSendEx	net/udp/udp.h	/^	int realSendEx(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr); $/;"	p	class:peace::net::Udp	access:private	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
 peace::net::Udp::recvServer	net/udp/udp.cpp	/^void* Udp::recvServer(void *arg)$/;"	f	class:peace::net::Udp	signature:(void *arg)
 peace::net::Udp::recvServer	net/udp/udp.h	/^    static void* recvServer(void* arg);$/;"	p	class:peace::net::Udp	access:public	signature:(void* arg)
-peace::net::Udp::recvUdpLogic	net/udp/udp.cpp	/^void Udp::recvUdpLogic()$/;"	f	class:peace::net::Udp	signature:()
-peace::net::Udp::recvUdpLogic	net/udp/udp.h	/^	void recvUdpLogic();$/;"	p	class:peace::net::Udp	access:private	signature:()
-peace::net::Udp::recvUdpLogicMul	net/udp/udp.cpp	/^void Udp::recvUdpLogicMul()$/;"	f	class:peace::net::Udp	signature:()
-peace::net::Udp::recvUdpLogicMul	net/udp/udp.h	/^	void recvUdpLogicMul();$/;"	p	class:peace::net::Udp	access:private	signature:()
+peace::net::Udp::recvUdpLogic	net/udp/udp.cpp	/^bool Udp::recvUdpLogic()$/;"	f	class:peace::net::Udp	signature:()
+peace::net::Udp::recvUdpLogic	net/udp/udp.h	/^	bool recvUdpLogic();$/;"	p	class:peace::net::Udp	access:private	signature:()
+peace::net::Udp::recvUdpLogicMul	net/udp/udp.cpp	/^bool Udp::recvUdpLogicMul()$/;"	f	class:peace::net::Udp	signature:()
+peace::net::Udp::recvUdpLogicMul	net/udp/udp.h	/^	bool recvUdpLogicMul();$/;"	p	class:peace::net::Udp	access:private	signature:()
 peace::net::Udp::savePeerAddr	net/udp/udp.cpp	/^void Udp::savePeerAddr(const char *ip, const int port)$/;"	f	class:peace::net::Udp	signature:(const char *ip, const int port)
 peace::net::Udp::savePeerAddr	net/udp/udp.h	/^	void savePeerAddr(const char *ip, const int port);$/;"	p	class:peace::net::Udp	access:public	signature:(const char *ip, const int port)
 peace::net::Udp::selfBind	net/udp/udp.h	/^	virtual int selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize) = 0;$/;"	p	class:peace::net::Udp	access:public	signature:(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)
@@ -595,6 +967,30 @@ peace::net::UdpServer::override	net/udp/udpServer.h	/^	virtual int selfBind(cons
 peace::net::UdpServer::selfBind	net/udp/udpServer.cpp	/^int UdpServer::selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)$/;"	f	class:peace::net::UdpServer	signature:(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)
 peace::net::UdpServer::~UdpServer	net/udp/udpServer.cpp	/^UdpServer::~UdpServer()$/;"	f	class:peace::net::UdpServer	signature:()
 peace::net::UdpServer::~UdpServer	net/udp/udpServer.h	/^	~UdpServer();	$/;"	p	class:peace::net::UdpServer	access:public	signature:()
+peace::other	other/mmsg/recv.cpp	/^namespace other$/;"	n	namespace:peace	file:
+peace::other	other/mmsg/recv.h	/^namespace other $/;"	n	namespace:peace
+peace::other	other/mmsg/send.h	/^namespace other $/;"	n	namespace:peace
+peace::other::MmsgRecv	other/mmsg/recv.h	/^class MmsgRecv $/;"	c	namespace:peace::other
+peace::other::MmsgRecv::_addr	other/mmsg/recv.h	/^	struct sockaddr_in _addr[MMSG_RECV_HDR_NUM];	$/;"	m	class:peace::other::MmsgRecv	typeref:struct:peace::other::MmsgRecv::sockaddr_in	access:private
+peace::other::MmsgRecv::_buf	other/mmsg/recv.h	/^	unsigned char _buf[MMSG_RECV_HDR_NUM][MMSG_RECV_IOV_SIZE][MMSG_RECV_BUF_SIZE];$/;"	m	class:peace::other::MmsgRecv	access:private
+peace::other::MmsgRecv::_msgs	other/mmsg/recv.h	/^	struct mmsghdr _msgs[MMSG_RECV_HDR_NUM];$/;"	m	class:peace::other::MmsgRecv	typeref:struct:peace::other::MmsgRecv::mmsghdr	access:private
+peace::other::MmsgRecv::_msgsIovec	other/mmsg/recv.h	/^	struct iovec _msgsIovec[MMSG_RECV_HDR_NUM][MMSG_RECV_IOV_SIZE];$/;"	m	class:peace::other::MmsgRecv	typeref:struct:peace::other::MmsgRecv::iovec	access:private
+peace::other::MmsgRecv::_peerAddr	other/mmsg/recv.h	/^	struct sockaddr_in _peerAddr;$/;"	m	class:peace::other::MmsgRecv	typeref:struct:peace::other::MmsgRecv::sockaddr_in	access:private
+peace::other::MmsgRecv::_sock	other/mmsg/recv.h	/^	int _sock;$/;"	m	class:peace::other::MmsgRecv	access:private
+peace::other::MmsgRecv::_timeout	other/mmsg/recv.h	/^	static const int _timeout = 10;$/;"	m	class:peace::other::MmsgRecv	access:private
+peace::other::MmsgRecv::exit	other/mmsg/recv.cpp	/^void MmsgRecv::exit()$/;"	f	class:peace::other::MmsgRecv	signature:()
+peace::other::MmsgRecv::exit	other/mmsg/recv.h	/^	void exit();$/;"	p	class:peace::other::MmsgRecv	access:public	signature:()
+peace::other::MmsgRecv::init	other/mmsg/recv.cpp	/^int MmsgRecv::init(const char *ip, const int port)$/;"	f	class:peace::other::MmsgRecv	signature:(const char *ip, const int port)
+peace::other::MmsgRecv::init	other/mmsg/recv.h	/^	int init(const char *ip, const int port);	$/;"	p	class:peace::other::MmsgRecv	access:public	signature:(const char *ip, const int port)
+peace::other::MmsgRecv::initMmsgPara	other/mmsg/recv.cpp	/^void MmsgRecv::initMmsgPara()$/;"	f	class:peace::other::MmsgRecv	signature:()
+peace::other::MmsgRecv::initMmsgPara	other/mmsg/recv.h	/^	void initMmsgPara();$/;"	p	class:peace::other::MmsgRecv	access:private	signature:()
+peace::other::MmsgRecv::recv	other/mmsg/recv.cpp	/^int MmsgRecv::recv()$/;"	f	class:peace::other::MmsgRecv	signature:()
+peace::other::MmsgRecv::recv	other/mmsg/recv.h	/^	int recv();$/;"	p	class:peace::other::MmsgRecv	access:public	signature:()
+peace::other::MmsgSend	other/mmsg/send.h	/^class MmsgSend $/;"	c	namespace:peace::other
+peace::other::MmsgSend::init	other/mmsg/send.h	/^	int init();$/;"	p	class:peace::other::MmsgSend	access:private	signature:()
+prev	media/transmission/kcp/ikcp.h	/^	struct IQUEUEHEAD *next, *prev;$/;"	m	struct:IQUEUEHEAD	typeref:struct:IQUEUEHEAD::	access:public
+probe	media/transmission/kcp/ikcp.h	/^	IUINT32 snd_wnd, rcv_wnd, rmt_wnd, cwnd, probe;$/;"	m	struct:IKCPCB	access:public
+probe_wait	media/transmission/kcp/ikcp.h	/^	IUINT32 ts_probe, probe_wait;$/;"	m	struct:IKCPCB	access:public
 queueDestroy	base/queue/queue.cpp	/^void queueDestroy(BlockInfo *pBlockInfo)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo)
 queueDestroy	base/queue/queue.h	/^void queueDestroy(BlockInfo *pBlockInfo);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo)
 queueInit	base/queue/queue.cpp	/^int queueInit(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)$/;"	f	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const int blockNum, const int blockTotalSize)
@@ -613,24 +1009,45 @@ queuePush	base/queue/queue.cpp	/^int queuePush(BlockInfo *pBlockInfo, const unsi
 queuePush	base/queue/queue.h	/^int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize);$/;"	p	namespace:peace::base	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
 queuePush	peaceInterface.cpp	/^int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)$/;"	f	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
 queuePush	peaceInterface.h	/^int queuePush(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize);$/;"	p	signature:(BlockInfo *pBlockInfo, const unsigned char *pData, const int iSize, const unsigned char *pFrontData, const int iFrontSize)
+rcv_buf	media/transmission/kcp/ikcp.h	/^	struct IQUEUEHEAD rcv_buf;$/;"	m	struct:IKCPCB	typeref:struct:IKCPCB::IQUEUEHEAD	access:public
+rcv_nxt	media/transmission/kcp/ikcp.h	/^	IUINT32 snd_una, snd_nxt, rcv_nxt;$/;"	m	struct:IKCPCB	access:public
+rcv_queue	media/transmission/kcp/ikcp.h	/^	struct IQUEUEHEAD rcv_queue;$/;"	m	struct:IKCPCB	typeref:struct:IKCPCB::IQUEUEHEAD	access:public
+rcv_wnd	media/transmission/kcp/ikcp.h	/^	IUINT32 snd_wnd, rcv_wnd, rmt_wnd, cwnd, probe;$/;"	m	struct:IKCPCB	access:public
 realSend	net/udp/udp.cpp	/^int Udp::realSend(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)$/;"	f	class:peace::net::Udp	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
-realSend	net/udp/udp.h	/^	int realSend(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr); $/;"	p	class:peace::net::Udp	access:public	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
+realSend	net/udp/udp.h	/^	int realSend(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr); $/;"	p	class:peace::net::Udp	access:private	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
+realSendEx	net/udp/udp.cpp	/^int Udp::realSendEx(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)$/;"	f	class:peace::net::Udp	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
+realSendEx	net/udp/udp.h	/^	int realSendEx(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr); $/;"	p	class:peace::net::Udp	access:private	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
+recv	other/mmsg/recv.cpp	/^int MmsgRecv::recv()$/;"	f	class:peace::other::MmsgRecv	signature:()
+recv	other/mmsg/recv.h	/^	int recv();$/;"	p	class:peace::other::MmsgRecv	access:public	signature:()
 recvServer	net/udp/udp.cpp	/^void* Udp::recvServer(void *arg)$/;"	f	class:peace::net::Udp	signature:(void *arg)
 recvServer	net/udp/udp.h	/^    static void* recvServer(void* arg);$/;"	p	class:peace::net::Udp	access:public	signature:(void* arg)
-recvUdpLogic	net/udp/udp.cpp	/^void Udp::recvUdpLogic()$/;"	f	class:peace::net::Udp	signature:()
-recvUdpLogic	net/udp/udp.h	/^	void recvUdpLogic();$/;"	p	class:peace::net::Udp	access:private	signature:()
-recvUdpLogicMul	net/udp/udp.cpp	/^void Udp::recvUdpLogicMul()$/;"	f	class:peace::net::Udp	signature:()
-recvUdpLogicMul	net/udp/udp.h	/^	void recvUdpLogicMul();$/;"	p	class:peace::net::Udp	access:private	signature:()
+recvThread	media/transmission/kcp/kcp.cpp	/^void* Kcp::recvThread(void *arg)$/;"	f	class:Kcp	signature:(void *arg)
+recvThread	media/transmission/kcp/kcp.h	/^	static void* recvThread(void *arg);$/;"	p	class:Kcp	access:public	signature:(void *arg)
+recvUdpLogic	net/udp/udp.cpp	/^bool Udp::recvUdpLogic()$/;"	f	class:peace::net::Udp	signature:()
+recvUdpLogic	net/udp/udp.h	/^	bool recvUdpLogic();$/;"	p	class:peace::net::Udp	access:private	signature:()
+recvUdpLogicMul	net/udp/udp.cpp	/^bool Udp::recvUdpLogicMul()$/;"	f	class:peace::net::Udp	signature:()
+recvUdpLogicMul	net/udp/udp.h	/^	bool recvUdpLogicMul();$/;"	p	class:peace::net::Udp	access:private	signature:()
+recvUdpPackage	media/transmission/kcp/kcp.cpp	/^int Kcp::recvUdpPackage(const unsigned char *data, const int dataSize)$/;"	f	class:Kcp	signature:(const unsigned char *data, const int dataSize)
+recvUdpPackage	media/transmission/kcp/kcp.h	/^	int recvUdpPackage(const unsigned char *data, const int dataSize);$/;"	p	class:Kcp	access:public	signature:(const unsigned char *data, const int dataSize)
 registerTcpBusinessDealFunc	net/base/netBase.cpp	/^void NetBase::registerTcpBusinessDealFunc(const TcpBusinessDealFuncType pFunc)$/;"	f	class:peace::net::NetBase	signature:(const TcpBusinessDealFuncType pFunc)
 registerTcpBusinessDealFunc	net/base/netBase.h	/^	void registerTcpBusinessDealFunc(const TcpBusinessDealFuncType pFunc);$/;"	p	class:peace::net::NetBase	access:public	signature:(const TcpBusinessDealFuncType pFunc)
 registerUdpBusinessDealFunc	net/base/netBase.cpp	/^void NetBase::registerUdpBusinessDealFunc(const UdpBusinessDealFuncType pFunc)$/;"	f	class:peace::net::NetBase	signature:(const UdpBusinessDealFuncType pFunc)
 registerUdpBusinessDealFunc	net/base/netBase.h	/^	void registerUdpBusinessDealFunc(const UdpBusinessDealFuncType pFunc);	$/;"	p	class:peace::net::NetBase	access:public	signature:(const UdpBusinessDealFuncType pFunc)
-sSRC	makefile	/^sSRC = $(shell find $(DIR) -name "*.s")$/;"	m
+resendts	media/transmission/kcp/ikcp.h	/^	IUINT32 resendts;$/;"	m	struct:IKCPSEG	access:public
+rmt_wnd	media/transmission/kcp/ikcp.h	/^	IUINT32 snd_wnd, rcv_wnd, rmt_wnd, cwnd, probe;$/;"	m	struct:IKCPCB	access:public
+rto	media/transmission/kcp/ikcp.h	/^	IUINT32 rto;$/;"	m	struct:IKCPSEG	access:public
+rx_minrto	media/transmission/kcp/ikcp.h	/^	IINT32 rx_rttval, rx_srtt, rx_rto, rx_minrto;$/;"	m	struct:IKCPCB	access:public
+rx_rto	media/transmission/kcp/ikcp.h	/^	IINT32 rx_rttval, rx_srtt, rx_rto, rx_minrto;$/;"	m	struct:IKCPCB	access:public
+rx_rttval	media/transmission/kcp/ikcp.h	/^	IINT32 rx_rttval, rx_srtt, rx_rto, rx_minrto;$/;"	m	struct:IKCPCB	access:public
+rx_srtt	media/transmission/kcp/ikcp.h	/^	IINT32 rx_rttval, rx_srtt, rx_rto, rx_minrto;$/;"	m	struct:IKCPCB	access:public
+sSRC	makefile	/^sSRC := $(shell find $(DIR) -name "*.s")$/;"	m
 savePeerAddr	net/udp/udp.cpp	/^void Udp::savePeerAddr(const char *ip, const int port)$/;"	f	class:peace::net::Udp	signature:(const char *ip, const int port)
 savePeerAddr	net/udp/udp.h	/^	void savePeerAddr(const char *ip, const int port);$/;"	p	class:peace::net::Udp	access:public	signature:(const char *ip, const int port)
 selfBind	net/udp/udp.h	/^	virtual int selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize) = 0;$/;"	p	class:peace::net::Udp	access:public	signature:(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)
 selfBind	net/udp/udpClient.cpp	/^int UdpClient::selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)$/;"	f	class:peace::net::UdpClient	signature:(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)
 selfBind	net/udp/udpServer.cpp	/^int UdpServer::selfBind(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)$/;"	f	class:peace::net::UdpServer	signature:(const char *ip, const int nPort, const int sendBufSize, const int recvBufSize)
+send	media/transmission/kcp/kcp.cpp	/^void Kcp::send(const unsigned char *data, const int dataSize, void* arg)$/;"	f	class:Kcp	signature:(const unsigned char *data, const int dataSize, void* arg)
+send	media/transmission/kcp/kcp.h	/^	static void send(const unsigned char *data, const int dataSize, void* arg);$/;"	p	class:Kcp	access:public	signature:(const unsigned char *data, const int dataSize, void* arg)
 send	net/base/netBase.h	/^	virtual int send(const unsigned char *data, const int dataSize) = 0;$/;"	p	class:peace::net::NetBase	access:public	signature:(const unsigned char *data, const int dataSize)
 send	net/base/netBase.h	/^	virtual int send(const unsigned char *data, const int dataSize, const int sock) = 0;$/;"	p	class:peace::net::NetBase	access:public	signature:(const unsigned char *data, const int dataSize, const int sock)
 send	net/base/netBase.h	/^	virtual int send(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr) = 0;$/;"	p	class:peace::net::NetBase	access:public	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
@@ -639,6 +1056,8 @@ send	net/tcp/tcp.h	/^	virtual int send(const unsigned char *data, const int data
 send	net/udp/udp.cpp	/^int Udp::send(const unsigned char *data, const int dataSize)$/;"	f	class:peace::net::Udp	signature:(const unsigned char *data, const int dataSize)
 send	net/udp/udp.cpp	/^int Udp::send(const unsigned char *data, const int dataSize, const int sock)$/;"	f	class:peace::net::Udp	signature:(const unsigned char *data, const int dataSize, const int sock)
 send	net/udp/udp.cpp	/^int Udp::send(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)$/;"	f	class:peace::net::Udp	signature:(const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr)
+sendPackage	media/transmission/kcp/kcp.cpp	/^int Kcp::sendPackage(const unsigned char *data, const int dataSize)$/;"	f	class:Kcp	signature:(const unsigned char *data, const int dataSize)
+sendPackage	media/transmission/kcp/kcp.h	/^	int sendPackage(const unsigned char *data, const int dataSize);	$/;"	p	class:Kcp	access:public	signature:(const unsigned char *data, const int dataSize)
 sendServer	net/udp/udp.cpp	/^void* Udp::sendServer(void* arg)$/;"	f	class:peace::net::Udp	signature:(void* arg)
 sendServer	net/udp/udp.h	/^	static void* sendServer(void*arg);$/;"	p	class:peace::net::Udp	access:public	signature:(void*arg)
 sendServerDealFunc	net/udp/udp.cpp	/^void Udp::sendServerDealFunc(const unsigned char* data, const int dataSize, void* arg)$/;"	f	class:peace::net::Udp	signature:(const unsigned char* data, const int dataSize, void* arg)
@@ -647,16 +1066,25 @@ setChainSize	net/base/netBase.cpp	/^void NetBase::setChainSize(const int chainSi
 setChainSize	net/base/netBase.h	/^	void setChainSize(const int chainSize);	$/;"	p	class:peace::net::NetBase	access:public	signature:(const int chainSize)
 setUseSendThread	net/base/netBase.cpp	/^void NetBase::setUseSendThread()$/;"	f	class:peace::net::NetBase	signature:()
 setUseSendThread	net/base/netBase.h	/^	void setUseSendThread();$/;"	p	class:peace::net::NetBase	access:public	signature:()
+sn	media/transmission/kcp/ikcp.h	/^	IUINT32 sn;$/;"	m	struct:IKCPSEG	access:public
+snd_buf	media/transmission/kcp/ikcp.h	/^	struct IQUEUEHEAD snd_buf;$/;"	m	struct:IKCPCB	typeref:struct:IKCPCB::IQUEUEHEAD	access:public
+snd_nxt	media/transmission/kcp/ikcp.h	/^	IUINT32 snd_una, snd_nxt, rcv_nxt;$/;"	m	struct:IKCPCB	access:public
+snd_queue	media/transmission/kcp/ikcp.h	/^	struct IQUEUEHEAD snd_queue;$/;"	m	struct:IKCPCB	typeref:struct:IKCPCB::IQUEUEHEAD	access:public
+snd_una	media/transmission/kcp/ikcp.h	/^	IUINT32 snd_una, snd_nxt, rcv_nxt;$/;"	m	struct:IKCPCB	access:public
+snd_wnd	media/transmission/kcp/ikcp.h	/^	IUINT32 snd_wnd, rcv_wnd, rmt_wnd, cwnd, probe;$/;"	m	struct:IKCPCB	access:public
 soFLAGS	makefile	/^soFLAGS = -fPIC $/;"	m
 split	media/mix/readSplit/readSplitAAC.cpp	/^int ReadSplitAAC::split(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const $/;"	f	class:peace::media::ReadSplitAAC	signature:(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const
 split	media/mix/readSplit/readSplitBase.h	/^	virtual int split(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const = 0;$/;"	p	class:peace::media::ReadSplitBase	access:private	signature:(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const
 split	media/mix/readSplit/readSplitH264.cpp	/^int ReadSplitH264::split(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const$/;"	f	class:peace::media::ReadSplitH264	signature:(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const
+ssthresh	media/transmission/kcp/ikcp.h	/^	IUINT32 ts_recent, ts_lastack, ssthresh;$/;"	m	struct:IKCPCB	access:public
 start	net/base/netBase.h	/^	virtual int start(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize) = 0;$/;"	p	class:peace::net::NetBase	access:public	signature:(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)
 start	net/tcp/tcp.h	/^	virtual int start(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize);$/;"	p	class:peace::net::Tcp	access:public	signature:(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)
 start	net/udp/udp.cpp	/^int Udp::start(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)$/;"	f	class:peace::net::Udp	signature:(const char *ip, const int port, const int sockSendBufSize, const int sockRecvBufSize)
+state	media/transmission/kcp/ikcp.h	/^	IUINT32 conv, mtu, mss, state;$/;"	m	struct:IKCPCB	access:public
 stop	net/base/netBase.h	/^	virtual void stop() = 0;	 $/;"	p	class:peace::net::NetBase	access:public	signature:()
 stop	net/tcp/tcp.h	/^	virtual void stop();         $/;"	p	class:peace::net::Tcp	access:public	signature:()
 stop	net/udp/udp.cpp	/^void Udp::stop()$/;"	f	class:peace::net::Udp	signature:()
+stream	media/transmission/kcp/ikcp.h	/^	int nocwnd, stream;$/;"	m	struct:IKCPCB	access:public
 threadClose	base/thread/thread.cpp	/^void threadClose(pthread_t &pid)$/;"	f	namespace:peace::base	signature:(pthread_t &pid)
 threadClose	base/thread/thread.h	/^void threadClose(pthread_t &pid);$/;"	p	namespace:peace::base	signature:(pthread_t &pid)
 threadClose	peaceInterface.cpp	/^void threadClose(pthread_t &pid)$/;"	f	signature:(pthread_t &pid)
@@ -677,12 +1105,26 @@ threadCreateSmall	base/thread/thread.cpp	/^int threadCreateSmall(pthread_t &pid,
 threadCreateSmall	base/thread/thread.h	/^int threadCreateSmall(pthread_t &pid, void*(*thread_callback)(void*), void *arg);$/;"	p	namespace:peace::base	signature:(pthread_t &pid, void*(*thread_callback)(void*), void *arg)
 threadCreateSmall	peaceInterface.cpp	/^int threadCreateSmall(pthread_t &pid, void*(*threadCallback)(void*), void *arg)$/;"	f	signature:(pthread_t &pid, void*(*threadCallback)(void*), void *arg)
 threadCreateSmall	peaceInterface.h	/^int threadCreateSmall(pthread_t &pid, void*(*threadCallback)(void*), void *arg);$/;"	p	signature:(pthread_t &pid, void*(*threadCallback)(void*), void *arg)
+ts	media/transmission/kcp/ikcp.h	/^	IUINT32 ts;$/;"	m	struct:IKCPSEG	access:public
+ts_flush	media/transmission/kcp/ikcp.h	/^	IUINT32 current, interval, ts_flush, xmit;$/;"	m	struct:IKCPCB	access:public
+ts_lastack	media/transmission/kcp/ikcp.h	/^	IUINT32 ts_recent, ts_lastack, ssthresh;$/;"	m	struct:IKCPCB	access:public
+ts_probe	media/transmission/kcp/ikcp.h	/^	IUINT32 ts_probe, probe_wait;$/;"	m	struct:IKCPCB	access:public
+ts_recent	media/transmission/kcp/ikcp.h	/^	IUINT32 ts_recent, ts_lastack, ssthresh;$/;"	m	struct:IKCPCB	access:public
 udpClientCreate	peaceInterface.cpp	/^void* udpClientCreate(void* arg)$/;"	f	signature:(void* arg)
 udpClientCreate	peaceInterface.h	/^void* udpClientCreate(void* arg);$/;"	p	signature:(void* arg)
 udpServerCreate	peaceInterface.cpp	/^void* udpServerCreate(void* arg)$/;"	f	signature:(void* arg)
 udpServerCreate	peaceInterface.h	/^void* udpServerCreate(void* arg);$/;"	p	signature:(void* arg)
+una	media/transmission/kcp/ikcp.h	/^	IUINT32 una;$/;"	m	struct:IKCPSEG	access:public
+updateThread	media/transmission/kcp/kcp.cpp	/^void* Kcp::updateThread(void* arg)$/;"	f	class:Kcp	signature:(void* arg)
+updateThread	media/transmission/kcp/kcp.h	/^	static void* updateThread(void* arg);	$/;"	p	class:Kcp	access:public	signature:(void* arg)
+updated	media/transmission/kcp/ikcp.h	/^	IUINT32 nodelay, updated;$/;"	m	struct:IKCPCB	access:public
+user	media/transmission/kcp/ikcp.h	/^	void *user;$/;"	m	struct:IKCPCB	access:public
+wnd	media/transmission/kcp/ikcp.h	/^	IUINT32 wnd;$/;"	m	struct:IKCPSEG	access:public
 wr	base/file/simpleSaveFile.cpp	/^void SaveFile::wr(const void *data, const int dataSize)$/;"	f	class:peace::base::SaveFile	signature:(const void *data, const int dataSize)
 wr	base/file/simpleSaveFile.h	/^	void wr(const void *data, const int dataSize);$/;"	p	class:peace::base::SaveFile	access:public	signature:(const void *data, const int dataSize)
+writelog	media/transmission/kcp/ikcp.h	/^	void (*writelog)(const char *log, struct IKCPCB *kcp, void *user);$/;"	m	struct:IKCPCB	access:public
+xmit	media/transmission/kcp/ikcp.h	/^	IUINT32 current, interval, ts_flush, xmit;$/;"	m	struct:IKCPCB	access:public
+xmit	media/transmission/kcp/ikcp.h	/^	IUINT32 xmit;$/;"	m	struct:IKCPSEG	access:public
 ~NetBase	net/base/netBase.cpp	/^NetBase::~NetBase()$/;"	f	class:peace::net::NetBase	signature:()
 ~NetBase	net/base/netBase.h	/^	virtual ~NetBase();$/;"	p	class:peace::net::NetBase	access:public	signature:()
 ~SaveFile	base/file/simpleSaveFile.cpp	/^SaveFile::~SaveFile()$/;"	f	class:peace::base::SaveFile	signature:()

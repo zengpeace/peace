@@ -80,12 +80,10 @@ typedef enum
 	eUdpClient,
 }UdpUserType;
 
-typedef int (*UdpBusinessDealFuncType)(void *udp, const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr, void* arg);
-typedef int (*TcpBusinessDealFuncType)(void *tcp, const unsigned char *data, const int dataSize, const int sock, void* arg);
-
-
 #define LOGD printf
 
+typedef int (*UdpBusinessDealFuncType)(void *udp, const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr, void* arg);
+typedef int (*TcpBusinessDealFuncType)(void *tcp, const unsigned char *data, const int dataSize, const int sock, void* arg);
 
 
 static const int gUdpClientSelfPortRangeBegin = 40001;

@@ -8,6 +8,7 @@ namespace media
 
 int ReadSplitH264::split(unsigned char *data, const int dataSize, unsigned char* &frameData, int &frameSize) const
 {
+	//LOGD("into %u %u %u %u\n", data[0], data[1], data[2], data[3]);
 	bool fourBytes = true;
 	int tmpSize;
 	int tmpStartIndex = 0;
@@ -24,7 +25,7 @@ int ReadSplitH264::split(unsigned char *data, const int dataSize, unsigned char*
 					tmpSize --;
 				}
 
-				frameSize = tmpSize + 3;
+				frameSize = tmpSize;
 				frameData = pTmp;
 				if(fourBytes)
 				{
@@ -36,6 +37,7 @@ int ReadSplitH264::split(unsigned char *data, const int dataSize, unsigned char*
 					frameData -= 3;
 					frameSize += 3;
 				}
+				//LOGD("1:size=%d, next=%u\n", frameSize, (unsigned int)frameData[frameSize]);
 				return 1;
 			}
 
@@ -70,6 +72,7 @@ int ReadSplitH264::split(unsigned char *data, const int dataSize, unsigned char*
 			frameSize += 3;
 		}
 		
+		//LOGD("0:size=%d, next=%u\n", frameSize, (unsigned int)frameData[frameSize]);
 		return 0;
 	}
 	

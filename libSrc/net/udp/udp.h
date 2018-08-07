@@ -55,6 +55,10 @@ private:
 public:
 	bool _isRunning;
 
+protected:
+	int _myPort;
+	struct sockaddr_in _orgPeerAddr;
+
 private:
 	bool _lockSemFinishInit;
 	pthread_mutex_t _LockChain;
@@ -70,8 +74,6 @@ private:
 	pthread_t _recvServerPid;
 	pthread_t _sendServerTid;
 
-	int _myPort;
-	struct sockaddr_in _orgPeerAddr;
 
 private:
 	int _mmsgRecvNum;
