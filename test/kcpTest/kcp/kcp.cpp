@@ -71,6 +71,12 @@ void Kcp::exit()
 int Kcp::recvUdpPackage(const unsigned char *data, const int dataSize)
 {
 	LOGD("kcp recv %d data !\n", dataSize);
+	if(_isRunning == false)
+	{
+		LOGD("_isRunning is false ! obj is closing !\n");
+		return -1;
+	}
+
 	pthread_mutex_lock(&_recvLock);
 	ikcp_input(_kcp, (const char*)data, (long)dataSize);
 	pthread_mutex_unlock(&_recvLock);
