@@ -4,10 +4,10 @@ CC = gcc
 XX = g++
 
 
-CXXFLAGS = -Werror -Wall -g -Wunused -Wsign-compare -Wunreachable-code -DDEBUG_SYS_INFO 
+CXXFLAGS = -Werror -Wall -g -Wunused -Wsign-compare -Wunreachable-code -DDEBUG_SYS_INFO -DJEMALLOC_MANGLE 
 CFLAGS = $(CXXFLAGS) -std=gnu99 
-LDFLAGS	= -L../../install/bin 
-LIBS = -lpeace
+LDFLAGS	= -L../../install/bin
+LIBS = -lpeace -ljemalloc
 			
 ##LIBS = ../../install/bin/libpeace.so 
 

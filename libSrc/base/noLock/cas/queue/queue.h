@@ -1,0 +1,10 @@
+#ifndef _PEACE_BASE_NOLOCK_CAS_QUEUE_
+#define _PEACE_BASE_NOLOCK_CAS_QUEUE_
+
+
+
+
+
+#endif
+
+

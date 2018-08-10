@@ -1,0 +1,83 @@
+#!/bin/sh
+
+usage() {
+	cat <<EOF
+Usage:
+  /work/jemalloc_install/bin/jemalloc-config <option>
+Options:
+  --help | -h  : Print usage.
+  --version    : Print jemalloc version.
+  --revision   : Print shared library revision number.
+  --config     : Print configure options used to build jemalloc.
+  --prefix     : Print installation directory prefix.
+  --bindir     : Print binary installation directory.
+  --datadir    : Print data installation directory.
+  --includedir : Print include installation directory.
+  --libdir     : Print library installation directory.
+  --mandir     : Print manual page installation directory.
+  --cc         : Print compiler used to build jemalloc.
+  --cflags     : Print compiler flags used to build jemalloc.
+  --cppflags   : Print preprocessor flags used to build jemalloc.
+  --cxxflags   : Print C++ compiler flags used to build jemalloc.
+  --ldflags    : Print library flags used to build jemalloc.
+  --libs       : Print libraries jemalloc was linked against.
+EOF
+}
+
+prefix="/work/jemalloc_install"
+exec_prefix="/work/jemalloc_install"
+
+case "$1" in
+--help | -h)
+	usage
+	exit 0
+	;;
+--version)
+	echo "5.1.0-0-g61efbda7098de6fe64c362d309824864308c36d4"
+	;;
+--revision)
+	echo "2"
+	;;
+--config)
+	echo "--prefix=/work/jemalloc_install --enable-debug"
+	;;
+--prefix)
+	echo "/work/jemalloc_install"
+	;;
+--bindir)
+	echo "/work/jemalloc_install/bin"
+	;;
+--datadir)
+	echo "/work/jemalloc_install/share"
+	;;
+--includedir)
+	echo "/work/jemalloc_install/include"
+	;;
+--libdir)
+	echo "/work/jemalloc_install/lib"
+	;;
+--mandir)
+	echo "/work/jemalloc_install/share/man"
+	;;
+--cc)
+	echo "gcc"
+	;;
+--cflags)
+	echo "-std=gnu11 -Wall -Wsign-compare -Wundef -Wno-format-zero-length -pipe -g3 -fvisibility=hidden"
+	;;
+--cppflags)
+	echo "-D_GNU_SOURCE -D_REENTRANT"
+	;;
+--cxxflags)
+	echo "-Wall -g3 -fvisibility=hidden"
+	;;
+--ldflags)
+	echo " "
+	;;
+--libs)
+	echo "-lm -lstdc++ -lpthread -ldl"
+	;;
+*)
+	usage
+	exit 1
+esac

@@ -65,6 +65,8 @@ int main()
 	}*/
 
 	fclose(fp);
+
+	LOGD("success !\n");
 }
 
 

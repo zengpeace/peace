@@ -28,6 +28,7 @@
 #include <string>
 #include <map>
 
+#include "jemalloc.h"
 
 #define THREAD_STACK_SIZE_SMALL		(16 * 1024)
 #define THREAD_STACK_SIZE_MIDDLE	(1 * 1024 * 1024)
@@ -81,6 +82,8 @@ typedef enum
 }UdpUserType;
 
 #define LOGD printf
+
+#define CAS __sync_bool_compare_and_swap
 
 typedef int (*UdpBusinessDealFuncType)(void *udp, const unsigned char *data, const int dataSize, const struct sockaddr_in &peerAddr, void* arg);
 typedef int (*TcpBusinessDealFuncType)(void *tcp, const unsigned char *data, const int dataSize, const int sock, void* arg);
