@@ -9,7 +9,7 @@ AS = as
 
 
 MACRO = 
-CXXFLAGS = -Werror -Wall -g -Wunused -Wsign-compare -Wunreachable-code -DDEBUG_SYS_INFO -fPIC -DJEMALLOC_MANGLE
+CXXFLAGS = -Werror -Wall -g -Wunused -Wsign-compare -Wunreachable-code -DDEBUG_SYS_INFO -fPIC -fstack-protector-all -DJEMALLOC_MANGLE
 CFLAGS = $(CXXFLAGS) -std=gnu99 $(MACRO)
 LDFLAGS	= -L../interInstall/lib  
 			
